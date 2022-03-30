@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<context:property-placeholder location="classpath:database/jdbc.properties"/>
-	<context:component-scan base-package="com.agos.agw" />
+	<context:component-scan base-package="com.agos.awg" />
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
@@ -19,9 +19,9 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:com/agos/agw/**/*.xml" />	
+		<property name="mapperLocations" value="classpath:com/agos/awg/**/*.xml" />	
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.agos.agw.dao"/>
+	<mybatis-spring:scan base-package="com.agos.awg.dao"/>
 	
 </beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.agos.awg.dao.IBusDAO">
+  	<resultMap id="busResult" type="com.agos.awg.model.BusVO">
+  		<result property="bus_idx" column="bus_idx"/>
+  		<result property="bus_code" column="bus_code"/>
+  		<result property="bus_nm" column="bus_nm"/>
+  		<result property="bus_rep" column="bus_rep"/>
+  		<result property="bus_tel" column="bus_tel"/>
+  		<result property="bus_fax" column="bus_fax"/>
+  		<result property="bus_item" column="bus_item"/>
+  		<result property="commuLike" column="commuLike"/>
+  		<result property="commuHate" column="commuHate"/>
+  		<result property="commuView" column="commuView"/>
+  		<result property="bus_email" column="bus_email"/>
+  	</resultMap>
+ 
+ 	<!-- 업체전부불러오기 -->
+	<select id="buslist" resultMap="busResult" parameterType="com.agos.awg.model.BusVO">
+		SELECT * FROM bus_code
+	</select>
+
+  </mapper>

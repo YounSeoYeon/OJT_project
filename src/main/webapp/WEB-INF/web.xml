@@ -27,8 +27,8 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pat
-
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
 	<!-- 한글설정 -->
    <filter>
       <filter-name>encodingFilter</filter-name>
