@@ -24,4 +24,9 @@ public class CardController {
 		return "card";
 	}
 	
+	@RequestMapping(value = "/insertCard", method = RequestMethod.GET)
+	public String insertCard() {
+		return "insertCard";
+	}
+	
 }

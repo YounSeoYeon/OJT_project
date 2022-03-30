@@ -42,9 +42,14 @@
   						</tr>
   					</c:forEach>
   				</table>
-  				<button>추가</button>
+  				<button onclick="clickAddBtn()">추가</button>
   				<button>삭제</button>
 			</div>
 		</main>
+		<script>
+			function clickAddBtn() {
+				window.open("/insertCard");
+			}
+		</script>
 	</body>
 </html>
