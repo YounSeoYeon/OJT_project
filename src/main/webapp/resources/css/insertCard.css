@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/* insertCard.css */
+
+#wrapper {
+	display: flex;
+	//justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#addCardForm {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid black;
+	width: 80%;
+	height: 80%;
+	padding: 1.5rem 2rem;
+}
+
+#addCardForm div {
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+#addCardForm div label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+#addCardForm div input {
+	font-size: 16px;
+}
+
+#addCardForm div select {
+    padding: 2px;
+	margin-right: 5px;
+	font-size: 16px;
+}
+
+input[type=radio]#personal {
+	margin-left: 20px;
+}
+
+input[type=submit] {
+	width: 100px;
+	padding: 7px;
+	margin: auto;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 10px;
+	/* cursor: pointer; */
+}
+
+button.duplicateCheckBtn {
+	width: 100px;
+	padding: 6px;
+	margin-left: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+input[type=submit].disabled,
+button.duplicateCheckBtn.disabled {
+	background-color: #F0F0F0;
+	cursor: default;
+}
+
+#cardPWArea {
+	display: none;
+}

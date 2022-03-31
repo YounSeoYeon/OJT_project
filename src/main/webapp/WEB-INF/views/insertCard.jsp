@@ -7,31 +7,52 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>카드 계정 등록</title>
+		<link rel="stylesheet" href="<c:url value='/resources/css/insertCard.css' />" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="<c:url value='/resources/js/insertCard.js' />"></script>
 	</head>
 	<body>
-		<form>
-			<label for="card_idx">카드 계정</label><br/>
-			<input type="text" id="card_idx" name="card_idx" /> <button>중복 검사</button><br/>
-			
-			<label for="card_no">카드 번호</label><br/>
-			<input type="text" class="card_no" name="card_no1" /> -
-			<input type="text" class="card_no" name="card_no2" /> -
-			<input type="text" class="card_no" name="card_no3" /> -			
-			<input type="text" class="card_no" name="card_no4" /><br/>
-			
-			<label for="card_name">카드 명의</label><br/>
-			<input type="text" id="card_name" name="card_name" /><br/>
-			
-			<lables for="card_ep">유효 기간</lables><br/>
-			<input type="text" class="card_ep" name="card_ep-year" /> -			
-			<input type="text" class="card_ep" name="card_ep-montj" /><br/>
-			
-			<input type="radio" id="company" name="cardType" value="company">
-			<label for="company">법인</label>
-			<input type="radio" id="personal" name="cardType" value="personal">
-			<label for="personal">개인</label><br/>
-			
-			<input type="submit" value="추가"/>			
-		</form>
+		<div id="wrapper">
+			<h1>카드 계정 등록</h1>
+			<form id="addCardForm">
+				<div>
+					<label for="card_idx">카드 계정</label>
+					<!-- 카드 유형 선택 -->
+					<select id="cardType" name="cardType">
+						<option value="" selected>카드 유형 선택</option>
+						<option value="0">법인 카드</option>
+						<option value="1">개인 카드</option>
+					</select>
+					<input type="text" id="card_idx" name="card_idx" size="8" maxlength="8" placeholder="index"/> 
+					<button class="duplicateCheckBtn disabled">중복 검사</button>
+				</div>
+				
+				<div> 
+					<label for="card_no">카드 번호</label>
+					<input type="text" class="card_no" name="card_no1" size="4" /> -
+					<input type="text" class="card_no" name="card_no2" size="4" /> -
+					<input type="text" class="card_no" name="card_no3" size="4" /> -			
+					<input type="text" class="card_no" name="card_no4" size="4" />
+				</div>
+				
+				<div>
+					<label for="card_name">카드 명의</label>
+					<input type="text" id="card_name" name="card_name" />
+				</div>
+				
+				<div>
+					<label for="card_ep">유효 기간</label>
+					<input type="text" class="card_ep" name="card_ep-year" size="4" /> -			
+					<input type="text" class="card_ep" name="card_ep-month" size="4" />
+				</div>
+				
+				<div id="cardPWArea">
+					<label for="card_pw">카드 비밀번호</label>
+					<input type="text" id="card_pw" name="card_pw" />
+				</div>
+								
+				<input type="submit" class="disabled" value="추가"/>			
+			</form>
+		</div>
 	</body>
 </html>

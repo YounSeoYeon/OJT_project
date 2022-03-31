@@ -17,11 +17,11 @@ public class CardController {
 	CardService service;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
+	public String cardInfo(Model model) {
 		ArrayList<CardVO> cardList = service.getCardList();
 		
 		model.addAttribute("cardList", cardList);
-		return "card";
+		return "cardInfo";
 	}
 	
 	@RequestMapping(value = "/insertCard", method = RequestMethod.GET)
