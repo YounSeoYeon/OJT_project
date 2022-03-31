@@ -15,6 +15,13 @@ $(function(){
 		}else {
 			$('.duplicateCheckBtn, input[type=submit]').removeAttr('disabled');
 			$('.duplicateCheckBtn, input[type=submit]').removeClass('disabled');
+			
+			// 카드가 법인 카드면 카드 비밀번호 입력란 생성
+			if(cardType === '0'){
+				$('#cardPWArea').css('display', 'block');
+			}else {
+				$('#cardPWArea').css('display', 'none');
+			}
 		}
 	});
 });
