@@ -8,10 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>업체코드등록</title>
+<link href="<c:url value='./resources/css/businsert.css'/>" rel="stylesheet" type="text/css">
+<script src="<c:url value='./resources/js/jquery-3.6.0.min.js'/>"></script>
+<script src="<c:url value='./resources/js/businsert.js'/>"></script>
 </head>
 <body>
-	<section id="codeinsertform">
+	<section id="mainWrap">
 		<h1>업체코드등록폼</h1>
+		<div id="codeInsert">
 		<form class="form" method="post">
 			<ul>
 				 <li>
@@ -51,11 +55,12 @@
                 	<label>대표이메일</label><br>
                 	<input type="text">@<input type="text">
                 </li>
-                <li class="">
-	                <button>등록</button>
+                <li class="insertBtn">
+	                <span>등록</span>
                 </li>
 			</ul>
 		</form>
+		</div>
 	</section>
 </body>
 </html>

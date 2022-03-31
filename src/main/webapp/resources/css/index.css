@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+* {padding: 0; margin:0 auto;}
+
+/* 모든 컨텐츠를 포함하는  box */
+#mainWrap {
+	width:1280px;
+	position:relative;
+}
+
+h1{
+    font-weight:bolder ;
+    color: rgb(0, 77, 51);
+    text-align: center;
+    margin-top: 1%;
+}
+
+ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li{
+    list-style: none;
+}
+
+#codeMiddle{
+    margin: 2%;
+    padding:1%;
+    border: 1px solid ;
+    background-color: #ccc;
+}
+
+#codemenu{
+    width:50%;
+}
+
+#codemenu li{
+    width:25%;
+    border: 1px solid;
+    border-radius: 10px;
+    text-align: center;
+    margin: 1%;
+}
+
+.bustype{
+	margin: 1% !important;
+}
+
+/* --------top부분(데이터내용들어있는곳)---------- */
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+}
+.bus_list .top .check{
+    width:5%;
+}
+.name,.number,.etc{
+    width:19%;
+}
+.ceo,.buscode{
+    width:19%;
+}
+
+/* ----------추가삭제 버튼-------- */
+.inoutBtn{
+    display: flex;
+    justify-content: center;
+    margin: 1%;
+}
+
+.inoutBtn .in,
+.inoutBtn .out{
+    /* display: inline-block; */
+    margin: 1%;
+    text-align: center;
+    line-height: 100%;
+    border: 1px solid;
+    border-radius: 10px;
+    width:5%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inoutBtn :hover {
+	cursor: pointer;
+}

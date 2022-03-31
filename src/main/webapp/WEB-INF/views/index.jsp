@@ -6,30 +6,26 @@
 <html>
 <head>
 <title>index</title>
+<link href="<c:url value='./resources/css/index.css'/>" rel="stylesheet" type="text/css">
+<script src="<c:url value='./resources/js/jquery-3.6.0.min.js'/>"></script>
+<script src="<c:url value='./resources/js/index.js'/>"></script>
 </head>
 <body>
-	<h1>index입니다 ${serverTime}</h1>
 	<section id="mainWrap">
 		<h1>코드관리-업체</h1>
-		<div>
+		<div id="codeMiddle">
 			<ul id="codemenu">
 				<li>카드계정</li>
 				<li>업체</li>
 				<li>프로젝트</li>
 				<li>지출</li>
 			</ul>
-			<form>
-
-				<!-- <select id="bustype">
-				<option value="1">공공</option>
-				<option value="2">민간</option>
-				</select> -->
- 
-				<input type="radio" id="public" name="bustype" value="공공"><label>공공</label> 
-				<input type="radio" id="corp" name="bustype" value="민간"><label>민간</label>
-					
-				공공<input type="checkbox" value="공공" name="bustype"> 
-				민간<input type="checkbox" value="민간" name="bustype">
+			<form id="codemenuBus"> 
+				<div class="bustype">
+					<input type="radio" id="all" name="bustype" value="전체"><label>전체</label>
+					<input type="radio" id="public" name="bustype" value="공공"><label>공공</label> 
+					<input type="radio" id="corp" name="bustype" value="민간"><label>민간</label>
+				</div>
 				<hr>
 				<div class="bus_list_wrap">
 					<div class="bus_list">
@@ -51,15 +47,14 @@
 									<div class="buscode">${buslist.bus_code}</div>
 									<div class="etc">${buslist.bus_tel}</div>
 								</div>
+					<hr>
 					 	</c:forEach>
 					</div>				
+				</div>				
+				<div class="inoutBtn">
+					<span class="in">추가</span>
+					<span class="out">삭제</span>
 				</div>
-				
-				
-				<hr>
-				
-				<div>추가</div>
-				<div>삭제</div>
 			</form>
 		</div>
 	</section>
