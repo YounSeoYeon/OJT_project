@@ -8,6 +8,7 @@ $(function(){
 	    var maxlength = $(this).attr('maxlength');
 	    var value = $(this).val();
 	    if (value && value.length >= maxlength) {
+	    	// 글자수 이상은 잘리게
 	    	$(this).val(value.substr(0, maxlength));
 	    }
 	});
@@ -35,7 +36,9 @@ $(function(){
 	});
 	
 	// 카드 계정 중복 확인
-	$('.checkCardIndexBtn').on('click', function(){
+	$('.checkCardIndexBtn').on('click', function(e){
+		e.preventDefault(); // submit 방지
+		
 		let cardType = $('#cardType').val();
 		let index = $('#card_idx').val();
 		
@@ -43,18 +46,31 @@ $(function(){
 		else cardType = 'P';
 		
 		let data = cardType + index;
-		console.log(data);
+		// console.log(data);
 		
-//		$.ajax({
-//			type: 'post',
-//			url: '/checkCardIndex',
-//			data: data,
-//			success: function(result) {
-//				
-//			},
-//			error: function(e){
-//				console.log(e);
-//			}
-//		});
+		$.ajax({
+			type: 'post',
+			url: '/checkCardIndex',
+			data: {"data": data},
+			success: function(result) {
+				// console.log(result)
+				if(result == 0) {
+					$('.error').css({
+						'display': 'block',
+						'color': 'green'
+					});
+					$('.error').text('사용 가능한 아이디입니다.');
+				}else {
+					$('.error').css({
+						'display': 'block',
+						'color': 'red'
+					});
+					$('.error').text('이미 사용중인 아이디입니다.');
+				}
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
 	});
 });

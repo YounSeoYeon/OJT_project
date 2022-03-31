@@ -39,6 +39,19 @@
 	font-size: 16px;
 }
 
+#addCardForm div span {
+	font-size: 10px;
+	display: none;
+}
+
+input[type=number] {
+    width: 100px;
+}
+
+#cardNoArea input[type=number] {
+	width: 19%;
+}
+
 input[type=radio]#personal {
 	margin-left: 20px;
 }
@@ -55,7 +68,7 @@ input[type=submit] {
 	/* cursor: pointer; */
 }
 
-button.duplicateCheckBtn {
+button.checkCardIndexBtn {
 	width: 100px;
 	padding: 6px;
 	margin-left: 10px;
@@ -68,7 +81,7 @@ button.duplicateCheckBtn {
 }
 
 input[type=submit].disabled,
-button.duplicateCheckBtn.disabled {
+button.checkCardIndexBtn.disabled {
 	background-color: #F0F0F0;
 	cursor: default;
 }

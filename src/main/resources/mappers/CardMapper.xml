@@ -18,4 +18,9 @@
 	<select id="getCardList" resultMap="cardInfo">
 		SELECT * FROM card_acc ORDER BY card_idx
 	</select>
+
+	<!-- 카드  계정 중복 체크 -->
+	<select id="checkCardIndex" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM card_acc WHERE card_idx = #{index}
+	</select>
 </mapper>

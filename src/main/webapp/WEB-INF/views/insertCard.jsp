@@ -23,7 +23,7 @@
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>
 					</select>
-					<input type="number" id="card_idx" name="card_idx" placeholder="index" maxlength='8'/> 
+					<input type="number" id="card_idx" name="card_idx" placeholder="index" maxlength='9'/> 
 					<button class="checkCardIndexBtn disabled">중복 검사</button>
 					<span class="error"></span>
 				</div>

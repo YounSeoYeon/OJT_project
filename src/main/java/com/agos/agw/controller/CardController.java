@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.agos.agw.model.CardVO;
 import com.agos.agw.service.CardService;
@@ -16,7 +17,8 @@ public class CardController {
 	@Autowired
 	CardService service;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	// 카드 목록 페이지
+	@RequestMapping("/")
 	public String cardInfo(Model model) {
 		ArrayList<CardVO> cardList = service.getCardList();
 		
@@ -24,9 +26,17 @@ public class CardController {
 		return "cardInfo";
 	}
 	
-	@RequestMapping(value = "/insertCard", method = RequestMethod.GET)
+	// 카드 계정 등록 페이지 
+	@RequestMapping("/insertCard")
 	public String insertCard() {
 		return "insertCard";
 	}
 	
+	// 카드 계정 중복 체크
+	@ResponseBody
+	@RequestMapping("/checkCardIndex")
+	public int checkCardIndex(@RequestParam("data") String index) {
+		int result = service.checkCardIndex(index);		
+		return result;
+	}
 }

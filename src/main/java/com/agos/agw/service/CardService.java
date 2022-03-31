@@ -18,4 +18,8 @@ public class CardService implements ICardService {
 		return dao.getCardList();
 	}
 
+	public int checkCardIndex(String index) {
+		return dao.checkCardIndex(index);
+	}
+
 }
