@@ -7,5 +7,6 @@ import com.agos.awg.model.BusVO;
 public interface IBusDAO {
 
 	ArrayList<BusVO> buslist();
+	String codecheck(String buscode);
 
 }

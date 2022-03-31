@@ -20,4 +20,8 @@ public class BusService implements IBusService {
 		return dao.buslist();
 	}
 
+	public String codecheck(String buscode) {
+		return dao.codecheck(buscode);
+	}
+
 }

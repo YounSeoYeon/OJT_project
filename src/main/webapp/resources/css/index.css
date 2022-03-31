@@ -74,6 +74,7 @@ li{
 }
 
 .inoutBtn .in,
+.inoutBtn .modify,
 .inoutBtn .out{
     /* display: inline-block; */
     margin: 1%;

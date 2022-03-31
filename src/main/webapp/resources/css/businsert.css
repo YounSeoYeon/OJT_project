@@ -34,7 +34,7 @@ li{
 
 /* ---------등록버튼------------ */
 
-.insertBtn span {
+.insertBtn #checkAll {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,9 +44,12 @@ li{
     border-radius: 10px;
 }
 
+.insertBtn #checkAll :hover{
+	cursor: pointer;
+}
 
 /* ---input테그 클릭시 배경색상바꾸기--- */
-input :focus{
-	color: green;
-}
+input:focus{
+   background-color: green;
+ }
 

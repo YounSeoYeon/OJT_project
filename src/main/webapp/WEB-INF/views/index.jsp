@@ -53,6 +53,7 @@
 				</div>				
 				<div class="inoutBtn">
 					<span class="in">추가</span>
+					<span class="modify">수정</span>
 					<span class="out">삭제</span>
 				</div>
 			</form>

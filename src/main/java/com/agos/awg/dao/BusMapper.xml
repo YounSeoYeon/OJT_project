@@ -22,5 +22,10 @@
 	<select id="buslist" resultMap="busResult" parameterType="com.agos.awg.model.BusVO">
 		SELECT * FROM bus_code
 	</select>
+	
+	<!-- 업체코드 중복검사 -->
+	<select id="codecheck" parameterType="String" resultType="String">
+  		SELECT bus_code FROM bus_code WHERE bus_code = '${buscode}'
+   </select>
 
   </mapper>
