@@ -7,7 +7,8 @@ $(function(){
 	const inbtn = document.querySelector('.in');
 	$(inbtn).on('click', function(){
 		console.log("코드추가창");
-		window.open("./businsert","업체코드등록","width=1280, height=600, top=10, left=10");	
+		window.location.href='./businsert';
+		/* ,"업체코드등록","width=1280, height=600, top=10, left=10");	*/ 
 	});
 	
 	/*	

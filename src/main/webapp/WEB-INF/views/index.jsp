@@ -9,6 +9,65 @@
 <link href="<c:url value='./resources/css/index.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='./resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="<c:url value='./resources/js/index.js'/>"></script>
+<script src="<c:url value='./resources/js/busdelete.js'/>"></script>
+<script type="text/javascript">
+	$(function(){
+		var chkObj = document.getElementsByName("bustype"); // 개별체크박스들 배열로
+		var allchk = chkObj.length; // 체크된거 배열 갯수
+		
+		// 전체체크박스 누르면 전체 다 체크됨
+		$("input[name='allcheck']").click(function(){
+			var chkList = $("input[name='bustype']");
+			for(var i=0; i<chkList.length; i++){
+				chkList[i].checked = this.checked;
+			}
+		});
+		
+		// 개별체크박스 체크
+		$("input[name='bustype']").click(function(){
+			if($("input[name='bustype']:checked").length==allchk){
+				$("input[name='allcheck']")[0].checked = true;
+			}
+			else{
+				$("input[name='allcheck']")[0].checked = false;
+			}
+		});
+	});
+	
+	function bdelete(){
+		var url = "./busdelete";
+		var valueArr = new Array(); // 체크된거 넣을 배열 생성
+		var list = $("input[name='bustype']"); // 체크된 리스브(배열)
+		
+		for(var i=0; i<list.length; i++){
+			if(list[i].checked){
+				valueArr.push(list[i].value); // 체크된것의 업체코드 넣기
+			}
+		}
+		if(valueArr.length==0){ // 체크딘 업체 없으면
+			alert("선택된 업체가 없습니다");
+		}
+		else{
+			var check = confirm("정말 삭제하나요?");
+			$.ajax({
+				url:url, 			//위에서 선언한 전송할 url
+				type:'post',
+				data : {
+					'valueArr' : valueArr
+				},
+				success:function(result){
+					if(result=1){
+						alert("삭제완료");
+						location.replace("redirect:/");
+					}
+					else{
+						alert("삭제실패");
+					}
+				}
+			});
+		}
+	}
+</script>
 </head>
 <body>
 	<section id="mainWrap">
@@ -30,7 +89,7 @@
 				<div class="bus_list_wrap">
 					<div class="bus_list">
 						<div class="top">
-								<div class="check"><input type="checkbox" value="allcheck" name="bustype"></div>
+								<div class="check"><input type="checkbox" name="allcheck" id="allcheck"></div>
 								<div class="name">업체명</div>
 								<div class="number">사업자번호</div>
 								<div class="ceo">대표자</div>
@@ -40,7 +99,7 @@
 					<hr>
 						<c:forEach items="${vo}" var="buslist" begin="0">
 								<div class="top">
-									<div class="check"><input type="checkbox" value="allcheck" name="bustype"></div>
+									<div class="check"><input type="checkbox" name="bustype" value="${buslist.bus_idx}"></div>
 									<div class="name">${buslist.bus_nm}</div>
 									<div class="number">${buslist.bus_reg_no}</div>
 									<div class="ceo">${buslist.bus_rep}</div>
@@ -54,7 +113,7 @@
 				<div class="inoutBtn">
 					<span class="in">추가</span>
 					<span class="modify">수정</span>
-					<span class="out">삭제</span>
+					<span class="out" onClick="bdelete()">삭제</span>
 				</div>
 			</form>
 		</div>

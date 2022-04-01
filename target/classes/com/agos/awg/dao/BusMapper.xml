@@ -9,12 +9,11 @@
   		<result property="bus_code" column="bus_code"/>
   		<result property="bus_nm" column="bus_nm"/>
   		<result property="bus_rep" column="bus_rep"/>
+  		<result property="bus_reg_no" column="bus_email"/>
   		<result property="bus_tel" column="bus_tel"/>
   		<result property="bus_fax" column="bus_fax"/>
   		<result property="bus_item" column="bus_item"/>
-  		<result property="commuLike" column="commuLike"/>
-  		<result property="commuHate" column="commuHate"/>
-  		<result property="commuView" column="commuView"/>
+  		<result property="busAddress" column="busAddress"/>
   		<result property="bus_email" column="bus_email"/>
   	</resultMap>
  
@@ -28,4 +27,18 @@
   		SELECT bus_code FROM bus_code WHERE bus_code = '${buscode}'
    </select>
 
+	<!-- 업체코드디비 추가 -->
+	<!-- <insert id="busdbinsert" parameterType="com.agos.awg.model.BusVO">
+			INSERT INTO bus_code(bus_code,bus_nm,bus_rep,bus_reg_no,bus_tel,bus_fax,bus_item,bus_email) 
+			VALUES ('${bus_code}', '${bus_nm}',  '${bus_rep}','${bus_reg_no}','${bus_tel}','${bus_fax}','${bus_item}','${bus_email}')
+	</insert> -->
+	<insert id="busdbinsert" parameterType="com.agos.awg.model.BusVO">
+			INSERT INTO bus_code(bus_code,bus_nm,bus_rep,bus_reg_no,bus_tel,bus_fax,bus_item,bus_email,busAddress) 
+			VALUES ('#{bus_code}', '#{bus_nm}',  '#{bus_rep}','#{bus_reg_no}','#{bus_tel}','#{bus_fax}','#{bus_item}','#{bus_email}','#{busAddress}')
+	</insert>
+	
+	<!-- 인덱스로 삭제 -->
+	<delete id="delete"  parameterType="int">
+  			DELETE FROM bus_code WHERE bus_idx=#{bus_idx}
+  		</delete>
   </mapper>

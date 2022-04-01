@@ -8,5 +8,7 @@ public interface IBusDAO {
 
 	ArrayList<BusVO> buslist();
 	String codecheck(String buscode);
+	void busdbinsert(BusVO vo);
+	void delete(int idx);
 
 }

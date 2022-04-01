@@ -24,4 +24,14 @@ public class BusService implements IBusService {
 		return dao.codecheck(buscode);
 	}
 
+	public void busdbinsert(BusVO vo) {
+		dao.busdbinsert(vo);
+	}
+
+	@Override
+	public void delete(int idx) {
+		dao.delete(idx);		
+	}
+
+
 }

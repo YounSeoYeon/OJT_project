@@ -11,6 +11,7 @@ public class BusVO {
 	private String bus_fax;
 	private String bus_item;
 	private String bus_email;
+	private String busAddress;
 	
 	public int getBus_idx() {
 		return bus_idx;
@@ -36,6 +37,12 @@ public class BusVO {
 	public void setBus_rep(String bus_rep) {
 		this.bus_rep = bus_rep;
 	}
+	public String getBus_reg_no() {
+		return bus_reg_no;
+	}
+	public void setBus_reg_no(String bus_reg_no) {
+		this.bus_reg_no = bus_reg_no;
+	}
 	public String getBus_tel() {
 		return bus_tel;
 	}
@@ -59,16 +66,13 @@ public class BusVO {
 	}
 	public void setBus_email(String bus_email) {
 		this.bus_email = bus_email;
+	}	
+	public String getBusAddress() {
+		return busAddress;
 	}
-	public String getBus_reg_no() {
-		return bus_reg_no;
+	public void setBusAddress(String busAddress) {
+		this.busAddress = busAddress;
 	}
-	public void setBus_reg_no(String bus_reg_no) {
-		this.bus_reg_no = bus_reg_no;
-	}
-	
-	
-	
-	
 
+	
 }
