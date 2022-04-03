@@ -24,6 +24,7 @@
 						<option value="1">개인 카드</option>
 					</select>
 					<input type="number" id="card_idx" name="card_idx" placeholder="index" maxlength='9'/> 
+					<input type="hidden" id="card_idx_check" value="N"/>
 					<button class="checkCardIndexBtn disabled">중복 검사</button>
 					<span class="card_index_error error"></span>
 				</div>
@@ -34,11 +35,13 @@
 					<input type="number" class="card_no" name="card_no2" maxlength='4'/> -
 					<input type="number" class="card_no" name="card_no3" maxlength='4'/> -			
 					<input type="number" class="card_no" name="card_no4" maxlength='4'/>
+					<span class="card_no_error error"></span>
 				</div>
 				
 				<div>
 					<label for="card_name">카드 명의</label>
 					<input type="text" id="card_name" name="card_name" />
+					<span class="card_name_error error"></span>
 				</div>
 				
 				<div>
@@ -50,6 +53,7 @@
 				<div id="cardPWArea">
 					<label for="card_pw">카드 비밀번호</label>
 					<input type="number" id="card_pw" name="card_pw" maxlength='4'/>
+					<span class="card_pw_error error"></span>
 				</div>
 								
 				<input type="submit" class="disabled" value="추가"/>			

@@ -56,6 +56,7 @@ $(function(){
 				// console.log(result)
 				let $error = $('.card_index_error');
 				if(result == 0) {
+					$('#card_idx_check').val('Y');
 					$error.css({
 						'display': 'block',
 						'color': 'green'
@@ -129,6 +130,57 @@ $(function(){
 	$('#addCardForm').on('submit',  function(e) {
 		e.preventDefault();
 		
+		/*** 유효성 검사 ***/
+		// 중복 검사
+		if ($("#card_idx_check").val() != 'Y') {
+			$('.card_index_error').css({
+				'display': 'block',
+				'color': 'red'
+			});
+			$('.card_index_error').text('계정 증복체크를 해주세요.');
+			$("#card_idx").focus();
+			return false;
+		}
+		
+		// 카드 번호
+		$('.card_no').each(function(index){
+			if($(this).val() == '') {
+				$('.card_no_error').css({
+					'display': 'block',
+					'color': 'red'
+				});
+				$('.card_no_error').text('카드 번호를 입력헤주세요.');
+				$(this).focus();
+				return false;
+			}
+		});
+		
+		// 카드 명의
+		if($('#card_name').val() == '') {
+			$('.card_name_error').css({
+				'display': 'block',
+				'color': 'red'
+			});
+			$('.card_name_error').text('카드 명의자 이름을 입력헤주세요.');
+			$(this).focus();
+			return false;
+		}
+		
+		// 카드 비밀번호
+		if($('#cardType').val() === '0') {
+			if($('#card_pw').val() == '') {
+				$('.card_pw_error').css({
+					'display': 'block',
+					'color': 'red'
+				});
+				$('.card_pw_error').text('카드 비밀번호를 입력헤주세요.');
+				$(this).focus();
+				return false;
+			}
+		}
+		
+		
+		/*** Form Data ***/
 		// card_type
 		let card_type = $('#cardType').val();
 		
@@ -181,5 +233,4 @@ $(function(){
 			}
 		});
 	});
-	
 });
