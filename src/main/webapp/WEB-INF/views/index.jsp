@@ -6,10 +6,10 @@
 <html>
 <head>
 <title>index</title>
-<link href="<c:url value='./resources/css/index.css'/>" rel="stylesheet" type="text/css">
-<script src="<c:url value='./resources/js/jquery-3.6.0.min.js'/>"></script>
-<script src="<c:url value='./resources/js/index.js'/>"></script>
-<script src="<c:url value='./resources/js/busdelete.js'/>"></script>
+<link href="<c:url value='/resources/css/index.css'/>" rel="stylesheet" type="text/css">
+<script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
+<script src="<c:url value='/resources/js/index.js'/>"></script>
+<script src="<c:url value='/resources/js/busdelete.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
 		var chkObj = document.getElementsByName("bustype"); // 개별체크박스들 배열로
@@ -99,7 +99,7 @@
 					<hr>
 						<c:forEach items="${vo}" var="buslist" begin="0">
 								<div class="top">
-									<div class="check"><input type="checkbox" name="bustype" value="${buslist.bus_idx}"></div>
+									<div class="check"><input type="checkbox" id="bustype" name="bustype" value="${buslist.bus_idx}"></div>
 									<div class="name">${buslist.bus_nm}</div>
 									<div class="number">${buslist.bus_reg_no}</div>
 									<div class="ceo">${buslist.bus_rep}</div>
@@ -113,7 +113,7 @@
 				<div class="inoutBtn">
 					<span class="in">추가</span>
 					<span class="modify">수정</span>
-					<span class="out" onClick="bdelete()">삭제</span>
+					<span class="out">삭제</span>
 				</div>
 			</form>
 		</div>

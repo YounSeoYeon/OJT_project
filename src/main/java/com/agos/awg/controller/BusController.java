@@ -2,11 +2,10 @@ package com.agos.awg.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,14 +19,25 @@ public class BusController {
 	@Autowired
 	BusService busservice;
 
+	//처음 리스트 화면
 	@RequestMapping("/")
 	public String index(Model model) {
+		ArrayList<BusVO> vo = busservice.buslist();			//buslist()의 결과타입이 리스트 형식임. 
+		model.addAttribute("vo",vo);
+		System.out.println(vo);
+		return "buscodelist";
+	}
+	
+	//관리하기 눌르고 이동
+	@RequestMapping("/index")
+	public String index2(Model model) {
 		ArrayList<BusVO> vo = busservice.buslist();
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
 		return "index";
 	}
 	
+	//업체 추가화면 이동
 	@RequestMapping("/businsert")
 	public String businsert() {
 		return "businsert";
@@ -38,7 +48,7 @@ public class BusController {
 	@RequestMapping("/buscodecheck")
 	public int codecheck(@RequestParam("buscode") String buscode) {
 		String checktext = busservice.codecheck(buscode);
-		int result=1;
+		int result=1; //해당하는 업체코드 있을때 1 // 없을때 0
 		System.out.println(checktext);
 		if(checktext==null) {
 			result =0;
@@ -51,67 +61,46 @@ public class BusController {
 		}
 	}
 	
-	//업체코드 등록폼 작성후 디비에 등록
-//	@RequestMapping("/dbinsert")
-//	public void busdbinsert(@ModelAttribute BusVO vo) {
-//		busservice.busdbinsert(vo);
-//		System.out.println("등록");
-//		return "index";
-//	}
-
-	@RequestMapping("/dbinsert/{bus_code}")
-	 public void busdbinsert(
-	            @RequestParam("bus_code")String bus_code,
-	            @RequestParam("bus_nm")String bus_nm, 
-	            @RequestParam("bus_rep")String bus_rep,
-	            @RequestParam("bus_reg_no")String bus_reg_no,
-	            @RequestParam("bus_tel1")String bus_tel1, 
-	            @RequestParam("bus_tel2")String bus_tel2,
-	            @RequestParam("bus_tel3")String bus_tel3,
-	            @RequestParam("bus_fax1")String bus_fax1, 
-	            @RequestParam("bus_fax2")String bus_fax2,
-	            @RequestParam("bus_fax3")String bus_fax3,
-	            @RequestParam("bus_item")String bus_item,
-	            @RequestParam("bus_email")String bus_email, 
-	            @RequestParam("busAddress")String busAddress,
-	            BusVO vo
-	            )
-	 
-	 {
-		 System.out.println("받음");
-		 vo.setBus_code(bus_code);
-		 vo.setBus_nm(bus_nm);
-		 vo.setBus_rep(bus_rep);
-		 vo.setBus_reg_no(bus_reg_no);
-		 vo.setBus_tel(bus_tel1+"-"+bus_tel2+"-"+bus_tel3);
-		 vo.setBus_fax(bus_fax1+"-"+bus_fax2+"-"+bus_fax3);
-		 vo.setBus_item(bus_item);
-		 vo.setBus_email(bus_email);
-		 vo.setBusAddress(busAddress);
-		 
-		 busservice.busdbinsert(vo);
-		 System.out.println("완료");
-	   
-	 }
+	//업체코드 등록폼 작성후 중복확인,유효성검사 거쳐서 디비에 등록
+	@RequestMapping("/dbinsert")
+	public String busdbinsert(BusVO vo) {
+		System.out.println(vo.getBus_code());
+		busservice.busdbinsert(vo);
+		return "redirect:./";
+	}	
 	
+	//업체코드 수정폼으로 이동 (업체정보 가져와서 수정폼에 나타내 줘야함)
+	@RequestMapping("/busupdateform/{bus_idx}")
+	public String busupdateform(@PathVariable int bus_idx,Model model) {
+		BusVO vo = busservice.busupdateform(bus_idx);
+		model.addAttribute("vo",vo);
+		return "/busupdateform"; // agw/busupdateform/이경로임
+	}
 	
+	//업체수정후 db등록
+	@RequestMapping("/busupdate/{bus_idx}")
+	public String busupdate(BusVO vo) {
+		System.out.println("받아옴?");
+		System.out.println(vo.getBus_code()+vo.getBus_fax());
+		busservice.busdbupdate(vo);
+//		return "redirect:/";
+//		return "./index"; // /agw/busupdate/resources/이렇게 감		
+//		return "redirect:./"+vo.getBus_idx(); // agw/busupdate/5
+//		return "./busupdateform/"+vo.getBus_idx();
+		System.out.println("넘김?");
+		return "redirect:../";
+	}
 	
-	//업체코드 수정
-//	@RequestMapping("/busupdate/{busIdx}")
-//	public String busupdate() {
-//		return "";
-//	}
-	
-	//업체코드 삭제
-	@ResponseBody
-	@RequestMapping("/busdelete")
-	public String busdelete(HttpServletRequest request) {
-		String[] ajaxmsg = request.getParameterValues("valueArr");
-		int size = ajaxmsg.length;
-		for(int i=0; i<size; i++) {
-			busservice.delete(Integer.parseInt(ajaxmsg[i]));
+	// 삭제 여러개 -> 삭제할 업체들 배열로 가져옴
+	@RequestMapping("/busdelete/{idxlist}")
+	public String busdelete(@PathVariable ArrayList<Integer> idxlist) {
+		System.out.println(idxlist);
+		int a = idxlist.get(0);
+		System.out.println(a+"//"+idxlist.size());
+		for(int i=0; i<idxlist.size(); i++) {
+			busservice.busdbdelete(idxlist.get(i));			
 		}
 		return "redirect:/";
 	}
-	
+		
 }

@@ -28,9 +28,16 @@ public class BusService implements IBusService {
 		dao.busdbinsert(vo);
 	}
 
-	@Override
-	public void delete(int idx) {
-		dao.delete(idx);		
+	public BusVO busupdateform(int bus_idx) {
+		return dao.busupdateform(bus_idx);
+	}
+	
+	public void busdbupdate(BusVO vo) {
+		dao.busdbupdate(vo);
+	}
+
+	public void busdbdelete(int bus_idx) {
+		dao.busdbdelete(bus_idx);
 	}
 
 

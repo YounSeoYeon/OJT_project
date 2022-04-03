@@ -8,5 +8,7 @@ public interface IBusService {
 	ArrayList<BusVO> buslist();
 	String codecheck(String buscode);
 	void busdbinsert(BusVO vo);
-	void delete(int idx);
+	BusVO busupdateform(int bus_idx);
+	void busdbupdate(BusVO vo);
+	void busdbdelete(int bus_idx);
 }
