@@ -11,6 +11,6 @@ $(function(){
 		let left = (document.body.offsetWidth / 2) - (width / 2);
 		let top = (document.body.offsetHeight / 2) - (height / 2);
 		
-		window.open('/insertCard', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
+		window.open('/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
 	});
 });

@@ -14,7 +14,7 @@
 	<body>
 		<div id="wrapper">
 			<h1>코드 관리</h1>
-			<form id="content">
+			<div id="content">
 				<div id="tabButtons">
 					<button class="selected">카드 계정</button>
 					<button>업체</button>
@@ -54,7 +54,7 @@
 		  					</c:when>
 		  					<c:otherwise>
 		  						<tr>
-		  							<td colspan="5">카드 정보가 존재하지 않습니다.</td>
+		  							<td colspan="6">카드 정보가 존재하지 않습니다.</td>
 		  						</tr>
 		  					</c:otherwise>
 	  					</c:choose>
@@ -64,7 +64,7 @@
 	  					<button>삭제</button>
 	  				</div>
 				</div>
-			</form>
+			</div>
 		</div>
 		<script>
 			

@@ -27,8 +27,8 @@ public class CardController {
 	}
 	
 	// 카드 계정 등록 페이지 
-	@RequestMapping("/insertCard")
-	public String insertCard() {
+	@RequestMapping("/insertCardView")
+	public String insertCardView() {
 		return "insertCard";
 	}
 	
@@ -38,5 +38,15 @@ public class CardController {
 	public int checkCardIndex(@RequestParam("data") String index) {
 		int result = service.checkCardIndex(index);		
 		return result;
+	}
+	
+	// 카드 계정 등록
+	@ResponseBody
+	@RequestMapping("/insertCard")
+	public String insertCard(CardVO cardVO) {
+		service.insertCard(cardVO);
+		
+		String card_idx = cardVO.getCard_idx();
+		return card_idx;
 	}
 }

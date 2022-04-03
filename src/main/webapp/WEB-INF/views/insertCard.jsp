@@ -25,7 +25,7 @@
 					</select>
 					<input type="number" id="card_idx" name="card_idx" placeholder="index" maxlength='9'/> 
 					<button class="checkCardIndexBtn disabled">중복 검사</button>
-					<span class="error"></span>
+					<span class="card_index_error error"></span>
 				</div>
 				
 				<div id="cardNoArea"> 
@@ -34,26 +34,22 @@
 					<input type="number" class="card_no" name="card_no2" maxlength='4'/> -
 					<input type="number" class="card_no" name="card_no3" maxlength='4'/> -			
 					<input type="number" class="card_no" name="card_no4" maxlength='4'/>
-					<span class="error"></span>
 				</div>
 				
 				<div>
 					<label for="card_name">카드 명의</label>
 					<input type="text" id="card_name" name="card_name" />
-					<span class="error"></span>
 				</div>
 				
 				<div>
 					<label for="card_ep">유효 기간</label>
-					<input type="number" class="card_ep" name="card_ep-year" maxlength='4'/> -			
-					<input type="number" class="card_ep" name="card_ep-month" maxlength='2'/>
-					<span class="error"></span>
+					<select class="card_ep" id="card_ep_year"></select>년  -
+					<select class="card_ep" id="card_ep_month"></select>월
 				</div>
 				
 				<div id="cardPWArea">
 					<label for="card_pw">카드 비밀번호</label>
 					<input type="number" id="card_pw" name="card_pw" maxlength='4'/>
-					<span class="error"></span>
 				</div>
 								
 				<input type="submit" class="disabled" value="추가"/>			

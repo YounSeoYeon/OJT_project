@@ -51,21 +51,23 @@ $(function(){
 		$.ajax({
 			type: 'post',
 			url: '/checkCardIndex',
-			data: {"data": data},
+			data: {"data": data },
 			success: function(result) {
 				// console.log(result)
+				let $error = $('.card_index_error');
 				if(result == 0) {
-					$('.error').css({
+					$error.css({
 						'display': 'block',
 						'color': 'green'
 					});
-					$('.error').text('사용 가능한 아이디입니다.');
+					$error.text('사용 가능한 아이디입니다.');
 				}else {
-					$('.error').css({
+					$('#card_idx').focus();
+					$error.css({
 						'display': 'block',
 						'color': 'red'
 					});
-					$('.error').text('이미 사용중인 아이디입니다.');
+					$error.text('이미 사용중인 아이디입니다.');
 				}
 			},
 			error: function(e){
@@ -73,4 +75,111 @@ $(function(){
 			}
 		});
 	});
+	
+	// 카드 번호 입력 - 다음 칸 이동
+	$('input[name=card_no1]').on('keyup', function() {
+	    if(this.value.length == 4) {
+	       $('input[name=card_no2]').focus();
+	    }
+	});
+	$('input[name=card_no2]').on('keyup', function() {
+		if(this.value.length == 4) {
+			$('input[name=card_no3]').focus();
+		}
+	});
+	$('input[name=card_no3]').on('keyup', function() {
+		if(this.value.length == 4) {
+			$('input[name=card_no4]').focus();
+		}
+	});
+	$('input[name=card_no4]').on('keyup', function() {
+		if(this.value.length == 4) {
+			$('input[name=card_name]').focus();
+		}
+	});
+	
+	/****** 유효 기간 ******/
+	let now = new Date(); 
+	let year = now.getFullYear(); 
+	let mon = (now.getMonth() + 1) > 9 ? ''+(now.getMonth() + 1) : '0'+(now.getMonth() + 1); 
+	let day = (now.getDate()) > 9 ? ''+(now.getDate()) : '0'+(now.getDate()); 
+	
+	//년도 option 만들기 
+	for(let i = year ; i <= year+20 ; i++) { 
+		$('#card_ep_year').append('<option value="' + i + '">' + i + '</option>'); 
+	} 
+	
+	// 월별 option 만들기 
+	for(let i=1; i <= 12; i++) {
+		let mm = i > 9 ? i : "0"+i ; 
+		$('#card_ep_month').append('<option value="' + mm + '">' + mm + '</option>'); 
+	}
+	
+	// default로 현재 날짜 선택
+	$("#card_ep_year > option[value="+year+"]").attr("selected", "true"); 
+	$("#card_ep_month > option[value="+mon+"]").attr("selected", "true"); 
+
+	
+	// 엔터키 submit 안 되게 
+	$(document).on('keydown', function(e) {
+		if (e.keyCode == 13) e.preventDefault();
+	});
+	
+	// submit
+	$('#addCardForm').on('submit',  function(e) {
+		e.preventDefault();
+		
+		// card_type
+		let card_type = $('#cardType').val();
+		
+		// card_id
+		let card_id = $('#card_idx').val();
+		
+		// card_idx
+		let card_idx;
+		if(card_type === '0') card_idx = 'C' + card_id;
+		else card_idx = 'P' + card_id;
+		
+		// card_no
+		let card_no = '';
+		$('.card_no').each(function (index) {
+		     if(index < 3) card_no += $(this).val() + '-';
+		     else card_no += $(this).val();
+		});
+		
+		// card_name
+		let card_name = $('#card_name').val();
+		
+		// card_ep
+		let card_ep = $('#card_ep_year').val() + '-' + $('#card_ep_month').val() + '-00'; 
+		
+		// card_pw
+		let card_pw = $('#card_pw').val() || null;
+		
+		$.ajax({
+			type: 'post',
+			url: '/insertCard',
+			data: {
+				"card_idx": card_idx,
+				"card_no": card_no,
+				"card_id": card_id,
+				"card_pw": card_pw,
+				"card_name": card_name,
+				"card_ep": card_ep,
+				"card_type": card_type,
+			},
+			success: function(result) {
+				console.log(result)
+				if(result != '') {
+					alert('카드를 정상적으로 등록했습니다.');
+					opener.parent.location.reload();
+					window.close();
+				}
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+	
 });

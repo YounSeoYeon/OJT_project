@@ -23,4 +23,20 @@
 	<select id="checkCardIndex" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM card_acc WHERE card_idx = #{index}
 	</select>
+
+	<!-- 카드  계정 등록 -->
+	<insert id="insertCard" parameterType="com.agos.agw.model.CardVO" useGeneratedKeys="true" keyProperty="card_idx">
+		INSERT INTO card_acc 
+		<choose>
+			<when test="card_type == 0">
+				VALUES
+					(#{card_idx}, #{card_no}, #{card_id}, #{card_pw}, #{card_name}, #{card_ep}, #{card_type})
+			</when>
+			<when test="card_type == 1">
+				(card_idx, card_no, card_id, card_name, card_ep, card_type) 
+					VALUES
+						(#{card_idx}, #{card_no}, #{card_id}, #{card_name}, #{card_ep}, #{card_type})
+			</when>
+		</choose>
+	</insert>
 </mapper>
