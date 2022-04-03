@@ -29,7 +29,7 @@ li{
     margin: 2%;
     padding:1%;
     border: 1px solid ;
-    background-color: #ccc;
+    background-color: rgb(238, 236, 236); 
 }
 
 #codemenu{
@@ -44,9 +44,6 @@ li{
     margin: 1%;
 }
 
-.bustype{
-	margin: 1% !important;
-}
 
 /* --------top부분(데이터내용들어있는곳)---------- */
 .top{
@@ -56,6 +53,12 @@ li{
     text-align: center;
     margin: 5px;
 }
+
+.first{
+	font-weight: bolder;
+	font-size: large;
+}
+
 .bus_list .top .check{
     width:5%;
 }
@@ -91,4 +94,28 @@ li{
 
 .inoutBtn :hover {
 	cursor: pointer;
+}
+
+
+/* ----------업체찾기 분류-------- */
+.codesearch{
+	width:60%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.bustype{
+	margin: 1% !important;
+	display: inline-block;
+}
+.search{
+	display: inline-block;
+}
+.searchbtn{
+	width:50px;
+	height: 30px;
+	border-radius: 10px;
 }

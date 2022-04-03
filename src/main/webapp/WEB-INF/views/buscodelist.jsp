@@ -11,7 +11,7 @@
 </head>
 <body>
 	<section id="mainWrap">
-		<h1>업체코드전체보기</h1>
+		<h1>업체 전체보기</h1>
 		<div id="codeMiddle">
 			<ul id="codemenu">
 				<li>카드계정</li>
@@ -20,15 +20,21 @@
 				<li>지출</li>
 			</ul>
 			<form id="codemenuBus"> 
-				<div class="bustype">
-					<input type="radio" id="all" name="bustype" value="전체"><label>전체</label>
-					<input type="radio" id="public" name="bustype" value="공공"><label>공공</label> 
-					<input type="radio" id="corp" name="bustype" value="민간"><label>민간</label>
+				<div class="codesearch">
+					<div class="bustype">
+						<input type="radio" id="all" name="bustype" value="전체"><label>전체</label>
+						<input type="radio" id="public" name="bustype" value="공공"><label>공공</label> 
+						<input type="radio" id="corp" name="bustype" value="민간"><label>민간</label>
+					</div>
+					<div class="search">
+						<label>업체검색</label>&nbsp;&nbsp;<input type="text" name="search" placeholder="키워드검색">
+						&nbsp;<input class="searchbtn" type="submit" value="검색">
+					</div>
 				</div>
 				<hr>
 				<div class="bus_list_wrap">
 					<div class="bus_list">
-						<div class="top">
+						<div class="top first">
 								<div class="check">인덱스</div>
 								<div class="name">업체명</div>
 								<div class="number">사업자번호</div>
