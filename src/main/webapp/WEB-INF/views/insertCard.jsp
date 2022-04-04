@@ -18,7 +18,7 @@
 				<div>
 					<label for="card_idx">카드 계정</label>
 					<!-- 카드 유형 선택 -->
-					<select id="cardType" name="cardType">
+					<select id="card_type">
 						<option value="" selected>카드 유형 선택</option>
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>

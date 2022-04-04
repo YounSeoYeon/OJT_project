@@ -21,7 +21,7 @@ $(function(){
 		}
 		
 		// 카드가 법인 카드면 카드 비밀번호 입력란 생성
-		if(card_type == '0'){
+		if(card_type === '0'){
 			$('#cardPWArea').css('display', 'block');
 		}else {
 			$('#cardPWArea').css('display', 'none');
@@ -32,13 +32,13 @@ $(function(){
 	$('.checkCardIndexBtn').on('click', function(e){
 		e.preventDefault(); // submit 방지
 		
-		let cardType = $('#cardType').val();
+		let card_type = $('#card_type').val();
 		let index = $('#card_idx').val();
 		
-		if(cardType === '0') cardType = 'C';
-		else cardType = 'P';
+		if(card_type === '0') card_type = 'C';
+		else card_type = 'P';
 		
-		let data = cardType + index;
+		let data = card_type + index;
 		// console.log(data);
 		
 		$.ajax({
@@ -49,7 +49,6 @@ $(function(){
 				// console.log(result)
 				let $error = $('.card_index_error');
 				if(result == 0) {
-					$('#card_idx_check').val('Y');
 					$error.css({
 						'display': 'block',
 						'color': 'green'
@@ -111,13 +110,13 @@ $(function(){
 		if (e.keyCode == 13) e.preventDefault();
 	});
 	
-	// submit
+	/**** 추가 버튼 클릭 ****/
 	$('#addCardForm').on('submit',  function(e) {
 		e.preventDefault();
 		
 		/*** Form Data ***/
 		// card_type
-		let card_type = $('#cardType').val();
+		let card_type = $('#card_type').val();
 		
 		// card_id
 		let card_id = $('#card_idx').val();
@@ -143,6 +142,7 @@ $(function(){
 		// card_pw
 		let card_pw = $('#card_pw').val() || null;
 		
+		/*** Ajax ***/		
 		if(checkValidate()){
 			$.ajax({
 				type: 'post',
@@ -170,55 +170,60 @@ $(function(){
 		};
 	});
 	
+	
 	/*** 유효성 검사 ***/
 	function checkValidate(){
 		let validation = true;
-			
-		
+
 		// 카드 번호
-		$('.card_no').each(function(index){
+		$('.card_no').each(function(){
 			if(this.value.length < 4) {
-				$('.card_no_error').css({
-					'display': 'block',
-					'color': 'red'
-				});
-				$('.card_no_error').text('유효하지 않은 카드 번호입니다.');
+				$(this).addClass('hasError');
 				$(this).focus();
-				return validation = false;
-			}else {
-				$('.card_no_error').css('display', 'none');
-			}
-			return validation;
+			}else $(this).removeClass('hasError');
 		});
+		
+		if($('.card_no').is('.hasError')) {
+			$('.card_no_error').css({
+				'display': 'block',
+				'color': 'red'
+			});
+			$('.card_no_error').text('유효하지 않은 카드번호입니다.');
+			validation = false;
+		}else {
+			$('.card_no_error').css('display', 'none');
+		}
 		
 		
 		// 카드 명의
+		let name_validation = true;
 		if($('#card_name').val() == '') {
 			$('.card_name_error').css({
 				'display': 'block',
 				'color': 'red'
 			});
-			$('.card_name_error').text('카드 명의자 이름을 입력헤주세요.');
+			$('.card_name_error').text('카드 명의자를 입력해주세요.');
 			$(this).focus();
-			return validation = false;
+			validation = false;
 		}else {
 			$('.card_name_error').css('display', 'none');
 		};
 		
 		// 카드 비밀번호
-		console.log($('#card_type').val());
-		if($('#card_type').val() == 0) {
-			if($('#card_pw').val() == '') {
+		let pw_validation = true;
+		if($('#card_type').val() === '0') {
+			if($('#card_pw').val().length < 4) {
 				$('.card_pw_error').css({
 					'display': 'block',
 					'color': 'red'
 				});
-				$('.card_pw_error').text('카드 비밀번호를 입력헤주세요.');
+				let errorMsg = $('#card_pw').val() == '' ? '비밀번호를 입력하세요.' : '유효하지 않은 비밀번호입니다.';
+				$('.card_pw_error').text(errorMsg);
 				$(this).focus();
-				return validation = false;
+				validation = false;
+			}else {
+				$('.card_pw_error').css('display', 'none');
 			};
-		}else {
-			$('.card_pw_error').css('display', 'none');
 		};
 		
 		return validation;
