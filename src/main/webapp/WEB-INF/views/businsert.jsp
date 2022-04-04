@@ -11,6 +11,7 @@
 <link href="<c:url value='/resources/css/businsert.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="<c:url value='/resources/js/buscheck.js'/>"></script>
+<script src="<c:url value='/resources/js/index.js'/>"></script>
 </head>
 <body>
 	<section id="mainWrap">
@@ -47,11 +48,11 @@
 	                </li>
 	               <li>
 	                	<label>전화번호</label><br>
-	                	<input type="text" id="bus_tel1" name="bus_tel">&nbsp;<input type="text" id="bus_tel2" name="bus_tel">&nbsp;<input type="text" id="bus_tel3" name="bus_tel">
+	                	<input type="number" id="bus_tel1" name="bus_tel">&nbsp;<input type="number" id="bus_tel2" name="bus_tel">&nbsp;<input type="number" id="bus_tel3" name="bus_tel">
 	                </li>
 	                <li>
 	                	<label>팩스번호</label><br>
-	                	<input type="text" id="bus_fax1" name="bus_fax">&nbsp;<input type="text" id="bus_fax2" name="bus_fax">&nbsp;<input type="text" id="bus_fax3" name="bus_fax">
+	                	<input type="number" id="bus_fax1" name="bus_fax">&nbsp;<input type="number" id="bus_fax2" name="bus_fax">&nbsp;<input type="number" id="bus_fax3" name="bus_fax">
 	                </li>
 	                <li>
 	                	<label>주소</label><br>

@@ -8,6 +8,11 @@
 	position:relative;
 }
 
+h3{
+	text-align: center;
+    margin: 2%;
+}
+
 h1{
     font-weight:bolder ;
     color: rgb(0, 77, 51);
@@ -23,6 +28,12 @@ ul{
 
 li{
     list-style: none;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bolder;
 }
 
 #codeMiddle{

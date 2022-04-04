@@ -40,20 +40,10 @@
 								<div class="number">사업자번호</div>
 								<div class="ceo">대표자</div>
 								<div class="buscode">업체코드</div>
-								<div class="etc">기타</div>
+								<div class="etc">전화번호</div>
 						</div>
 					<hr>
-						<c:forEach items="${vo}" var="buslist" begin="0">
-								<div class="top">
-									<div class="check">${buslist.bus_idx}</div>
-									<div class="name">${buslist.bus_nm}</div>
-									<div class="number">${buslist.bus_reg_no}</div>
-									<div class="ceo">${buslist.bus_rep}</div>
-									<div class="buscode">${buslist.bus_code}</div>
-									<div class="etc">${buslist.bus_tel}</div>
-								</div>
-					<hr>
-					 	</c:forEach>
+						<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
 					</div>				
 				</div>				
 				<div class="inoutBtn">

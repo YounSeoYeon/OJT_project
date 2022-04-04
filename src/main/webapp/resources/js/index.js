@@ -7,6 +7,9 @@ $(function(){
 	const inbtn = document.querySelector('.in');
 	const moditybtn = document.querySelector('.modify');
 	const outbtn = document.querySelector('.out');
+//	const bustype =document.querySelector("radio[name='bustype']:checked");
+//	const bustype =document.querySelectorAll("radio[name='bustype']");
+//	console.log(bustype);
 	
 	/* 등록버튼 눌렀을때 */
 	$(inbtn).on('click', function(){
@@ -59,7 +62,45 @@ $(function(){
 			window.location.href='./busdelete/'+chkvalue;
 		}		
 		
-	});
-	
-	
+	});	
 });
+
+
+	/* ------------------------------------------- */
+	
+	// radio 버튼 클릭시 value값 db전달 -> 해당 value에 맞는 업체들 리스트에 보여줌(기존 전체있는 top 부분 지우고 여기다 보여줌?? 
+	function move(){		
+	 	var value = $("input:radio[name='bustype']:checked").val();
+        console.log(value);
+        
+        $.ajax({
+				url:"filter/"+value,
+				type:"post",
+				data:{"value":value},
+				dataType:'text',
+				success:function(result){	 /* 전체,공공,민간 값 받아오기 */
+					alert(result);
+					
+					
+					/* ---------------------------------- */
+					if(result !=''){	
+					$('#allmoimclass').empty();
+					$('#allmoimclass').append(result);
+					}
+				
+					else {
+                    $('#allmoimclass').empty();
+                    $('#allmoimclass').css({"margin-left" : "0 !important"});
+                    $('#allmoimclass').append('<span id="notFound" style="margin: 0 !important;">');
+                  	$('#allmoimclass').append('<p style="font-weight: bold; color:#474646 ;font-size: 64px; padding: 20px; margin: 20px;">검색 결과가 없습니다.</p>');
+                    $('#allmoimclass').append('</span>');                   
+                	}
+                
+                	/* --------------------------------- */
+					
+				},
+				error:function(){
+					alert("실패");
+				}
+			});		
+	}	

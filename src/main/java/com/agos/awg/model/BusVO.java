@@ -13,6 +13,7 @@ public class BusVO {
 	private String bus_email;
 	private String busAddress;
 	
+	
 	public int getBus_idx() {
 		return bus_idx;
 	}
@@ -66,13 +67,15 @@ public class BusVO {
 	}
 	public void setBus_email(String bus_email) {
 		this.bus_email = bus_email;
-	}	
+	}
 	public String getBusAddress() {
 		return busAddress;
 	}
 	public void setBusAddress(String busAddress) {
 		this.busAddress = busAddress;
 	}
-
+	
+	
+	
 	
 }

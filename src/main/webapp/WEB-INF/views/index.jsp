@@ -67,6 +67,7 @@
 			});
 		}
 	}
+
 </script>
 </head>
 <body>
@@ -82,13 +83,13 @@
 			<form id="codemenuBus"> 
 				<div class="codesearch">
 					<div class="bustype">
-						<input type="radio" id="all" name="bustype" value="전체"><label>전체</label>
-						<input type="radio" id="public" name="bustype" value="공공"><label>공공</label> 
-						<input type="radio" id="corp" name="bustype" value="민간"><label>민간</label>
+						<input type="radio" id="all" name="bustype" value="all" onClick="move()" checked="checked"><label>전체</label>
+						<input type="radio" id="public" name="bustype" value="public" onClick="move()"><label>공공</label> 
+						<input type="radio" id="corp" name="bustype" value="corp" onClick="move()"><label>민간</label>
 					</div>
 					<div class="search">
-						<label>업체검색</label>&nbsp;&nbsp;<input type="text" name="search" placeholder="키워드검색">
-						<input class="searchbtn" type="submit" value="검색">
+						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="키워드검색">
+						&nbsp;<input class="searchbtn" type="submit" value="검색">
 					</div>
 				</div>
 				<hr>
@@ -96,24 +97,14 @@
 					<div class="bus_list">
 						<div class="top first">
 								<div class="check"><input type="checkbox" name="allcheck" id="allcheck"></div>
-								<div class="name">업체명</div>
-								<div class="number">사업자번호</div>
-								<div class="ceo">대표자</div>
 								<div class="buscode">업체코드</div>
-								<div class="etc">기타</div>
+								<div class="name">업체명</div>
+								<div class="busnum">사업자번호</div>
+								<div class="ceo">대표자</div>
+								<div class="etc">전화번호</div>
 						</div>
 					<hr>
-						<c:forEach items="${vo}" var="buslist" begin="0">
-								<div class="top">
-									<div class="check"><input type="checkbox" id="bustype" name="bustype" value="${buslist.bus_idx}"></div>
-									<div class="name">${buslist.bus_nm}</div>
-									<div class="number">${buslist.bus_reg_no}</div>
-									<div class="ceo">${buslist.bus_rep}</div>
-									<div class="buscode">${buslist.bus_code}</div>
-									<div class="etc">${buslist.bus_tel}</div>
-								</div>
-					<hr>
-					 	</c:forEach>
+						<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
 					</div>				
 				</div>				
 				<div class="inoutBtn">

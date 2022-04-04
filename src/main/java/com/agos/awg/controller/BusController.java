@@ -25,7 +25,7 @@ public class BusController {
 		ArrayList<BusVO> vo = busservice.buslist();			//buslist()의 결과타입이 리스트 형식임. 
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
-		return "buscodelist";
+		return "index";
 	}
 	
 	//관리하기 눌르고 이동
@@ -66,7 +66,8 @@ public class BusController {
 	public String busdbinsert(BusVO vo) {
 		System.out.println(vo.getBus_code());
 		busservice.busdbinsert(vo);
-		return "redirect:./";
+//		return "redirect:./";
+		return "popup";	// 등록후 팝업안내창으로 이동
 	}	
 	
 	//업체코드 수정폼으로 이동 (업체정보 가져와서 수정폼에 나타내 줘야함)
@@ -88,7 +89,8 @@ public class BusController {
 //		return "redirect:./"+vo.getBus_idx(); // agw/busupdate/5
 //		return "./busupdateform/"+vo.getBus_idx();
 		System.out.println("넘김?");
-		return "redirect:../";
+//		return "redirect:../";
+		return "popup";	// 등록후 팝업안내창으로 이동
 	}
 	
 	// 삭제 여러개 -> 삭제할 업체들 배열로 가져옴
@@ -102,5 +104,16 @@ public class BusController {
 		}
 		return "redirect:/";
 	}
+	
+
+// -----------------------------------------------------------------------
+	
+	// 업체 타입 선택후 해당 업체들만 나오도록(filter)
+	@ResponseBody
+	@RequestMapping("/filter/{value}")
+	public String filter(@PathVariable String value) {
+		return "";
+	}
+	
 		
 }

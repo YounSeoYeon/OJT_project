@@ -38,10 +38,17 @@ li{
 
 #codemenu li{
     width:25%;
-    border: 1px solid;
-    border-radius: 10px;
+    border: 1px solid coral;
+    border-radius: 15px;
     text-align: center;
     margin: 1%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: coral;
 }
 
 
@@ -62,7 +69,7 @@ li{
 .bus_list .top .check{
     width:5%;
 }
-.name,.number,.etc{
+.name,.busnum,.etc{
     width:19%;
 }
 .ceo,.buscode{
@@ -99,7 +106,7 @@ li{
 
 /* ----------업체찾기 분류-------- */
 .codesearch{
-	width:60%;
+	width:55%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -113,6 +120,9 @@ li{
 }
 .search{
 	display: inline-block;
+}
+#searchinput{
+    height: 34px !important;
 }
 .searchbtn{
 	width:50px;
