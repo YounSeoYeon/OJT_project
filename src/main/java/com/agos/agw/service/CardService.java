@@ -1,6 +1,7 @@
 package com.agos.agw.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,9 +38,15 @@ public class CardService implements ICardService {
 		return dao.getCardInfo(card_idx);
 	}
 
-	// 카드 계정 등록
+	// 카드 계정 수정
 	@Override
-	public void updateCard(CardVO cardVO) {
-		dao.updateCard(cardVO);
+	public int updateCard(CardVO cardVO) {
+		return dao.updateCard(cardVO);
+	}
+
+	// 카드 계정 삭제
+	@Override
+	public int deleteCard(List<String> indexArray) {
+		return dao.deleteCard(indexArray);
 	}
 }

@@ -44,7 +44,7 @@ $(function(){
 		$.ajax({
 			type: 'post',
 			url: '/checkCardIndex',
-			data: {"data": data },
+			data: {'index': data },
 			success: function(result) {
 				// console.log(result)
 				let $error = $('.card_index_error');

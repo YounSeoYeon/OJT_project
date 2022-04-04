@@ -60,4 +60,12 @@
 		SET card_no=#{card_no}, card_name=#{card_name}, card_pw=#{card_pw}, card_ep=#{card_ep} 
 		WHERE card_idx=#{card_idx}
 	</update>
+	
+	<!-- 카드 정보 삭제 -->
+	<delete id="deleteCard" parameterType="list">
+		DELETE FROM card_acc WHERE
+		<foreach collection="list" item="item" separator="OR">
+			 card_idx = #{item}
+		</foreach>
+	</delete>
 </mapper>

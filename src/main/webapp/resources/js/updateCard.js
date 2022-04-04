@@ -95,7 +95,7 @@ $(function(){
 					"card_ep": card_ep,
 				},
 				success: function(result) {
-					if(result != '') {
+					if(result != 0) {
 						alert('카드를 정상적으로 수정했습니다.');
 						opener.parent.location.reload();
 						window.close();

@@ -1,6 +1,7 @@
 package com.agos.agw.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,7 @@ public class CardController {
 	// 카드 계정 중복 체크
 	@ResponseBody
 	@RequestMapping("/checkCardIndex")
-	public int checkCardIndex(@RequestParam("data") String index) {
+	public int checkCardIndex(@RequestParam("index") String index) {
 		int result = service.checkCardIndex(index);		
 		return result;
 	}
@@ -69,10 +70,18 @@ public class CardController {
 	// 카드 정보 수정
 	@ResponseBody
 	@RequestMapping("/updateCard")
-	public String updateCard(CardVO cardVO) {
-		service.updateCard(cardVO);
+	public int updateCard(CardVO cardVO) {
+		int result = service.updateCard(cardVO);
 		
-		String card_idx = cardVO.getCard_idx();
-		return card_idx;
+		return result;
+	}
+	
+	// 카드 정보 삭제
+	@ResponseBody
+	@RequestMapping("/deleteCard")
+	public int deleteCard(@RequestParam("indexArray[]") List<String> indexArray) {
+		int result = service.deleteCard(indexArray);
+		
+		return result;
 	}
 }
