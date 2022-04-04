@@ -8,25 +8,23 @@ $(function(){
 		$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
 	
-	// 카드 유형 미 선택시 중복 검사버튼 비 활성화
-	$('#cardType').on('change', function(){
-		let cardType = $('#cardType').val();
-		
-		//console.log(cardType)
-		
-		if(cardType === '') {
+	// 카드 유형 선택
+	$('#card_type').on('change', function(){
+		let card_type = $('#card_type').val();
+		// 카드 유형 미 선택시 중복 검사버튼 비 활성화
+		if(card_type === '') {
 			$('.checkCardIndexBtn').attr('disabled', 'disabled');
 			$('.checkCardIndexBtn').addClass('disabled');
 		}else {
 			$('.checkCardIndexBtn').removeAttr('disabled');
 			$('.checkCardIndexBtn').removeClass('disabled');
-			
-			// 카드가 법인 카드면 카드 비밀번호 입력란 생성
-			if(cardType === '0'){
-				$('#cardPWArea').css('display', 'block');
-			}else {
-				$('#cardPWArea').css('display', 'none');
-			}
+		}
+		
+		// 카드가 법인 카드면 카드 비밀번호 입력란 생성
+		if(card_type == '0'){
+			$('#cardPWArea').css('display', 'block');
+		}else {
+			$('#cardPWArea').css('display', 'none');
 		}
 	});
 	
@@ -208,7 +206,8 @@ $(function(){
 		};
 		
 		// 카드 비밀번호
-		if($('#cardType').val() === '0') {
+		console.log($('#card_type').val());
+		if($('#card_type').val() == 0) {
 			if($('#card_pw').val() == '') {
 				$('.card_pw_error').css({
 					'display': 'block',
