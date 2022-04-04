@@ -53,4 +53,11 @@
 			</when>
 		</choose>
 	</insert>
+	
+	<!-- 카드 정보 수정 -->
+	<update id="updateCard" parameterType="com.agos.agw.model.CardVO">
+		UPDATE card_acc
+		SET card_no=#{card_no}, card_name=#{card_name}, card_pw=#{card_pw}, card_ep=#{card_ep} 
+		WHERE card_idx=#{card_idx}
+	</update>
 </mapper>

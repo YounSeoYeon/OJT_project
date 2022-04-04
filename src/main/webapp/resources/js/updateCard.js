@@ -74,6 +74,14 @@ $(function(){
 				$('.card_no_error').text('카드 번호를 입력헤주세요.');
 				$(this).focus();
 				return false;
+			}else if($(this).val().length < 4) {
+				$('.card_no_error').css({
+					'display': 'block',
+					'color': 'red'
+				});
+				$('.card_no_error').text('카드 번호가 유효하지 않습니다.');
+				$(this).focus();
+				return false;
 			}
 		});
 		
@@ -101,6 +109,9 @@ $(function(){
 		
 		
 		/*** Form Data ***/
+		// card_idx
+		let card_idx = $('input[name=card_idx]').val();
+		
 		// card_no
 		let card_no = '';
 		$('.card_no').each(function (index) {
@@ -121,11 +132,11 @@ $(function(){
 			type: 'post',
 			url: '/updateCard',
 			data: {
+				"card_idx": card_idx,
 				"card_no": card_no,
 				"card_pw": card_pw,
 				"card_name": card_name,
 				"card_ep": card_ep,
-				"card_type": card_type,
 			},
 			success: function(result) {
 				if(result != '') {

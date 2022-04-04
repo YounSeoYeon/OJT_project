@@ -57,12 +57,22 @@ public class CardController {
 		return card_idx;
 	}
 	
-	// 카드 계정 등록 페이지 
+	// 카드 계정 수정 페이지 
 	@RequestMapping("/updateCardView/{index}")
 	public String updateCardView(@PathVariable("index") String card_idx, Model model) {
 		CardVO card = service.getCardInfo(card_idx);
 		
 		model.addAttribute("card", card);
 		return "updateCard";
+	}
+	
+	// 카드 정보 수정
+	@ResponseBody
+	@RequestMapping("/updateCard")
+	public String updateCard(CardVO cardVO) {
+		service.updateCard(cardVO);
+		
+		String card_idx = cardVO.getCard_idx();
+		return card_idx;
 	}
 }

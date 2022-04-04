@@ -36,4 +36,10 @@ public class CardService implements ICardService {
 	public CardVO getCardInfo(String card_idx) {
 		return dao.getCardInfo(card_idx);
 	}
+
+	// 카드 계정 등록
+	@Override
+	public void updateCard(CardVO cardVO) {
+		dao.updateCard(cardVO);
+	}
 }

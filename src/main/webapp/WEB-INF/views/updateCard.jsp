@@ -17,7 +17,7 @@
 			<form id="updateCardForm">
 				<div>
 					<label for="card_idx">카드 계정</label>
-					<input type="text" value="${card.card_idx}" readonly />
+					<input type="text" name="card_idx" value="${card.card_idx}" readonly />
 				</div>
 				
 				<div id="cardNoArea"> 
