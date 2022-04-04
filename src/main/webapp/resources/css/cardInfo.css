@@ -47,21 +47,21 @@ button {
 	margin-bottom: 10px;
 }
 
-#cardInfoList, #cardInfoList table {
+#cardInfo, #cardInfo table {
 	width: 100%;
 }
 
-#cardInfoList table {
+#cardInfo table {
 	border: 1px solid black;
     border-collapse: collapse;
     margin-bottom: 30px;
 }
 
-#cardInfoList th, td {
+#cardInfo th, td {
     border: 1px solid black;
 }
 
-#cardInfoList td {
+#cardInfo td {
 	text-align: center;
 }
 

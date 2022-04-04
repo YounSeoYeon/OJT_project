@@ -23,18 +23,18 @@
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>
 					</select>
-					<input type="number" id="card_idx" name="card_idx" placeholder="index" maxlength='9'/> 
-					<input type="hidden" id="card_idx_check" value="N"/>
+					<input type="text" id="card_idx" class="num" name="card_idx" placeholder="id" maxlength='8'/> 
+					<input type="hidden" id="card_idx_check" value="N"/> <!-- 아이디 중복체크 확인 -->
 					<button class="checkCardIndexBtn disabled">중복 검사</button>
 					<span class="card_index_error error"></span>
 				</div>
 				
 				<div id="cardNoArea"> 
 					<label for="card_no">카드 번호</label>
-					<input type="number" class="card_no" name="card_no1" maxlength='4'/> -
-					<input type="number" class="card_no" name="card_no2" maxlength='4'/> -
-					<input type="number" class="card_no" name="card_no3" maxlength='4'/> -			
-					<input type="number" class="card_no" name="card_no4" maxlength='4'/>
+					<input type="text" class="card_no num" name="card_no1" maxlength='4'/> -
+					<input type="text" class="card_no num" name="card_no2" maxlength='4'/> -
+					<input type="text" class="card_no num" name="card_no3" maxlength='4'/> -			
+					<input type="text" class="card_no num" name="card_no4" maxlength='4'/>
 					<span class="card_no_error error"></span>
 				</div>
 				
@@ -52,7 +52,7 @@
 				
 				<div id="cardPWArea">
 					<label for="card_pw">카드 비밀번호</label>
-					<input type="number" id="card_pw" name="card_pw" maxlength='4'/>
+					<input type="text" id="card_pw" class="num" name="card_pw" maxlength='4'/>
 					<span class="card_pw_error error"></span>
 				</div>
 								

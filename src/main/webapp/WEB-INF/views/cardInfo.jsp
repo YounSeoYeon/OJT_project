@@ -22,46 +22,30 @@
 					<button>지출</button>
 				</div>
 				<div id="cardTypes">
-					<input type="radio" id="all" name="cardType" value="all" checked />
+					<input type="radio" id="all" name="card_type" value="-1" checked />
 	  				<label for="all">전체</label>
-					<input type="radio" id="company" name="cardType" value="company" />
+					<input type="radio" id="company" name="card_type" value="0" />
 	  				<label for="company">법인</label>
-					<input type="radio" id="personal" name="cardType" value="personal" />
+					<input type="radio" id="personal" name="card_type" value="1" />
 	  				<label for="personal">개인</label>
 				</div>
-				<div id="cardInfoList">
+				<div id="cardInfo">
 	  				<table>
-	  					<tr>
-	  						<th><input type="checkbox" id="checkAll"/></th>
-	  						<th>카드 명의자</th>
-	  						<th>카드 번호</th>
-	  						<th>유효 기간</th>
-	  						<th>카드 관리 계정</th>
-	  						<th>카드 유형</th>
-	  					</tr>
-	  					<c:choose>
-	  						<c:when test="${ not empty cardList }">
-		  						<c:forEach items="${cardList}" var="card" >
-			  						<tr>
-			  							<td><input type="checkbox" id="${card.card_idx}" /></td>
-			  							<td>${card.card_name}</td>
-			  							<td>${card.card_no}</td>
-			  							<td>${card.card_ep}</td>
-			  							<td>${card.card_id}</td>
-			  							<td>${card.card_type}</td>
-			  						</tr>
-			  					</c:forEach>
-		  					</c:when>
-		  					<c:otherwise>
-		  						<tr>
-		  							<td colspan="6">카드 정보가 존재하지 않습니다.</td>
-		  						</tr>
-		  					</c:otherwise>
-	  					</c:choose>
+	  					<thead>
+	  						<tr>
+								<th><input type="checkbox" id="checkAll"/></th>
+								<th>카드 명의자</th>
+								<th>카드 번호</th>
+								<th>유효 기간</th>
+								<th>카드 관리 계정</th>
+							</tr>
+	  					</thead>
+	  					<tbody id="cardList"></tbody>
 	  				</table>
 	  				<div id="submitButtons">
 	  					<button class="addBtn">추가</button>
-	  					<button>삭제</button>
+	  					<button class="updateBtn">수정</button>
+	  					<button class="deleteBtn">삭제</button>
 	  				</div>
 				</div>
 			</div>

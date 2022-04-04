@@ -9,7 +9,7 @@
 	min-height: 100vh;
 }
 
-#addCardForm {
+#updateCardForm {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -19,29 +19,24 @@
 	padding: 1.5rem 2rem;
 }
 
-#addCardForm div {
+#updateCardForm div {
 	margin-bottom: 20px;
 	width: 100%;
 }
 
-#addCardForm div label {
+#updateCardForm div label {
 	display: block;
 	margin-bottom: 5px;
 }
 
-#addCardForm div input {
+#updateCardForm div input {
 	font-size: 16px;
 }
 
-#addCardForm div select {
+#updateCardForm div select {
     padding: 2px;
 	margin-right: 5px;
 	font-size: 16px;
-}
-
-#addCardForm div span {
-	font-size: 10px;
-	display: none;
 }
 
 input.num {
@@ -51,6 +46,10 @@ input.num {
 #cardNoArea input.num {
 	width: 19%;
 }
+
+input:read-only {
+	background-color: #F5F5F5;
+}  
 
 input[type=submit] {
 	width: 100px;
@@ -62,26 +61,4 @@ input[type=submit] {
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
-}
-
-button.checkCardIndexBtn {
-	width: 100px;
-	padding: 6px;
-	margin-left: 10px;
-	font-size: 16px;
-	color: white;
-	background-color: black;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-}
-
-input[type=submit].disabled,
-button.checkCardIndexBtn.disabled {
-	background-color: #F0F0F0;
-	cursor: default;
-}
-
-#cardPWArea {
-	display: none;
 }
