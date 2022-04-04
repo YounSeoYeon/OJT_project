@@ -3,28 +3,23 @@
  */
 
 $(function(){
-	// input type=number 입력 수 제한
-	$('input[type=number][maxlength]').on('input', function(ev) {
-	    var maxlength = $(this).attr('maxlength');
-	    var value = $(this).val();
-	    if (value && value.length >= maxlength) {
-	    	// 글자수 이상은 잘리게
-	    	$(this).val(value.substr(0, maxlength));
-	    }
+	// input num : 숫자만 입력
+	$('input.num').on('propertychange change keyup paste input', function(){
+		$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
 	
-	// 카드 유형 미 선택시 중복 검사버튼, 추가 버튼 비활성화
+	// 카드 유형 미 선택시 중복 검사버튼 비 활성화
 	$('#cardType').on('change', function(){
 		let cardType = $('#cardType').val();
 		
 		//console.log(cardType)
 		
 		if(cardType === '') {
-			$('.checkCardIndexBtn, input[type=submit]').attr('disabled', 'disabled');
-			$('.checkCardIndexBtn, input[type=submit]').addClass('disabled');
+			$('.checkCardIndexBtn').attr('disabled', 'disabled');
+			$('.checkCardIndexBtn').addClass('disabled');
 		}else {
-			$('.checkCardIndexBtn, input[type=submit]').removeAttr('disabled');
-			$('.checkCardIndexBtn, input[type=submit]').removeClass('disabled');
+			$('.checkCardIndexBtn').removeAttr('disabled');
+			$('.checkCardIndexBtn').removeClass('disabled');
 			
 			// 카드가 법인 카드면 카드 비밀번호 입력란 생성
 			if(cardType === '0'){
@@ -62,6 +57,8 @@ $(function(){
 						'color': 'green'
 					});
 					$error.text('사용 가능한 아이디입니다.');
+					$('input[type=submit]').removeAttr('disabled');
+					$('input[type=submit]').removeClass('disabled');
 				}else {
 					$('#card_idx').focus();
 					$error.css({
@@ -69,6 +66,8 @@ $(function(){
 						'color': 'red'
 					});
 					$error.text('이미 사용중인 아이디입니다.');
+					$('input[type=submit]').attr('disabled', 'disabled');
+					$('input[type=submit]').addClass('disabled');
 				}
 			},
 			error: function(e){
@@ -76,6 +75,7 @@ $(function(){
 			}
 		});
 	});
+	
 	
 	// 카드 번호 입력 - 다음 칸 이동
 	$('input[name=card_no1]').on('keyup', function() {
@@ -130,17 +130,6 @@ $(function(){
 		e.preventDefault();
 		
 		/*** 유효성 검사 ***/
-		// 중복 검사
-		if ($("#card_idx_check").val() != 'Y') {
-			$('.card_index_error').css({
-				'display': 'block',
-				'color': 'red'
-			});
-			$('.card_index_error').text('계정 증복체크를 해주세요.');
-			$("#card_idx").focus();
-			return false;
-		}
-		
 		// 카드 번호
 		$('.card_no').each(function(index){
 			if($(this).val() == '') {

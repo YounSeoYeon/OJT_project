@@ -46,7 +46,7 @@
 					<c:when test="${card.card_type eq 0}">
 						<div id="cardPWArea">
 							<label for="card_pw">카드 비밀번호</label>
-							<input type="text" id="card_pw" class="num"  name="card_pw" maxlength='4'  value="${card.card_pw}"/>
+							<input type="password" id="card_pw" class="num"  name="card_pw" maxlength='4'  value="${card.card_pw}"/>
 							<span class="card_pw_error error"></span>
 						</div>
 					</c:when>

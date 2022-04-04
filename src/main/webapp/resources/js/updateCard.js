@@ -3,16 +3,11 @@
  */
 
 $(function(){
-	// input type=number 입력 수 제한
-	$('input[type=number][maxlength]').on('input', function(ev) {
-	    var maxlength = $(this).attr('maxlength');
-	    var value = $(this).val();
-	    if (value && value.length >= maxlength) {
-	    	// 글자수 이상은 잘리게
-	    	$(this).val(value.substr(0, maxlength));
-	    }
+	// input num : 숫자만 입력
+	$('input.num').on('propertychange change keyup paste input', function(){
+		$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
-			
+	
 	// 카드 번호 입력 - 다음 칸 이동
 	$('input[name=card_no1]').on('keyup', function() {
 	    if(this.value.length == 4) {
