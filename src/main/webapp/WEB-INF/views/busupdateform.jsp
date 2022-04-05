@@ -54,7 +54,7 @@
 	                </li> --%>
 	                <li>
 	                	<label>전화번호</label><br>
-	                	<input type="number" id="bus_tel1" name="bus_tel" value=${vo.bus_tel}/>
+	                	<input type="number" id="bus_tel1" name="bus_tel" value="${vo.bus_tel}"/>
 	                </li>
 <%-- 	                <li>
 	                	<label>팩스번호</label><br>
@@ -64,7 +64,7 @@
 	                </li> --%>
 	                 <li>
 	                	<label>팩스번호</label><br>
-	                	<input type="number" id="bus_fax1" name="bus_fax" value=${bus_fax}/>
+	                	<input type="number" id="bus_fax1" name="bus_fax" value="${vo.bus_fax}"/>
 	                </li>
 	                <li>
 	                	<label>주소</label><br>
@@ -78,7 +78,7 @@
 	                </li> --%>
 	                <li>
 	                	<label>대표이메일</label><br>
-	                	<input type="text" id="bus_email1" name="bus_email" value=${vo.bus_email} />
+	                	<input type="text" id="bus_email1" name="bus_email" value="${vo.bus_email}" />
 	                </li>
 	                <!-- <li class="insertBtn">
 		                <span id="checkAll">등록</span>

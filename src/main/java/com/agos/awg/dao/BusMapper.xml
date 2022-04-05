@@ -57,20 +57,32 @@
 
 	<!-- 업체 필터(기본 전체/민간/공공) 및 검색 -->
 	
-	<!-- 1.업체 필터 전체all(A),민간corp(C), 공공public(P)로 시작--> 
-	<select id="filter" parameterType="com.agos.awg.model.BusVO" resultMap="busResult">
+	<!-- 1.업체 필터 전체all(A),민간corp(C), 공공public(P)로 시작 // search값 비어있을때 --> 
+	<select id="filter" resultMap="busResult">
 		SELECT * FROM bus_code
-		<if test="bustype=='전체'">		<!-- option이 전체이면 -->
+		<if test="bustype=='all'">		<!-- option이 전체이면 -->
 			ORDER BY bus_idx
 		</if>
-		<if test="bustype=='공공'">
+		<if test="bustype=='public' and bustype!=''">
 			WHERE bus_code LIKE "a%" ORDER BY bus_idx;		<!-- 옵션이 공공이면 -->
 		</if>
-		<if test="bustype=='민간'">
+		<if test="bustype=='corp' and bustype!=''">
 			WHERE bus_code LIKE "c%" ORDER BY bus_idx;		<!-- 옵션이 민간이면 -->
 		</if>
+		
 	</select>
 	
+	<!-- 2.업체 필터 전체all(A),민간corp(C), 공공public(P)로 시작 // search값 있을때 -> search쪽 버튼 누르고--> 
+	<select id="filter2" resultMap="busResult" parameterType="String">
+			<!-- 업종코드,회사이름,대표자,전화번호,주소,사업자번호중에 해당 키워드 있는거 보여줌 -->
+		SELECT * FROM bus_code WHERE 
+		(bus_code LIKE CONCAT('%', #{search}, '%')) OR
+		(bus_nm LIKE CONCAT('%', #{search}, '%')) OR
+		(bus_rep LIKE CONCAT('%', #{search}, '%')) OR
+		(bus_tel LIKE CONCAT('%', #{search}, '%'))OR
+		(bus_reg_no LIKE CONCAT('%', #{search}, '%'))OR
+		(busAddress LIKE CONCAT('%', #{search}, '%'))
+	</select>
 	
 	
 <!-- 	<select id="busSearch" resultMap="busResult"

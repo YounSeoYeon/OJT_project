@@ -88,8 +88,8 @@
 						<input type="radio" id="corp" name="bustype" value="corp" onClick="move()"><label>민간</label>
 					</div>
 					<div class="search">
-						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="키워드검색">
-						&nbsp;<input class="searchbtn" type="submit" value="검색">
+						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="업체,대표자,사업자번호,전화번호,주소 키워드입력" onChange='input()'>
+						&nbsp;<input class="searchbtn" type="button" value="검색">
 					</div>
 				</div>
 				<hr>
@@ -104,7 +104,9 @@
 								<div class="etc">전화번호</div>
 						</div>
 					<hr>
-						<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
+						<div class="topcard">
+							<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
+						</div>
 					</div>				
 				</div>				
 				<div class="inoutBtn">

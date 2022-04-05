@@ -40,5 +40,13 @@ public class BusService implements IBusService {
 		dao.busdbdelete(bus_idx);
 	}
 
+	public ArrayList<BusVO> filter(String value) {
+		return dao.filter(value);
+	}
+
+	public ArrayList<BusVO> filter2(String search) {
+		return dao.filter2(search);
+	}
+
 
 }

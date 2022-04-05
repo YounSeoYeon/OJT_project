@@ -68,32 +68,33 @@ $(function(){
 
 	/* ------------------------------------------- */
 	
-	// radio 버튼 클릭시 value값 db전달 -> 해당 value에 맞는 업체들 리스트에 보여줌(기존 전체있는 top 부분 지우고 여기다 보여줌?? 
+	// radio 버튼 클릭시 value값 db전달 -> 해당 radio값 value에 맞는 업체들 리스트에 보여줌(기존 전체있는 top 부분에 값 넣음)	
 	function move(){		
-	 	var value = $("input:radio[name='bustype']:checked").val();
+	 	var value = $("input:radio[name='bustype']:checked").val();		//radio 클릭한 값
         console.log(value);
         
         $.ajax({
 				url:"filter/"+value,
 				type:"post",
-				data:{"value":value},
+				data:
+				{"value":value},
 				dataType:'text',
 				success:function(result){	 /* 전체,공공,민간 값 받아오기 */
-					alert(result);
-					
+					console.log(result);
+					var topnum = result.split('<div class="top">');	/* 가져온업체리스트들 / 없으면 1임 */
+					console.log(topnum.length);
 					
 					/* ---------------------------------- */
-					if(result !=''){	
-					$('#allmoimclass').empty();
-					$('#allmoimclass').append(result);
-					}
-				
+					if(result !='' && topnum.length>1){	
+					$('.topcard').empty();
+					$('.topcard').append(result);
+					}				
 					else {
-                    $('#allmoimclass').empty();
-                    $('#allmoimclass').css({"margin-left" : "0 !important"});
-                    $('#allmoimclass').append('<span id="notFound" style="margin: 0 !important;">');
-                  	$('#allmoimclass').append('<p style="font-weight: bold; color:#474646 ;font-size: 64px; padding: 20px; margin: 20px;">검색 결과가 없습니다.</p>');
-                    $('#allmoimclass').append('</span>');                   
+                    $('.topcard').empty();
+                    $('.topcard').css({"margin-left" : "0 !important"});
+                    $('.topcard').append('<span id="notFound">');
+                  	$('.topcard').append('<p style="font-weight: bold; color:#474646 ;font-size: 30px; text-align: center; margin:30px;">필터 결과가 없습니다.</p>');
+                    $('.topcard').append('</span>');                   
                 	}
                 
                 	/* --------------------------------- */
@@ -104,3 +105,48 @@ $(function(){
 				}
 			});		
 	}	
+		
+	
+	// search 부분 클릭시 검색키워드 값 db전달 -> 위 radio버튼의 값과 + 검색키워드 값에 맞는 리스트 보여줌(기존 전체있는 top 부분)
+	// 둘다 값 가져오기
+	function input(){		
+		//var value = $("input:radio[name='bustype']:checked").val();		//radio 클릭한 값
+	 	//const search = document.getElementById('searchinput').value;	//검색한 값
+	 	const search = $("input:text[name='search']").val();	//검색한 값
+		console.log(search);
+		
+		$.ajax({
+				url:"filter2/"+search,
+				type:"post",
+				data:
+				{"search":search},
+				dataType:'text',
+				success:function(result){	 /* 전체,공공,민간 값 받아오기 */
+					console.log(result);
+					var topnum = result.split('<div class="top">');	/* 가져온업체리스트들 / 없으면 1임 */
+					console.log(topnum.length);
+					
+					/* ---------------------------------- */
+					if(result !='' && topnum.length>1){	
+					$('.topcard').empty();
+					$('.topcard').append(result);
+					}				
+					else {
+                    $('.topcard').empty();
+                    $('.topcard').css({"margin-left" : "0 !important"});
+                    $('.topcard').append('<span id="notFound">');
+                  	$('.topcard').append('<p style="font-weight: bold; color:#474646 ;font-size: 30px; text-align: center; margin:30px;">필터 결과가 없습니다.</p>');
+                    $('.topcard').append('</span>');                   
+                	}
+                
+                	/* --------------------------------- */
+					
+				},
+				error:function(){
+					console.log(value);
+					console.log(search);
+					alert("실패");
+				}
+			});		
+	}
+	

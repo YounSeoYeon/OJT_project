@@ -23,6 +23,50 @@ public class BusController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		ArrayList<BusVO> vo = busservice.buslist();			//buslist()의 결과타입이 리스트 형식임. 
+		System.out.println(vo.size());
+		String[] tel = new String[3];
+		String[] fax = new String[3];
+		
+		//전화번호
+		for(int i=0; i<vo.size(); i++) {
+			if(vo.get(i).getBus_tel().length()==10) {		//전화번호 길이 02-0000-0000 10자리일때
+				tel[0]=vo.get(i).getBus_tel().substring(0,2);
+				tel[1]=vo.get(i).getBus_tel().substring(2,6);
+				tel[2]=vo.get(i).getBus_tel().substring(6,10);
+				vo.get(i).setBus_tel(tel[0]+"-"+tel[1]+"-"+tel[2]);
+			}else if(vo.get(i).getBus_tel().length()==9) {	//전화번호 길이 02-000-0000 9자리일때
+				tel[0]=vo.get(i).getBus_tel().substring(0,2);
+				tel[1]=vo.get(i).getBus_tel().substring(2,5);
+				tel[2]=vo.get(i).getBus_tel().substring(5,9);
+				vo.get(i).setBus_tel(tel[0]+"-"+tel[1]+"-"+tel[2]);
+			}else {	//전화번호 길이 031-000-0000 11자리일때
+				tel[0]=vo.get(i).getBus_tel().substring(0,3);
+				tel[1]=vo.get(i).getBus_tel().substring(3,7);
+				tel[2]=vo.get(i).getBus_tel().substring(7,11);
+				vo.get(i).setBus_tel(tel[0]+"-"+tel[1]+"-"+tel[2]);
+			}
+		}
+		
+		// 팩스번호
+		for(int i=0; i<vo.size(); i++) {
+			if(vo.get(i).getBus_fax().length()==10) {		
+				fax[0]=vo.get(i).getBus_fax().substring(0,2);
+				fax[1]=vo.get(i).getBus_fax().substring(2,6);
+				fax[2]=vo.get(i).getBus_fax().substring(6,10);
+				vo.get(i).setBus_fax(fax[0]+"-"+fax[1]+"-"+fax[2]);
+			}else if(vo.get(i).getBus_fax().length()==9) {	
+				fax[0]=vo.get(i).getBus_fax().substring(0,2);
+				fax[1]=vo.get(i).getBus_fax().substring(2,5);
+				fax[2]=vo.get(i).getBus_fax().substring(5,9);
+				vo.get(i).setBus_fax(fax[0]+"-"+fax[1]+"-"+fax[2]);
+			}else {	
+				fax[0]=vo.get(i).getBus_fax().substring(0,3);
+				fax[1]=vo.get(i).getBus_fax().substring(3,7);
+				fax[2]=vo.get(i).getBus_fax().substring(7,11);
+				vo.get(i).setBus_fax(fax[0]+"-"+fax[1]+"-"+fax[2]);
+			}
+		}
+		
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
 		return "index";
@@ -64,7 +108,13 @@ public class BusController {
 	//업체코드 등록폼 작성후 중복확인,유효성검사 거쳐서 디비에 등록
 	@RequestMapping("/dbinsert")
 	public String busdbinsert(BusVO vo) {
+		String[] tel = vo.getBus_tel().split(",");
+		String[] fax = vo.getBus_fax().split(",");
+		vo.setBus_tel(tel[0]+tel[1]+tel[2]);
+		vo.setBus_fax(fax[0]+fax[1]+fax[2]);
+		
 		System.out.println(vo.getBus_code());
+		System.out.println(vo.getBus_tel());
 		busservice.busdbinsert(vo);
 //		return "redirect:./";
 		return "popup";	// 등록후 팝업안내창으로 이동
@@ -109,10 +159,32 @@ public class BusController {
 // -----------------------------------------------------------------------
 	
 	// 업체 타입 선택후 해당 업체들만 나오도록(filter)
-	@ResponseBody
+//	@ResponseBody
+//	@RequestMapping("/filter/{value}")
+//	public String filter(@PathVariable String value,Model model) {
+//		ArrayList<BusVO> vo = busservice.filter(value);
+//		model.addAttribute("vo",vo);
+//		System.out.println(vo);
+//		return "top";
+//	}
+	
+	// radio값만 바꼈을때
 	@RequestMapping("/filter/{value}")
-	public String filter(@PathVariable String value) {
-		return "";
+	public String filter(@PathVariable String value, Model model) {
+		ArrayList<BusVO> vo = busservice.filter(value);
+		model.addAttribute("vo",vo);
+		System.out.println(vo);
+		return "top";
+	}
+	
+	//radio + search 값 둘다 바꼈을 때 -> search 버튼 누르면
+	@RequestMapping("/filter2/{search}")
+	public String filter2(@PathVariable String search, Model model) {
+		System.out.println(search);
+		ArrayList<BusVO> vo = busservice.filter2(search);
+		model.addAttribute("vo",vo);
+		System.out.println(vo);
+		return "top";
 	}
 	
 		
