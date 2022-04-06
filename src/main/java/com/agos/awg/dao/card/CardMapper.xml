@@ -19,7 +19,7 @@
 		<if test="card_type != -1">
 			WHERE card_type = #{card_type}
 		</if>
-		ORDER BY card_id
+		<!-- ORDER BY card_id -->
 	</select>
 	
 	<!-- 카드 정보 조회 -->

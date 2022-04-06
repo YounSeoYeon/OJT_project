@@ -13,15 +13,8 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<h1>코드 관리</h1>
+			<jsp:include page="../header.jsp" flush="false" />
 			<div id="content">
-				<%-- <jsp:include page="../header.jsp" flush="false" /> --%>
-				<div id="tabButtons">
-					<button class="selected">카드 계정</button>
-					<button>업체</button>
-					<button>프로젝트</button>
-					<button>지출</button>
-				</div>
 				<div id="cardTypes">
 					<input type="radio" id="all" name="card_type" value="-1" checked />
 	  				<label for="all">전체</label>
