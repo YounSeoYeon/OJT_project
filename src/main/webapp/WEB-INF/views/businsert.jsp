@@ -66,8 +66,10 @@
 		                <span id="checkAll">등록</span>
 	                </li> -->
 				</ul>
-				<input type="submit" value="등록">
-				<input type="reset" value="취소">
+				<div id="btn">
+					<input type="submit" value="등록">
+					<input type="reset" value="취소">
+				</div>
 			</form>		
 		</div>
 	</section>

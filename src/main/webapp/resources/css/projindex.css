@@ -71,13 +71,9 @@ li{
 .bus_list .top .check{
     width:5%;
 }
-.name,.busnum,.etc{
+.nm,.amount,.code,.buyer,.date{
     width:19%;
 }
-.ceo,.buscode{
-    width:19%;
-}
-
 /* ----------추가삭제 버튼-------- */
 .inoutBtn{
     display: flex;

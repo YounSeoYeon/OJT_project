@@ -22,6 +22,6 @@
 		<property name="mapperLocations" value="classpath:com/agos/awg/**/*.xml" />	
 	</bean>
 	
-	<mybatis-spring:scan base-package="com.agos.awg.dao"/>
+	<mybatis-spring:scan base-package="com.agos.awg"/>
 	
 </beans>
