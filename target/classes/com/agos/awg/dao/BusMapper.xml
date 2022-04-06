@@ -64,7 +64,7 @@
 			ORDER BY bus_idx
 		</if>
 		<if test="bustype=='public' and bustype!=''">
-			WHERE bus_code LIKE "a%" ORDER BY bus_idx;		<!-- 옵션이 공공이면 -->
+			WHERE bus_code LIKE "p%" ORDER BY bus_idx;		<!-- 옵션이 공공이면 -->
 		</if>
 		<if test="bustype=='corp' and bustype!=''">
 			WHERE bus_code LIKE "c%" ORDER BY bus_idx;		<!-- 옵션이 민간이면 -->
