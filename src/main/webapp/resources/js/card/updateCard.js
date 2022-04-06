@@ -86,7 +86,7 @@ $(function(){
 		if(checkValidate()){
 			$.ajax({
 				type: 'post',
-				url: '/updateCard',
+				url: '/card/updateCard',
 				data: {
 					"card_idx": card_idx,
 					"card_no": card_no,
