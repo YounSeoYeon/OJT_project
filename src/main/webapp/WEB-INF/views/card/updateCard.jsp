@@ -7,9 +7,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>카드 계정 수정</title>
-		<link rel="stylesheet" href="<c:url value='/resources/css/updateCard.css' />" />
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-		<script type="text/javascript" src="<c:url value='/resources/js/updateCard.js' />"></script>
+		<link rel="stylesheet" href="<c:url value='/resources/css/card/updateCard.css' />" />
+		<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/resources/js/card/updateCard.js' />"></script>
 	</head>
 	<body>
 		<div id="wrapper">

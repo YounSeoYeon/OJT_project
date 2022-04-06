@@ -24,7 +24,7 @@ $(function(){
 		let left = (document.body.offsetWidth / 2) - (width / 2);
 		let top = (document.body.offsetHeight / 2) - (height / 2);
 		
-		window.open('/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
+		window.open('/card/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
 	});
 	
 	// 카드 타입 선택
@@ -49,7 +49,7 @@ $(function(){
 			let left = (document.body.offsetWidth / 2) - (width / 2);
 			let top = (document.body.offsetHeight / 2) - (height / 2);
 			
-			window.open('/updateCardView/'+checkedIndex, '카드 수정 창' , `width=${width},height=${height},top=${top},left=${left}`)
+			window.open('/card/updateCardView/'+checkedIndex, '카드 수정 창' , `width=${width},height=${height},top=${top},left=${left}`)
 		}
 	});
 	
@@ -73,7 +73,7 @@ $(function(){
 				/*** Ajax ***/			
 				$.ajax({
 					type: 'post',
-					url: '/deleteCard',
+					url: '/card/deleteCard',
 					data: {'indexArray': checkedIndexs},
 					success: function(result){
 						if(result != 0){
@@ -95,7 +95,7 @@ $(function(){
 		
 		$.ajax({
 			type: 'post',
-			url: '/cardList',
+			url: '/card/cardList',
 			data: {'card_type': value},
 			success: function(result) {
 				$('#cardList').empty();

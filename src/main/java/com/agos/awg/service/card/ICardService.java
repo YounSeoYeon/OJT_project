@@ -1,4 +1,4 @@
-package com.agos.awg.service;
+package com.agos.awg.service.card;
 
 import java.util.ArrayList;
 import java.util.List;
