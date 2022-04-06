@@ -1,4 +1,4 @@
-package com.agos.agw.model;
+package com.agos.awg.model;
 
 public class CardVO {
 	private String card_idx;	// 카드 계정 인덱스

@@ -1,11 +1,11 @@
-package com.agos.agw.service;
+package com.agos.awg.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.agos.agw.model.CardVO;
+import com.agos.awg.model.CardVO;
 
 @Service
 public interface ICardService {

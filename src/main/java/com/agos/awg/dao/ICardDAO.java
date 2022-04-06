@@ -1,9 +1,9 @@
-package com.agos.agw.dao;
+package com.agos.awg.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.agos.agw.model.CardVO;
+import com.agos.awg.model.CardVO;
 
 public interface ICardDAO {
 	public ArrayList<CardVO> getCardList(int card_type);		// 카드 목록 가져오기

@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.agos.agw.dao.ICardDAO">
-	<resultMap id="cardInfo" type="com.agos.agw.model.CardVO">
+<mapper namespace="com.agos.awg.dao.ICardDAO">
+	<resultMap id="cardInfo" type="com.agos.awg.model.CardVO">
 		<result property="card_idx" column="card_idx"/>
 		<result property="card_no" column="card_no" />
 		<result property="card_id" column="card_id" />
@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 카드 정보 조회 -->
-	<select id="getCardInfo" parameterType="String" resultType="com.agos.agw.model.CardVO">
+	<select id="getCardInfo" parameterType="String" resultType="com.agos.awg.model.CardVO">
 		SELECT * FROM card_acc WHERE card_idx = #{card_idx}
 	</select>
 
@@ -39,7 +39,7 @@
 	</select>
 
 	<!-- 카드  계정 등록 -->
-	<insert id="insertCard" parameterType="com.agos.agw.model.CardVO" useGeneratedKeys="true" keyProperty="card_idx">
+	<insert id="insertCard" parameterType="com.agos.awg.model.CardVO" useGeneratedKeys="true" keyProperty="card_idx">
 		INSERT INTO card_acc 
 		<choose>
 			<when test="card_type == 0">
@@ -55,7 +55,7 @@
 	</insert>
 	
 	<!-- 카드 정보 수정 -->
-	<update id="updateCard" parameterType="com.agos.agw.model.CardVO">
+	<update id="updateCard" parameterType="com.agos.awg.model.CardVO">
 		UPDATE card_acc
 		SET card_no=#{card_no}, card_name=#{card_name}, card_pw=#{card_pw}, card_ep=#{card_ep} 
 		WHERE card_idx=#{card_idx}

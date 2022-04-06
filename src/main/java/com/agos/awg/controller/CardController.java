@@ -1,4 +1,4 @@
-package com.agos.agw.controller;
+package com.agos.awg.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.agos.agw.model.CardVO;
-import com.agos.agw.service.CardService;
+import com.agos.awg.model.CardVO;
+import com.agos.awg.service.CardService;
 
 @Controller
 public class CardController {
@@ -20,7 +20,7 @@ public class CardController {
 	CardService service;
 	
 	// 카드 목록 페이지 이동
-	@RequestMapping("/")
+	@RequestMapping("/card")
 	public String cardInfo(Model model) {
 		return "cardInfo";
 	}

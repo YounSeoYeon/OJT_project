@@ -1,4 +1,4 @@
-package com.agos.agw.service;
+package com.agos.awg.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.agos.agw.dao.ICardDAO;
-import com.agos.agw.model.CardVO;
+import com.agos.awg.dao.ICardDAO;
+import com.agos.awg.model.CardVO;
 
 @Service
 public class CardService implements ICardService {
