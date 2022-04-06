@@ -1,4 +1,4 @@
-package com.agos.awg.dao;
+package com.agos.awg.dao.card;
 
 import java.util.ArrayList;
 import java.util.List;

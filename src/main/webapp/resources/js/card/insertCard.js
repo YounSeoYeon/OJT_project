@@ -43,7 +43,7 @@ $(function(){
 		
 		$.ajax({
 			type: 'post',
-			url: '/checkCardIndex',
+			url: '/card/checkCardIndex',
 			data: {'index': data },
 			success: function(result) {
 				// console.log(result)
@@ -146,7 +146,7 @@ $(function(){
 		if(checkValidate()){
 			$.ajax({
 				type: 'post',
-				url: '/insertCard',
+				url: '/card/insertCard',
 				data: {
 					"card_idx": card_idx,
 					"card_no": card_no,

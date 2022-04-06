@@ -7,9 +7,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>카드 계정 등록</title>
-		<link rel="stylesheet" href="<c:url value='/resources/css/insertCard.css' />" />
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-		<script type="text/javascript" src="<c:url value='/resources/js/insertCard.js' />"></script>
+		<link rel="stylesheet" href="<c:url value='/resources/css/card/insertCard.css' />" />
+		<script type="text/javascript" src="<c:url vlaue='/resources/js/jquery-3.6.0.min.js'/>"></script>
+		<script type="text/javascript" src="<c:url value='/resources/js/card/insertCard.js' />"></script>
 	</head>
 	<body>
 		<div id="wrapper">

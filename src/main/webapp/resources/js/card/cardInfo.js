@@ -73,7 +73,7 @@ $(function(){
 				/*** Ajax ***/			
 				$.ajax({
 					type: 'post',
-					url: '/deleteCard',
+					url: '/card/deleteCard',
 					data: {'indexArray': checkedIndexs},
 					success: function(result){
 						if(result != 0){
@@ -95,7 +95,7 @@ $(function(){
 		
 		$.ajax({
 			type: 'post',
-			url: '/cardList',
+			url: '/card/cardList',
 			data: {'card_type': value},
 			success: function(result) {
 				$('#cardList').empty();
