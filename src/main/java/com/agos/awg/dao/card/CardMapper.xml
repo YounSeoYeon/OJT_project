@@ -14,11 +14,21 @@
 	</resultMap>
 	
 	<!-- 카드 목록  조회  -->
-	<select id="getCardList" parameterType="int" resultMap="cardInfo">
+	<select id="getCardList" parameterType="map" resultMap="cardInfo">
 		SELECT * FROM card_acc
-		<if test="card_type != -1">
-			WHERE card_type = #{card_type}
-		</if>
+		<choose>
+			<when test="card_type != -1">
+				WHERE card_type = #{card_type}
+				<if test="keyword != null">
+					AND ${keyword} LIKE CONCAT('%',#{word},'%')
+				</if>	
+			</when>
+			<otherwise>
+				<if test="keyword != null">
+					WHERE ${keyword} LIKE CONCAT('%', #{word}, '%')
+				</if>	
+			</otherwise>
+		</choose>
 		<!-- ORDER BY card_id -->
 	</select>
 	

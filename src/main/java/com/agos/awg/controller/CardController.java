@@ -1,6 +1,7 @@
 package com.agos.awg.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,21 @@ public class CardController {
 	
 	// 카드 목록 리스트(카드 유형별)
 	@RequestMapping("/card/cardList")
-	public String cardList(@RequestParam("card_type") int card_type, Model model) {
-		ArrayList<CardVO> cardList = service.getCardList(card_type);
+	public String cardList(
+			@RequestParam("card_type") int card_type,
+			@RequestParam(value="keyword", required = false) String keyword,
+			@RequestParam(value="word", required = false) String word,			
+			Model model) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("card_type", card_type);
+		map.put("keyword", keyword);
+		map.put("word", word);
+		
+		System.out.println(map);
+		
+		ArrayList<CardVO> cardList = service.getCardList(map);
 		
 		model.addAttribute("cardList", cardList);
 		return "/card/cardList";

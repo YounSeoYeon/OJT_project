@@ -3,7 +3,8 @@
  */
 
 $(function(){
-	getCardList();
+	// 페이지 로딩 시 전체 목록 가져오기
+	getCardList({"card_type": -1});
 	
 	// 전체 체크/ 해제
 	$('#checkAll').on('click', function(){
@@ -13,6 +14,30 @@ $(function(){
 			$('input:checkbox').prop('checked',true);
 		else 
 			$('input:checkbox').prop('checked',false);
+	});
+	
+	// 검색 버튼 클릭
+	$('.searchBtn').on('click', function(e){
+		e.preventDefault();
+		
+		let card_type = $('input[name=card_type]:checked').val();
+		let keyword = $('.keyword').val();
+		let word = $('#searchInput').val();
+		
+		let data = {"card_type": card_type};
+		
+		if(keyword != "" && word != ""){
+			data["keyword"] = keyword;
+			data["word"] = word;
+			getCardList(data);
+			
+			// 검색 영역 초기화 하기
+			
+		}else if(keyword == "") {
+			alert('키워드를 선택해주세요.');
+		}else {
+			alert('검색어를 입력해주세요.');
+		}
 	});
 	
 	// 추가 버튼 클릭
@@ -29,7 +54,9 @@ $(function(){
 	
 	// 카드 타입 선택
 	$('input:radio[name="card_type"]').on('click', function(){
-		getCardList();
+		let card_type = $('input[name=card_type]:checked').val();
+		let data = {"card_type": card_type};
+		getCardList(data);
 	});
 	
 	// 수정 버튼 클릭
@@ -90,13 +117,12 @@ $(function(){
 	});
 	
 	// 카드 목록 불러오기 함수
-	function getCardList(){
-		let value = $('input[name=card_type]:checked').val();
-		
+	function getCardList(data){
+		// console.log(data);
 		$.ajax({
 			type: 'post',
 			url: '/card/cardList',
-			data: {'card_type': value},
+			data: data,
 			success: function(result) {
 				$('#cardList').empty();
 				$('#cardList').html(result);
@@ -105,5 +131,5 @@ $(function(){
 				console.log(error);
 			}
 		});
-	}
+	};
 });

@@ -1,6 +1,7 @@
 package com.agos.awg.service.card;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class CardService implements ICardService {
 	
 	// 카드 목록 가져오기	
 	@Override
-	public ArrayList<CardVO> getCardList(int card_type) {
-		return dao.getCardList(card_type);
+	public ArrayList<CardVO> getCardList(HashMap<String, Object> map) {
+		return dao.getCardList(map);
 	}
 	
 	// 카드 계정 중복 체크

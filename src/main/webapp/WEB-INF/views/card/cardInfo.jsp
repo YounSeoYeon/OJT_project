@@ -13,15 +13,36 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<jsp:include page="../header.jsp" flush="false" />
-			<div id="content">
-				<div id="cardTypes">
-					<input type="radio" id="all" name="card_type" value="-1" checked />
-	  				<label for="all">전체</label>
-					<input type="radio" id="company" name="card_type" value="0" />
-	  				<label for="company">법인</label>
-					<input type="radio" id="personal" name="card_type" value="1" />
-	  				<label for="personal">개인</label>
+			<h1>코드 관리</h1>
+			<div id="contents">
+				<%-- <jsp:include page="../header.jsp" flush="false" /> --%>
+				<div id="tabButtons">
+					<button class="selected">카드 계정</button>
+					<button>업체</button>
+					<button>프로젝트</button>
+					<button>지출</button>
+				</div>
+				<div id="options">
+					<div id="cardTypes">
+						<input type="radio" id="all" name="card_type" value="-1" checked />
+		  				<label for="all">전체</label>
+						<input type="radio" id="company" name="card_type" value="0" />
+		  				<label for="company">법인</label>
+						<input type="radio" id="personal" name="card_type" value="1" />
+		  				<label for="personal">개인</label>
+					</div>
+					<div id="searchBar">
+						<!-- 검색 키워드 선택 -->
+						<select class="keyword">
+							<option value="" selected>키워드 선택</option>
+							<option value="card_name">카드 명의자</option>
+							<option value="card_no">카드 번호</option>
+							<option value="card_ep">유효 기간</option>
+							<option value="card_id">카드 관리 계정</option>
+						</select>
+						<input type="text" id="searchInput" name="search" placeholder="검색어 입력" />
+						<input type="button" class="searchBtn" value="검색" />
+					</div>
 				</div>
 				<div id="cardInfo">
 	  				<table>
@@ -36,7 +57,31 @@
 	  					</thead>
 	  					<tbody id="cardList"></tbody>
 	  				</table>
-	  				<div id="submitButtons">
+				</div>
+				<div id="bottomButtons">
+					<!-- pagination -->
+					<div id="paginationBox">
+						<ul class="pagination">
+							<c:if test="${pagination.prev}">
+								<li class="page-item">
+									<a class="page-link" href="#" onclick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">&laquo;</a>
+								</li>
+							</c:if>
+				
+							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
+								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/>">
+									<a class="page-link" href="#" onclick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a>
+								</li>
+							</c:forEach>
+					
+							<c:if test="${pagination.next}">
+								<li class="page-item">
+									<a class="page-link" href="#" onclick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">&raquo;</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+					<div id="submitButtons">
 	  					<button class="addBtn">추가</button>
 	  					<button class="updateBtn">수정</button>
 	  					<button class="deleteBtn">삭제</button>
