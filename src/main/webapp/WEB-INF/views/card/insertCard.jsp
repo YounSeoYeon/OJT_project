@@ -16,16 +16,16 @@
 			<h1>카드 계정 등록</h1>
 			<form id="addCardForm">
 				<div>
-					<label for="card_idx">카드 계정</label>
+					<label for="card_id">카드 계정</label>
 					<!-- 카드 유형 선택 -->
 					<select id="card_type">
 						<option value="" selected>카드 유형 선택</option>
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>
 					</select>
-					<input type="text" id="card_idx" class="num" name="card_idx" placeholder="id" maxlength='8'/> 
-					<button class="checkCardIndexBtn disabled">중복 검사</button>
-					<span class="card_index_error error"></span>
+					<input type="text" id="card_id" class="num" name="card_id" placeholder="아이디" maxlength='4'/> 
+					<button class="checkCardIdBtn disabled">중복 검사</button>
+					<span class="card_id_error error"></span>
 				</div>
 				
 				<div id="cardNoArea"> 

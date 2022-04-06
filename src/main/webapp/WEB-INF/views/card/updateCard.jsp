@@ -18,7 +18,7 @@
 				<div>
 					<label for="card_idx">카드 계정</label>
 					<input type="hidden" id="card_type" value="${card.card_type}" />
-					<input type="text" name="card_idx" value="${card.card_idx}" readonly />
+					<input type="text" name="card_id" value="${card.card_id}" readonly />
 				</div>
 				
 				<div id="cardNoArea"> 

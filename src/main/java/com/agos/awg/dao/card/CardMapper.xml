@@ -5,7 +5,6 @@
   
 <mapper namespace="com.agos.awg.dao.card.ICardDAO">
 	<resultMap id="cardInfo" type="com.agos.awg.model.CardVO">
-		<result property="card_idx" column="card_idx"/>
 		<result property="card_no" column="card_no" />
 		<result property="card_id" column="card_id" />
 		<result property="card_pw" column="card_pw" />
@@ -17,39 +16,34 @@
 	<!-- 카드 목록  조회  -->
 	<select id="getCardList" parameterType="int" resultMap="cardInfo">
 		SELECT * FROM card_acc
-		<choose>
-			<when test="card_type != -1">
-				WHERE card_type = #{card_type}
-				ORDER BY card_idx
-			</when>
-			<otherwise>
-				ORDER BY card_idx
-			</otherwise>
-		</choose>
+		<if test="card_type != -1">
+			WHERE card_type = #{card_type}
+		</if>
+		ORDER BY card_id
 	</select>
 	
 	<!-- 카드 정보 조회 -->
 	<select id="getCardInfo" parameterType="String" resultType="com.agos.awg.model.CardVO">
-		SELECT * FROM card_acc WHERE card_idx = #{card_idx}
+		SELECT * FROM card_acc WHERE card_id = #{card_id}
 	</select>
 
 	<!-- 카드  계정 중복 체크 -->
-	<select id="checkCardIndex" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM card_acc WHERE card_idx = #{index}
+	<select id="checkCardID" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM card_acc WHERE card_id = #{id}
 	</select>
 
 	<!-- 카드  계정 등록 -->
-	<insert id="insertCard" parameterType="com.agos.awg.model.CardVO" useGeneratedKeys="true" keyProperty="card_idx">
+	<insert id="insertCard" parameterType="com.agos.awg.model.CardVO" useGeneratedKeys="true" keyProperty="card_id">
 		INSERT INTO card_acc 
 		<choose>
 			<when test="card_type == 0">
 				VALUES
-					(#{card_idx}, #{card_no}, #{card_id}, #{card_pw}, #{card_name}, #{card_ep}, #{card_type})
+					(#{card_no}, #{card_id}, #{card_pw}, #{card_name}, #{card_ep}, #{card_type})
 			</when>
 			<when test="card_type == 1">
-				(card_idx, card_no, card_id, card_name, card_ep, card_type) 
+				(card_no, card_id, card_name, card_ep, card_type) 
 					VALUES
-						(#{card_idx}, #{card_no}, #{card_id}, #{card_name}, #{card_ep}, #{card_type})
+						(#{card_no}, #{card_id}, #{card_name}, #{card_ep}, #{card_type})
 			</when>
 		</choose>
 	</insert>
@@ -58,14 +52,14 @@
 	<update id="updateCard" parameterType="com.agos.awg.model.CardVO">
 		UPDATE card_acc
 		SET card_no=#{card_no}, card_name=#{card_name}, card_pw=#{card_pw}, card_ep=#{card_ep} 
-		WHERE card_idx=#{card_idx}
+		WHERE card_id=#{card_id}
 	</update>
 	
 	<!-- 카드 정보 삭제 -->
 	<delete id="deleteCard" parameterType="list">
 		DELETE FROM card_acc WHERE
 		<foreach collection="list" item="item" separator="OR">
-			 card_idx = #{item}
+			 card_id = #{item}
 		</foreach>
 	</delete>
 </mapper>

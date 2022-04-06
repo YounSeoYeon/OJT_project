@@ -15,6 +15,7 @@
 		<div id="wrapper">
 			<h1>코드 관리</h1>
 			<div id="content">
+				<%-- <jsp:include page="../header.jsp" flush="false" /> --%>
 				<div id="tabButtons">
 					<button class="selected">카드 계정</button>
 					<button>업체</button>

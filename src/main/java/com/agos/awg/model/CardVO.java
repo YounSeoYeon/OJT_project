@@ -1,21 +1,14 @@
 package com.agos.awg.model;
 
 public class CardVO {
-	private String card_idx;	// 카드 계정 인덱스
 	private String card_no;		// 카드 번호
 	private String card_id;		// 카드  관리 졔정
-	private Integer card_pw;	// 카드 비밀번호?
+	private Integer card_pw;	// 카드 비밀번호
 	private String card_name;	// 카드 명의
 	private String card_ep; 	// 카드 유효 기간
-	private int card_type; 	// 카드 종류 (0: 법인/ 1: 개인)
+	private int card_type; 		// 카드 종류 (0: 법인/ 1: 개인)
 	
 	/** Getter/Setter **/	
-	public String getCard_idx() {
-		return card_idx;
-	}
-	public void setCard_idx(String card_idx) {
-		this.card_idx = card_idx;
-	}
 	public String getCard_no() {
 		return card_no;
 	}

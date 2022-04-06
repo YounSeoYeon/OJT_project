@@ -42,9 +42,9 @@ public class CardController {
 	
 	// 카드 계정 중복 체크
 	@ResponseBody
-	@RequestMapping("/card/checkCardIndex")
-	public int checkCardIndex(@RequestParam("index") String index) {
-		int result = service.checkCardIndex(index);		
+	@RequestMapping("/card/checkCardID")
+	public int checkCardIndex(@RequestParam("card_id") String card_id) {
+		int result = service.checkCardID(card_id);		
 		return result;
 	}
 	
@@ -54,14 +54,14 @@ public class CardController {
 	public String insertCard(CardVO cardVO) {
 		service.insertCard(cardVO);
 		
-		String card_idx = cardVO.getCard_idx();
-		return card_idx;
+		String card_id = cardVO.getCard_id();
+		return card_id;
 	}
 	
 	// 카드 계정 수정 페이지 
-	@RequestMapping("/card/updateCardView/{index}")
-	public String updateCardView(@PathVariable("index") String card_idx, Model model) {
-		CardVO card = service.getCardInfo(card_idx);
+	@RequestMapping("/card/updateCardView/{id}")
+	public String updateCardView(@PathVariable("id") String card_id, Model model) {
+		CardVO card = service.getCardInfo(card_id);
 		
 		model.addAttribute("card", card);
 		return "/card/updateCard";
@@ -79,8 +79,8 @@ public class CardController {
 	// 카드 정보 삭제
 	@ResponseBody
 	@RequestMapping("/card/deleteCard")
-	public int deleteCard(@RequestParam("indexArray[]") List<String> indexArray) {
-		int result = service.deleteCard(indexArray);
+	public int deleteCard(@RequestParam("idArray[]") List<String> idArray) {
+		int result = service.deleteCard(idArray);
 		
 		return result;
 	}

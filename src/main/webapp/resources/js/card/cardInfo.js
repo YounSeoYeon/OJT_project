@@ -63,22 +63,22 @@ $(function(){
 			let answer = confirm('해당 항목을 정말로 삭제하시겠습니까?');
 			
 			if(answer){
-				let checkedIndexs = [];	//체크된 index값을 담을 배열
+				let checkedIDs = [];	//체크된 index값을 담을 배열
 				
 				// 체크된 항목의 index 값 배열에 담기
 				$('input:checkbox[name=card]:checked').each(function(){
-					checkedIndexs.push($(this).val());
+					checkedIDs.push($(this).val());
 				});
 				
 				/*** Ajax ***/			
 				$.ajax({
 					type: 'post',
 					url: '/card/deleteCard',
-					data: {'indexArray': checkedIndexs},
+					data: {'idArray': checkedIDs},
 					success: function(result){
 						if(result != 0){
 							alert('카드를 정상적으로 삭제했습니다.');
-							window.location.href = '/';
+							window.location.href = '/card';
 						}
 					},
 					error: function(error) {

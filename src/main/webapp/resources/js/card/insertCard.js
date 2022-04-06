@@ -13,11 +13,11 @@ $(function(){
 		let card_type = $('#card_type').val();
 		// 카드 유형 미 선택시 중복 검사버튼 비 활성화
 		if(card_type === '') {
-			$('.checkCardIndexBtn').attr('disabled', 'disabled');
-			$('.checkCardIndexBtn').addClass('disabled');
+			$('.checkCardIdBtn').attr('disabled', 'disabled');
+			$('.checkCardIdBtn').addClass('disabled');
 		}else {
-			$('.checkCardIndexBtn').removeAttr('disabled');
-			$('.checkCardIndexBtn').removeClass('disabled');
+			$('.checkCardIdBtn').removeAttr('disabled');
+			$('.checkCardIdBtn').removeClass('disabled');
 		}
 		
 		// 카드가 법인 카드면 카드 비밀번호 입력란 생성
@@ -29,25 +29,27 @@ $(function(){
 	});
 	
 	// 카드 계정 중복 확인
-	$('.checkCardIndexBtn').on('click', function(e){
+	$('.checkCardIdBtn').on('click', function(e){
 		e.preventDefault(); // submit 방지
 		
+		// input
 		let card_type = $('#card_type').val();
-		let index = $('#card_idx').val();
+		let id = $('#card_id').val();
 		
+		// card_id
 		if(card_type === '0') card_type = 'C';
 		else card_type = 'P';
 		
-		let data = card_type + index;
-		// console.log(data);
+		let card_id = card_type + id;
+		console.log(card_id);
 		
 		$.ajax({
 			type: 'post',
-			url: '/card/checkCardIndex',
-			data: {'index': data },
+			url: '/card/checkCardID',
+			data: {'card_id': card_id },
 			success: function(result) {
 				// console.log(result)
-				let $error = $('.card_index_error');
+				let $error = $('.card_id_error');
 				if(result == 0) {
 					$error.css({
 						'display': 'block',
@@ -57,7 +59,7 @@ $(function(){
 					$('input[type=submit]').removeAttr('disabled');
 					$('input[type=submit]').removeClass('disabled');
 				}else {
-					$('#card_idx').focus();
+					$('#card_id').focus();
 					$error.css({
 						'display': 'block',
 						'color': 'red'
@@ -115,16 +117,14 @@ $(function(){
 		e.preventDefault();
 		
 		/*** Form Data ***/
-		// card_type
+		// input
 		let card_type = $('#card_type').val();
+		let id = $('#card_id').val();
 		
 		// card_id
-		let card_id = $('#card_idx').val();
-		
-		// card_idx
-		let card_idx;
-		if(card_type === '0') card_idx = 'C' + card_id;
-		else card_idx = 'P' + card_id;
+		let card_id;
+		if(card_type === '0') card_id = 'C' + id;
+		else card_id = 'P' + id;
 		
 		// card_no
 		let card_no = '';
@@ -148,9 +148,8 @@ $(function(){
 				type: 'post',
 				url: '/card/insertCard',
 				data: {
-					"card_idx": card_idx,
-					"card_no": card_no,
 					"card_id": card_id,
+					"card_no": card_no,
 					"card_pw": card_pw,
 					"card_name": card_name,
 					"card_ep": card_ep,
