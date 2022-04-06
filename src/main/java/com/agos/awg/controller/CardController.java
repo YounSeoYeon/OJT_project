@@ -40,7 +40,7 @@ public class CardController {
 		map.put("keyword", keyword);
 		map.put("word", word);
 		
-		System.out.println(map);
+		// System.out.println(map);
 		
 		ArrayList<CardVO> cardList = service.getCardList(map);
 		

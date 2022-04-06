@@ -3,7 +3,7 @@
  */
 
 $(function(){
-	// 페이지 로딩 시 전체 목록 가져오기
+	// 첫 페이지 로딩 시 전체 목록 가져오기
 	getCardList({"card_type": -1});
 	
 	// 전체 체크/ 해제
@@ -14,6 +14,13 @@ $(function(){
 			$('input:checkbox').prop('checked',true);
 		else 
 			$('input:checkbox').prop('checked',false);
+	});
+	
+	// 카드 타입 선택
+	$('input:radio[name="card_type"]').on('change', function(){
+		let card_type = $('input[name=card_type]:checked').val();
+		let data = {"card_type": card_type};
+		getCardList(data);
 	});
 	
 	// 검색 버튼 클릭
@@ -32,6 +39,8 @@ $(function(){
 			getCardList(data);
 			
 			// 검색 영역 초기화 하기
+			$('.keyword').val('');
+			$('#searchInput').val('');
 			
 		}else if(keyword == "") {
 			alert('키워드를 선택해주세요.');
@@ -50,13 +59,6 @@ $(function(){
 		let top = (document.body.offsetHeight / 2) - (height / 2);
 		
 		window.open('/card/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
-	});
-	
-	// 카드 타입 선택
-	$('input:radio[name="card_type"]').on('click', function(){
-		let card_type = $('input[name=card_type]:checked').val();
-		let data = {"card_type": card_type};
-		getCardList(data);
 	});
 	
 	// 수정 버튼 클릭
