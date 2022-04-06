@@ -72,14 +72,8 @@
 </head>
 <body>
 	<section id="mainWrap">
-		<h1>코드관리-업체</h1>
 		<div id="codeMiddle">
-			<ul id="codemenu">
-				<li>카드계정</li>
-				<li>업체</li>
-				<li>프로젝트</li>
-				<li>지출</li>
-			</ul>
+			<jsp:include page='header.jsp' />
 			<form id="codemenuBus"> 
 				<div class="codesearch">
 					<div class="bustype">
