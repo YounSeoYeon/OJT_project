@@ -22,7 +22,7 @@ public class CardController {
 	// 카드 목록 페이지 이동
 	@RequestMapping("/card")
 	public String cardInfo(Model model) {
-		return "card/cardInfo";
+		return "/card/cardInfo";
 	}
 	
 	// 카드 목록 리스트(카드 유형별)
@@ -31,13 +31,13 @@ public class CardController {
 		ArrayList<CardVO> cardList = service.getCardList(card_type);
 		
 		model.addAttribute("cardList", cardList);
-		return "card/cardList";
+		return "/card/cardList";
 	}
 	
 	// 카드 계정 등록 페이지 
 	@RequestMapping("/card/insertCardView")
 	public String insertCardView() {
-		return "card/insertCard";
+		return "/card/insertCard";
 	}
 	
 	// 카드 계정 중복 체크
@@ -64,7 +64,7 @@ public class CardController {
 		CardVO card = service.getCardInfo(card_idx);
 		
 		model.addAttribute("card", card);
-		return "card/updateCard";
+		return "/card/updateCard";
 	}
 	
 	// 카드 정보 수정
