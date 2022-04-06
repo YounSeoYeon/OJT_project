@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* cardInfo.css */
+
+#wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#content {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid black;
+	width: 80%;
+	height: 80%;
+	padding: 1.5rem 2rem;
+}
+
+button {
+	width: 100px;
+	padding: 10px;
+	font-size: 16px;
+	background-color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
+#tabButtons button:first-child,
+#submitButtons button:first-child {
+	margin: 0 10px 0 0;
+}
+
+#tabButtons {
+	margin-bottom: 30px;
+}
+
+#tabButtons button.selected {
+	color: white;
+	background-color: black;
+}
+
+#cardTypes {
+	margin-bottom: 10px;
+}
+
+#cardInfo, #cardInfo table {
+	width: 100%;
+}
+
+#cardInfo table {
+	border: 1px solid black;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+#cardInfo th, td {
+    border: 1px solid black;
+}
+
+#cardInfo td {
+	text-align: center;
+}
+
+#submitButtons {
+	display: flex;
+    justify-content: flex-end;
+}
