@@ -19,7 +19,7 @@
  
  	<!-- 업체전부불러오기 / 인덱스 값 따라서 -->
 	<select id="buslist" resultMap="busResult" parameterType="com.agos.awg.model.BusVO">
-		SELECT * FROM bus_code ORDER BY bus_idx
+		SELECT * FROM bus_code ORDER BY bus_idx desc
 	</select>
 	
 	<!-- 업체코드 중복검사 -->
@@ -64,10 +64,10 @@
 			ORDER BY bus_idx
 		</if>
 		<if test="bustype=='public' and bustype!=''">
-			WHERE bus_code LIKE "p%" ORDER BY bus_idx;		<!-- 옵션이 공공이면 -->
+			WHERE bus_code LIKE "p%" ORDER BY bus_idx desc		<!-- 옵션이 공공이면 -->
 		</if>
 		<if test="bustype=='corp' and bustype!=''">
-			WHERE bus_code LIKE "c%" ORDER BY bus_idx;		<!-- 옵션이 민간이면 -->
+			WHERE bus_code LIKE "c%" ORDER BY bus_idx desc		<!-- 옵션이 민간이면 -->
 		</if>
 		
 	</select>
@@ -82,6 +82,7 @@
 		(bus_tel LIKE CONCAT('%', #{search}, '%'))OR
 		(bus_reg_no LIKE CONCAT('%', #{search}, '%'))OR
 		(busAddress LIKE CONCAT('%', #{search}, '%'))
+		ORDER BY bus_idx desc
 	</select>
 	
 	

@@ -46,26 +46,9 @@ input[type=reset]:hover{
 	cursor: pointer;
 	opacity: 0.7;
 }
-#buscodecheck:hover{
+#projcodecheck:hover{
 	cursor: pointer;
 	opacity: 0.7;
-}
-
-
-/* ---------등록버튼------------ */
-
-.insertBtn #checkAll {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
-    height: 40px;
-    border: 1px solid;
-    border-radius: 10px;
-}
-
-.insertBtn #checkAll :hover{
-	cursor: pointer;
 }
 
 input{
