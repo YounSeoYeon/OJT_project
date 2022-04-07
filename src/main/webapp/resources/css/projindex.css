@@ -32,13 +32,13 @@ li{
     background-color: rgb(238, 236, 236); 
 }
 
-#topMenu{
+#codemenu{
     width:50%;
     margin-top: 15px;
     margin-bottom:15px;
 }
 
-#topMenu li{
+#codemenu li{
     width:25%;
     border: 1px solid coral;
     border-radius: 15px;
@@ -71,13 +71,9 @@ li{
 .bus_list .top .check{
     width:5%;
 }
-.name,.busnum,.etc{
+.nm,.amount,.code,.buyer,.date{
     width:19%;
 }
-.ceo,.buscode{
-    width:19%;
-}
-
 /* ----------추가삭제 버튼-------- */
 .inoutBtn{
     display: flex;
