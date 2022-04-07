@@ -83,7 +83,7 @@ button {
   border-radius: 0.35rem;
 }
 
-.page-link {
+.pageLink {
   position: relative;
   display: block;
   padding: 0.5rem 0.75rem;
@@ -93,33 +93,34 @@ button {
   color: #333;
   background-color: #fff;
   border: 1px solid #dddfeb;
+  cursor: pointer;
 }
 
-.page-link:hover {
+.pageLink:hover {
   z-index: 2;
   text-decoration: none;
   background-color: #eaecf4;
   border-color: #dddfeb;
 }
 
-.page-link:focus {
+.pageLink:focus {
   z-index: 3;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
 }
 
-.page-item:first-child .page-link {
+.pageItem:first-child .pageLink {
   margin-left: 0;
   border-top-left-radius: 0.35rem;
   border-bottom-left-radius: 0.35rem;
 }
 
-.page-item:last-child .page-link {
+.pageItem:last-child .pageLink {
   border-top-right-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
 }
 
-.page-item.active .page-link {
+.pageItem.active .pageLink {
   z-index: 3;
   color: #fff;
   background-color: #333;

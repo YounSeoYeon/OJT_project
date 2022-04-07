@@ -3,8 +3,13 @@
  */
 
 $(function(){
-	// 첫 페이지 로딩 시 전체 목록 가져오기
+	// 첫 페이지 로딩 시 전체 목록 & 페이지 정보 가져오기
 	getCardList({"card_type": -1});
+	getPage({"card_type": -1, "page": 1, "range": 1});
+	
+	// 전역 변수
+	let card_type = $('input[name=card_type]:checked').val();
+	let keyword, word;
 	
 	// 전체 체크/ 해제
 	$('#checkAll').on('click', function(){	
@@ -21,22 +26,23 @@ $(function(){
 		let card_type = $('input[name=card_type]:checked').val();
 		let data = {"card_type": card_type};
 		getCardList(data);
+		getPage(data); // 페이지
 	});
 	
 	// 검색 버튼 클릭
 	$('.searchBtn').on('click', function(e){
 		e.preventDefault();
 		
-		let card_type = $('input[name=card_type]:checked').val();
-		let keyword = $('.keyword').val();
-		let word = $('#searchInput').val();
-		
 		let data = {"card_type": card_type};
+		
+		keyword = $('.keyword').val();
+		word = $('#searchInput').val();
 		
 		if(keyword != "" && word != ""){
 			data["keyword"] = keyword;
 			data["word"] = word;
-			getCardList(data);
+			getCardList(data); // 카드 목록
+			getPage(data); // 페이지
 			
 			// 검색 영역 초기화 하기
 			$('.keyword').val('');
@@ -118,6 +124,41 @@ $(function(){
 		};
 	});
 	
+	// 페이지 버튼 클릭
+	$(document).on('click', '.pageLink' ,function(){
+		// pagination 정보
+		let page = $('#pagination').attr('data-page');
+		let range = $('#pagination').attr('data-range');
+		let rangeSize = $('#pagination').attr('data-rangeSize');
+		
+		// active 클래스 처리
+		$('.pageItem.active').removeClass('active');
+		$(this).parent().addClass('active');
+		
+		let condition = $(this).attr('id');
+		
+		// 조건별 페이지 범위 계산
+		switch (condition) {
+			case 'prev':
+				page = parseInt((range - 2) * rangeSize) + 1;	// 이전 페이지 범위의 가장 앞 페이지로 이동
+				range = parseInt(range) - 1;
+				break;
+			case 'next':
+				page = parseInt((range * rangeSize)) + 1; // 다음 페이지 범위의 가장 앞 페이지로 이동
+				range = parseInt(range) + 1;
+				break;
+			default:
+				page = $(this).text();
+				break;
+		}
+		
+		// Ajax
+		let card_type = $('input[name=card_type]:checked').val();
+		let data = {"card_type":card_type, "keyword": keyword, "word": word, "page": page, "range": range};
+		getCardList(data); // 카드 목록
+		getPage(data); // 페이지
+	});
+	
 	// 카드 목록 불러오기 함수
 	function getCardList(data){
 		// console.log(data);
@@ -134,4 +175,17 @@ $(function(){
 			}
 		});
 	};
+	
+	// 페이지 범위 불러오기 함수
+	function getPage(data) {
+		$.ajax({
+			type: 'POST',
+			url: '/card/page',
+			data: data,
+			success: function(result) {
+				$('#paginationBox').empty();
+				$('#paginationBox').html(result);
+			}
+		})
+	}
 });

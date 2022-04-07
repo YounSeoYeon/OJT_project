@@ -13,9 +13,22 @@
 		<result property="card_type" column="card_type" />
 	</resultMap>
 	
-	<!-- 전체 카드 개수 확인 -->
-	<select id="getCardListCnt" resultType="int">
+	<!-- 카드 개수 확인 -->
+	<select id="getCardListCnt" parameterType="map" resultType="int">
 		SELECT COUNT(*) FROM card_acc
+		<choose>
+			<when test="card_type != -1">
+				WHERE card_type = #{card_type}
+				<if test="keyword != null">
+					AND ${keyword} LIKE CONCAT('%',#{word},'%')
+				</if>	
+			</when>
+			<otherwise>
+				<if test="keyword != null">
+					WHERE ${keyword} LIKE CONCAT('%', #{word}, '%')
+				</if>	
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 카드 목록  조회  -->

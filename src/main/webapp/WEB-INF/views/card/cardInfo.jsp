@@ -60,27 +60,7 @@
 				</div>
 				<div id="bottomButtons">
 					<!-- pagination -->
-					<div id="paginationBox">
-						<ul class="pagination">
-							<c:if test="${pagination.prev}">
-								<li class="page-item">
-									<a class="page-link" href="#" onclick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">&laquo;</a>
-								</li>
-							</c:if>
-				
-							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
-								<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/>">
-									<a class="page-link" href="#" onclick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">${idx}</a>
-								</li>
-							</c:forEach>
-					
-							<c:if test="${pagination.next}">
-								<li class="page-item">
-									<a class="page-link" href="#" onclick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">&raquo;</a>
-								</li>
-							</c:if>
-						</ul>
-					</div>
+					<div id="paginationBox"></div>
 					<div id="submitButtons">
 	  					<button class="addBtn">추가</button>
 	  					<button class="updateBtn">수정</button>
