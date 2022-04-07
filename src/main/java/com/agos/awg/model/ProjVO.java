@@ -1,7 +1,5 @@
 package com.agos.awg.model;
 
-import java.util.Date;
-
 public class ProjVO {
 
 	private int proj_idx;

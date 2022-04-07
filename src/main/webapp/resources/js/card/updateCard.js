@@ -1,5 +1,5 @@
 /**
- * insertCard.js
+ * updateCard.js
  */
 
 $(function(){
