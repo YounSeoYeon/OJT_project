@@ -7,6 +7,10 @@ $(function(){
 	getCardList({"card_type": -1});
 	getPage({"card_type": -1, "page": 1, "range": 1});
 	
+	// 전역 변수
+	let card_type = $('input[name=card_type]:checked').val();
+	let keyword, word;
+	
 	// 전체 체크/ 해제
 	$('#checkAll').on('click', function(){	
 		const checked = $('#checkAll').is(':checked');
@@ -29,11 +33,10 @@ $(function(){
 	$('.searchBtn').on('click', function(e){
 		e.preventDefault();
 		
-		let card_type = $('input[name=card_type]:checked').val();
-		let keyword = $('.keyword').val();
-		let word = $('#searchInput').val();
-		
 		let data = {"card_type": card_type};
+		
+		keyword = $('.keyword').val();
+		word = $('#searchInput').val();
 		
 		if(keyword != "" && word != ""){
 			data["keyword"] = keyword;
@@ -151,7 +154,7 @@ $(function(){
 		
 		// Ajax
 		let card_type = $('input[name=card_type]:checked').val();
-		let data = {"card_type":card_type, "page": page, "range": range};
+		let data = {"card_type":card_type, "keyword": keyword, "word": word, "page": page, "range": range};
 		getCardList(data); // 카드 목록
 		getPage(data); // 페이지
 	});
