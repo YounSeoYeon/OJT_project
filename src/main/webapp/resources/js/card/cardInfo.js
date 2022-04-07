@@ -3,9 +3,9 @@
  */
 
 $(function(){
-	// 첫 페이지 로딩 시 전체 목록 $ 페이지 정보 가져오기
+	// 첫 페이지 로딩 시 전체 목록 & 페이지 정보 가져오기
 	getCardList({"card_type": -1});
-	getPage(1, 1);
+	getPage({"card_type": -1, "page": 1, "range": 1});
 	
 	// 전체 체크/ 해제
 	$('#checkAll').on('click', function(){	
@@ -22,6 +22,7 @@ $(function(){
 		let card_type = $('input[name=card_type]:checked').val();
 		let data = {"card_type": card_type};
 		getCardList(data);
+		getPage(data); // 페이지
 	});
 	
 	// 검색 버튼 클릭
@@ -37,7 +38,8 @@ $(function(){
 		if(keyword != "" && word != ""){
 			data["keyword"] = keyword;
 			data["word"] = word;
-			getCardList(data);
+			getCardList(data); // 카드 목록
+			getPage(data); // 페이지
 			
 			// 검색 영역 초기화 하기
 			$('.keyword').val('');
@@ -151,7 +153,7 @@ $(function(){
 		let card_type = $('input[name=card_type]:checked').val();
 		let data = {"card_type":card_type, "page": page, "range": range};
 		getCardList(data); // 카드 목록
-		getPage(page, range); // 페이지
+		getPage(data); // 페이지
 	});
 	
 	// 카드 목록 불러오기 함수
@@ -172,11 +174,11 @@ $(function(){
 	};
 	
 	// 페이지 범위 불러오기 함수
-	function getPage(page, range) {
+	function getPage(data) {
 		$.ajax({
 			type: 'POST',
 			url: '/card/page',
-			data: {"page": page, "range": range},
+			data: data,
 			success: function(result) {
 				$('#paginationBox').empty();
 				$('#paginationBox').html(result);

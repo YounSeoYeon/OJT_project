@@ -20,7 +20,7 @@ public class Pagination {
 		this.listCnt = listCnt;
 
 		//전체 페이지수 
-		this.pageCnt = (listCnt/listSize) + 1;
+		this.pageCnt = (int) Math.ceil(listCnt/(float)listSize);
 		
 		//시작 페이지
 		this.startPage = (range - 1) * rangeSize + 1;
@@ -35,7 +35,7 @@ public class Pagination {
 		this.prev = range == 1 ? false : true;
 		
 		//다음 버튼 상태
-		this.next = endPage > pageCnt ? false : true;
+		this.next = endPage >= pageCnt ? false : true;
 		
 		// 마지막 페이지 번호가 전체 페이지 수 보다 크면, 마지막 페이지 번호 = 전체 페이지 수 (페이지가 10개 단위로 만들어 지기때문)
 		if (this.endPage > this.pageCnt) {

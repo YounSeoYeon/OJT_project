@@ -37,7 +37,7 @@ public class CardController {
 			@RequestParam(required = false, defaultValue = "1") int range,
 			Model model) {
 		
-		Pagination pagination = getPagination(page, range);
+		Pagination pagination = getPagination(card_type, keyword, word, page, range);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("card_type", card_type);
@@ -56,11 +56,14 @@ public class CardController {
 	// 페이지 범위
 	@RequestMapping("/card/page")
 	public String page(
-			@RequestParam("page") int page,
-			@RequestParam("range") int range,
+			@RequestParam("card_type") int card_type,
+			@RequestParam(value="keyword", required = false) String keyword,
+			@RequestParam(value="word", required = false) String word,	
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
 			Model model) {
 		
-		model.addAttribute("pagination", getPagination(page, range));
+		model.addAttribute("pagination", getPagination(card_type, keyword, word, page, range));
 		
 		return "/card/page";
 	}
@@ -117,9 +120,14 @@ public class CardController {
 	}
 	
 	// pagination 생성 및 페이지 범위 설정
-	private Pagination getPagination(int page, int range) {
-		//전체 게시글 개수
-		int listCnt = service.getCardListCnt();
+	private Pagination getPagination(int card_type, String keyword, String word, int page, int range) {
+		// 목록 개수
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("card_type", card_type);
+		map.put("keyword", keyword);
+		map.put("word", word);
+		
+		int listCnt = service.getCardListCnt(map);
 
 	    //Pagination 객체 생성 및 현재 페이지 정보 설정
 		Pagination pagination = new Pagination();

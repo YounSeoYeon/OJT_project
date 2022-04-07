@@ -53,7 +53,7 @@ public class CardService implements ICardService {
 
 	// 전체 카드 개수 확인
 	@Override
-	public int getCardListCnt() {
-		return dao.getCardListCnt();
+	public int getCardListCnt(HashMap<String, Object> map) {
+		return dao.getCardListCnt(map);
 	}
 }
