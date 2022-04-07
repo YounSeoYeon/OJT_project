@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.agos.awg.common.Pagination;
 import com.agos.awg.model.CardVO;
 import com.agos.awg.service.card.CardService;
 
@@ -31,19 +32,30 @@ public class CardController {
 	public String cardList(
 			@RequestParam("card_type") int card_type,
 			@RequestParam(value="keyword", required = false) String keyword,
-			@RequestParam(value="word", required = false) String word,			
+			@RequestParam(value="word", required = false) String word,	
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
 			Model model) {
+		
+		//전체 게시글 개수
+		int listCnt = service.getCardListCnt();
+
+	    //Pagination 객체생성
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("card_type", card_type);
 		map.put("keyword", keyword);
 		map.put("word", word);
+		map.put("pagination", pagination);
 		
 		// System.out.println(map);
 		
 		ArrayList<CardVO> cardList = service.getCardList(map);
 		
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("cardList", cardList);
 		return "/card/cardList";
 	}

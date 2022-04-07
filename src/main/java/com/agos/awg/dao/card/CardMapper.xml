@@ -13,6 +13,11 @@
 		<result property="card_type" column="card_type" />
 	</resultMap>
 	
+	<!-- 전체 카드 개수 확인 -->
+	<select id="getCardListCnt" resultType="int">
+		SELECT COUNT(*) FROM card_acc
+	</select>
+	
 	<!-- 카드 목록  조회  -->
 	<select id="getCardList" parameterType="map" resultMap="cardInfo">
 		SELECT * FROM card_acc
@@ -29,7 +34,9 @@
 				</if>	
 			</otherwise>
 		</choose>
-		<!-- ORDER BY card_id -->
+		<if test="pagination != null">
+			LIMIT #{pagination.startList}, #{pagination.listSize}
+		</if>
 	</select>
 	
 	<!-- 카드 정보 조회 -->

@@ -50,4 +50,10 @@ public class CardService implements ICardService {
 	public int deleteCard(List<String> idArray) {
 		return dao.deleteCard(idArray);
 	}
+
+	// 전체 카드 개수 확인
+	@Override
+	public int getCardListCnt() {
+		return dao.getCardListCnt();
+	}
 }

@@ -7,7 +7,7 @@ $(function(){
 	getCardList({"card_type": -1});
 	
 	// 전체 체크/ 해제
-	$('#checkAll').on('click', function(){
+	$('#checkAll').on('click', function(){	
 		const checked = $('#checkAll').is(':checked');
 		
 		if(checked)

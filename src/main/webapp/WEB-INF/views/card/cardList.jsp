@@ -9,7 +9,7 @@
 			<c:when test="${ not empty cardList }">
 				<c:forEach items="${cardList}" var="card" >
 					<tr>
-						<td><input type="checkbox" name="card" value="${card.card_id}" /></td>
+						<td class="checkbox"><input type="checkbox" name="card" value="${card.card_id}" /></td>
 						<td>${card.card_name}</td>
 						<td>${card.card_no}</td>
 						<td>${(card.card_ep).substring(0,7)}</td>
