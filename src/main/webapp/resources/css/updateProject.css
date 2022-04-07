@@ -9,7 +9,7 @@
 	min-height: 100vh;
 }
 
-#updateCardForm {
+#updateProjectForm {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -19,37 +19,33 @@
 	padding: 1.5rem 2rem;
 }
 
-#updateCardForm div {
+#updateProjectForm div {
 	margin-bottom: 20px;
 	width: 100%;
 }
 
-#updateCardForm div label {
+#updateProjectForm div label {
 	display: block;
 	margin-bottom: 5px;
 }
 
-#updateCardForm div input {
+#updateProjectForm div input {
 	font-size: 16px;
 }
 
-#updateCardForm div select {
+#updateProjectForm div select {
     padding: 2px;
 	margin-right: 5px;
 	font-size: 16px;
 }
 
-#updateCardForm div span {
+#updateProjectForm div span {
 	font-size: 10px;
 	display: none;
 }
 
 input.num {
     width: 100px;
-}
-
-#cardNoArea input.num {
-	width: 19%;
 }
 
 input:read-only {

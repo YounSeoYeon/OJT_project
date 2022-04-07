@@ -32,13 +32,13 @@ li{
     background-color: rgb(238, 236, 236); 
 }
 
-#codemenu{
+#topMenu{
     width:50%;
     margin-top: 15px;
     margin-bottom:15px;
 }
 
-#codemenu li{
+#topMenu li{
     width:25%;
     border: 1px solid coral;
     border-radius: 15px;

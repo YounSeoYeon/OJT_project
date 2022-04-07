@@ -1,5 +1,5 @@
 /**
- * insertCard.js
+ * updateCard.js
  */
 
 $(function(){
@@ -64,8 +64,8 @@ $(function(){
 		e.preventDefault();
 		
 		/*** Form Data ***/
-		// card_idx
-		let card_idx = $('input[name=card_idx]').val();
+		// card_id
+		let card_id = $('input[name=card_id]').val();
 		
 		// card_no
 		let card_no = '';
@@ -88,7 +88,7 @@ $(function(){
 				type: 'post',
 				url: '/card/updateCard',
 				data: {
-					"card_idx": card_idx,
+					"card_id": card_id,
 					"card_no": card_no,
 					"card_pw": card_pw,
 					"card_name": card_name,

@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* common.css - 코드 관리 각 페이지에 공통적으로 사용되는 CSS */
+/* 모든 Contents를 포함하는 Box */
+/* body {
+	
+} */
+
+#wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/** Header **/
+header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+h1{
+    font-weight:bolder ;
+    text-align: center;
+    margin-top: 1%;
+}
+
+ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li{
+    list-style: none;
+}
+
+#topMenu{
+    width:50%;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+#topMenu li{
+    width:25%;
+    border: 1px solid coral;
+    border-radius: 15px;
+    text-align: center;
+    margin: 1%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: coral;
+    cursor: pointer;
+}
+
+/** Contents : Page 영역이 들어가는 Box **/
+#contents {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid;
+	width: 80%;
+	height: 80%;
+	padding: 1.5rem 2rem;
+	background-color: rgb(238, 236, 236); 
+}
+
+/** Radio, Search bar **/
+.codesearch{
+	width:55%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+
+.radioType{
+	margin: 1% !important;
+	display: inline-block;
+}
+.search{
+	display: inline-block;
+}
+#searchinput{
+    height: 34px !important;
+    width: 320px;
+}
+.searchbtn{
+	width:50px;
+	height: 30px;
+	border-radius: 10px;
+}
+
+/** 추가, 수정, 삭제 버튼  **/
+button {
+	width: 100px;
+	padding: 10px;
+	font-size: 16px;
+	background-color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
+#submitBtns{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,6 +1,7 @@
 package com.agos.awg.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -72,45 +73,6 @@ public class ProjController {
 		return "popup";	// 등록후 팝업안내창으로 이동
 	}	
 	
-//	//업체코드 수정폼으로 이동 (업체정보 가져와서 수정폼에 나타내 줘야함)
-//	@RequestMapping("/busupdateform/{bus_idx}")
-//	public String busupdateform(@PathVariable int bus_idx,Model model) {
-//		BusVO vo = busservice.busupdateform(bus_idx);
-//		model.addAttribute("vo",vo);
-//		return "/busupdateform"; // agw/busupdateform/이경로임
-//	}
-//	
-//	//업체수정후 db등록
-//	@RequestMapping("/busupdate/{bus_idx}")
-//	public String busupdate(BusVO vo) {
-//		System.out.println("받아옴?");
-//		System.out.println(vo.getBus_code()+vo.getBus_fax());
-//		busservice.busdbupdate(vo);
-////		return "redirect:/";
-////		return "./index"; // /agw/busupdate/resources/이렇게 감		
-////		return "redirect:./"+vo.getBus_idx(); // agw/busupdate/5
-////		return "./busupdateform/"+vo.getBus_idx();
-//		System.out.println("넘김?");
-////		return "redirect:../";
-//		return "popup";	// 등록후 팝업안내창으로 이동
-//	}
-//	
-//	// 삭제 여러개 -> 삭제할 업체들 배열로 가져옴
-//	@RequestMapping("/busdelete/{idxlist}")
-//	public String busdelete(@PathVariable ArrayList<Integer> idxlist) {
-//		System.out.println(idxlist);
-//		int a = idxlist.get(0);
-//		System.out.println(a+"//"+idxlist.size());
-//		for(int i=0; i<idxlist.size(); i++) {
-//			busservice.busdbdelete(idxlist.get(i));			
-//		}
-//		return "redirect:/";
-//	}
-//	
-//
-//// -----------------------------------------------------------------------
-	
-	
 //	radio값 바꼈을때
 	@RequestMapping("/projfilter/{value}")
 	public String projfilter(@PathVariable String value, Model model) {
@@ -129,5 +91,31 @@ public class ProjController {
 		return "projtop";
 	}
 	
+	// 카드 계정 수정 페이지 
+	@RequestMapping("/project/updateProjectView/{idx}")
+	public String updateCardView(@PathVariable("idx") String poject_idx, Model model) {
+		ProjVO project = proj.getProjectInfo(poject_idx);
+		
+		model.addAttribute("project", project);
+		return "/updateProject";
+	}
+	
+	// 프로젝트 정보 수정
+	@ResponseBody
+	@RequestMapping("/project/updateProject")
+	public int updateProject(ProjVO projVO) {
+		int result = proj.updateProject(projVO);
+		
+		return result;
+	}
+	
+	// 프로젝트 정보 삭제
+	@ResponseBody
+	@RequestMapping("/project/deleteProject")
+	public int deleteProject(@RequestParam("idxArray[]") List<String> idxArray) {
+		int result = proj.deleteProject(idxArray);
+		
+		return result;
+	}
 		
 }

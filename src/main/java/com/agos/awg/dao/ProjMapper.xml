@@ -59,4 +59,26 @@
 		(proj_amount LIKE CONCAT('%', #{search}, '%'))
 		ORDER BY proj_idx desc
 	</select>
+	
+	
+	<!-- 2022.04.07 하영 추가 -->
+	<!-- 프로젝트 정보 조회 -->
+	<select id="getProjectInfo" parameterType="String" resultType="com.agos.awg.model.ProjVO">
+		SELECT * FROM proj_code WHERE proj_idx = #{proj_idx}
+	</select>
+	
+	<!-- 프로젝트 정보 수정 -->
+	<update id="updateProject" parameterType="com.agos.awg.model.ProjVO">
+		UPDATE proj_code
+		SET proj_nm=#{proj_nm}, proj_amount=#{proj_amount}, proj_buyer=#{proj_buyer}, proj_start_date=#{proj_start_date}, proj_end_date=#{proj_end_date} 
+		WHERE proj_code=#{proj_code}
+	</update>
+	
+	<!-- 프로젝트 정보 삭제 -->
+	<delete id="deleteProject" parameterType="list">
+		DELETE FROM proj_code WHERE
+		<foreach collection="list" item="item" separator="OR">
+			 proj_idx = #{item}
+		</foreach>
+	</delete>
   </mapper>

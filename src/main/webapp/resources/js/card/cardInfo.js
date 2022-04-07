@@ -3,16 +3,50 @@
  */
 
 $(function(){
-	getCardList();
+	// 첫 페이지 로딩 시 전체 목록 가져오기
+	getCardList({"card_type": -1});
 	
 	// 전체 체크/ 해제
-	$('#checkAll').on('click', function(){
+	$('#checkAll').on('click', function(){	
 		const checked = $('#checkAll').is(':checked');
 		
 		if(checked)
 			$('input:checkbox').prop('checked',true);
 		else 
 			$('input:checkbox').prop('checked',false);
+	});
+	
+	// 카드 타입 선택
+	$('input:radio[name="card_type"]').on('change', function(){
+		let card_type = $('input[name=card_type]:checked').val();
+		let data = {"card_type": card_type};
+		getCardList(data);
+	});
+	
+	// 검색 버튼 클릭
+	$('.searchBtn').on('click', function(e){
+		e.preventDefault();
+		
+		let card_type = $('input[name=card_type]:checked').val();
+		let keyword = $('.keyword').val();
+		let word = $('#searchInput').val();
+		
+		let data = {"card_type": card_type};
+		
+		if(keyword != "" && word != ""){
+			data["keyword"] = keyword;
+			data["word"] = word;
+			getCardList(data);
+			
+			// 검색 영역 초기화 하기
+			$('.keyword').val('');
+			$('#searchInput').val('');
+			
+		}else if(keyword == "") {
+			alert('키워드를 선택해주세요.');
+		}else {
+			alert('검색어를 입력해주세요.');
+		}
 	});
 	
 	// 추가 버튼 클릭
@@ -25,11 +59,6 @@ $(function(){
 		let top = (document.body.offsetHeight / 2) - (height / 2);
 		
 		window.open('/card/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
-	});
-	
-	// 카드 타입 선택
-	$('input:radio[name="card_type"]').on('click', function(){
-		getCardList();
 	});
 	
 	// 수정 버튼 클릭
@@ -63,22 +92,22 @@ $(function(){
 			let answer = confirm('해당 항목을 정말로 삭제하시겠습니까?');
 			
 			if(answer){
-				let checkedIndexs = [];	//체크된 index값을 담을 배열
+				let checkedIDs = [];	//체크된 index값을 담을 배열
 				
 				// 체크된 항목의 index 값 배열에 담기
 				$('input:checkbox[name=card]:checked').each(function(){
-					checkedIndexs.push($(this).val());
+					checkedIDs.push($(this).val());
 				});
 				
 				/*** Ajax ***/			
 				$.ajax({
 					type: 'post',
 					url: '/card/deleteCard',
-					data: {'indexArray': checkedIndexs},
+					data: {'idArray': checkedIDs},
 					success: function(result){
 						if(result != 0){
 							alert('카드를 정상적으로 삭제했습니다.');
-							window.location.href = '/';
+							window.location.href = '/card';
 						}
 					},
 					error: function(error) {
@@ -90,13 +119,12 @@ $(function(){
 	});
 	
 	// 카드 목록 불러오기 함수
-	function getCardList(){
-		let value = $('input[name=card_type]:checked').val();
-		
+	function getCardList(data){
+		// console.log(data);
 		$.ajax({
 			type: 'post',
 			url: '/card/cardList',
-			data: {'card_type': value},
+			data: data,
 			success: function(result) {
 				$('#cardList').empty();
 				$('#cardList').html(result);
@@ -105,5 +133,5 @@ $(function(){
 				console.log(error);
 			}
 		});
-	}
+	};
 });

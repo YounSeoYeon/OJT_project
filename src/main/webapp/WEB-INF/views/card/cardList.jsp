@@ -9,7 +9,7 @@
 			<c:when test="${ not empty cardList }">
 				<c:forEach items="${cardList}" var="card" >
 					<tr>
-						<td><input type="checkbox" name="card" value="${card.card_idx}" /></td>
+						<td class="checkbox"><input type="checkbox" name="card" value="${card.card_id}" /></td>
 						<td>${card.card_name}</td>
 						<td>${card.card_no}</td>
 						<td>${(card.card_ep).substring(0,7)}</td>
@@ -19,7 +19,7 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="6">카드 정보가 존재하지 않습니다.</td>
+					<td colspan="6">정보가 존재하지 않습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
