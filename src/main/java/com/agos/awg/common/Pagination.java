@@ -2,7 +2,7 @@ package com.agos.awg.common;
 
 public class Pagination {
 	private int listSize = 10;		// 한 패이지당 보여줄 리스트 수
-	private int rangeSize = 10;		// 한 페이지당 보여줄 페이지 범위 
+	private int rangeSize = 5;		// 한 페이지당 보여줄 페이지 범위 
 	private int page;				// 현재 페이지 번호
 	private int range; 				// 현재 페이지 범위 
 	private int listCnt;			// 전체 리스트 수
@@ -20,10 +20,10 @@ public class Pagination {
 		this.listCnt = listCnt;
 
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(listCnt/listSize);
+		this.pageCnt = (listCnt/listSize) + 1;
 		
 		//시작 페이지
-		this.startPage = (range - 1) * rangeSize + 1 ;
+		this.startPage = (range - 1) * rangeSize + 1;
 		
 		//끝 페이지
 		this.endPage = range * rangeSize;
@@ -36,6 +36,7 @@ public class Pagination {
 		
 		//다음 버튼 상태
 		this.next = endPage > pageCnt ? false : true;
+		
 		// 마지막 페이지 번호가 전체 페이지 수 보다 크면, 마지막 페이지 번호 = 전체 페이지 수 (페이지가 10개 단위로 만들어 지기때문)
 		if (this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;

@@ -3,8 +3,9 @@
  */
 
 $(function(){
-	// 첫 페이지 로딩 시 전체 목록 가져오기
+	// 첫 페이지 로딩 시 전체 목록 $ 페이지 정보 가져오기
 	getCardList({"card_type": -1});
+	getPage(1, 1);
 	
 	// 전체 체크/ 해제
 	$('#checkAll').on('click', function(){	
@@ -118,6 +119,41 @@ $(function(){
 		};
 	});
 	
+	// 페이지 버튼 클릭
+	$(document).on('click', '.pageLink' ,function(){
+		// pagination 정보
+		let page = $('#pagination').attr('data-page');
+		let range = $('#pagination').attr('data-range');
+		let rangeSize = $('#pagination').attr('data-rangeSize');
+		
+		// active 클래스 처리
+		$('.pageItem.active').removeClass('active');
+		$(this).parent().addClass('active');
+		
+		let condition = $(this).attr('id');
+		
+		// 조건별 페이지 범위 계산
+		switch (condition) {
+			case 'prev':
+				page = parseInt((range - 2) * rangeSize) + 1;	// 이전 페이지 범위의 가장 앞 페이지로 이동
+				range = parseInt(range) - 1;
+				break;
+			case 'next':
+				page = parseInt((range * rangeSize)) + 1; // 다음 페이지 범위의 가장 앞 페이지로 이동
+				range = parseInt(range) + 1;
+				break;
+			default:
+				page = $(this).text();
+				break;
+		}
+		
+		// Ajax
+		let card_type = $('input[name=card_type]:checked').val();
+		let data = {"card_type":card_type, "page": page, "range": range};
+		getCardList(data); // 카드 목록
+		getPage(page, range); // 페이지
+	});
+	
 	// 카드 목록 불러오기 함수
 	function getCardList(data){
 		// console.log(data);
@@ -134,4 +170,17 @@ $(function(){
 			}
 		});
 	};
+	
+	// 페이지 범위 불러오기 함수
+	function getPage(page, range) {
+		$.ajax({
+			type: 'POST',
+			url: '/card/page',
+			data: {"page": page, "range": range},
+			success: function(result) {
+				$('#paginationBox').empty();
+				$('#paginationBox').html(result);
+			}
+		})
+	}
 });

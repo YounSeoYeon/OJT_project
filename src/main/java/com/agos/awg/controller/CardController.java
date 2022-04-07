@@ -23,11 +23,11 @@ public class CardController {
 	
 	// 카드 목록 페이지 이동
 	@RequestMapping("/card")
-	public String cardInfo(Model model) {
+	public String cardInfo() {
 		return "/card/cardInfo";
 	}
 	
-	// 카드 목록 리스트(카드 유형별)
+	// 카드 목록 리스트(카드 유형별, 검색, 페이징)
 	@RequestMapping("/card/cardList")
 	public String cardList(
 			@RequestParam("card_type") int card_type,
@@ -37,27 +37,32 @@ public class CardController {
 			@RequestParam(required = false, defaultValue = "1") int range,
 			Model model) {
 		
-		//전체 게시글 개수
-		int listCnt = service.getCardListCnt();
-
-	    //Pagination 객체생성
-		Pagination pagination = new Pagination();
-		pagination.pageInfo(page, range, listCnt);
+		Pagination pagination = getPagination(page, range);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
 		map.put("card_type", card_type);
 		map.put("keyword", keyword);
 		map.put("word", word);
 		map.put("pagination", pagination);
-		
 		// System.out.println(map);
 		
+		// 카드 목록 가져오기
 		ArrayList<CardVO> cardList = service.getCardList(map);
 		
-		model.addAttribute("pagination", pagination);
 		model.addAttribute("cardList", cardList);
 		return "/card/cardList";
+	}
+	
+	// 페이지 범위
+	@RequestMapping("/card/page")
+	public String page(
+			@RequestParam("page") int page,
+			@RequestParam("range") int range,
+			Model model) {
+		
+		model.addAttribute("pagination", getPagination(page, range));
+		
+		return "/card/page";
 	}
 	
 	// 카드 계정 등록 페이지 
@@ -110,4 +115,16 @@ public class CardController {
 		
 		return result;
 	}
+	
+	// pagination 생성 및 페이지 범위 설정
+	private Pagination getPagination(int page, int range) {
+		//전체 게시글 개수
+		int listCnt = service.getCardListCnt();
+
+	    //Pagination 객체 생성 및 현재 페이지 정보 설정
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, listCnt);
+		
+		return pagination;
+	};
 }
