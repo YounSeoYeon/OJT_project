@@ -167,8 +167,8 @@ $(function(){
 			url: '/card/cardList',
 			data: data,
 			success: function(result) {
-				$('#cardList').empty();
-				$('#cardList').html(result);
+				$('#cardInfo').empty();
+				$('#cardInfo').html(result);
 			},
 			error: function(error) {
 				console.log(error);

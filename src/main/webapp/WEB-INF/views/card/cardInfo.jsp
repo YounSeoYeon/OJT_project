@@ -45,18 +45,7 @@
 					</div>
 				</div>
 				<div id="cardInfo">
-	  				<table>
-	  					<thead>
-	  						<tr>
-								<th><input type="checkbox" id="checkAll"/></th>
-								<th>카드 명의자</th>
-								<th>카드 번호</th>
-								<th>유효 기간</th>
-								<th>카드 관리 계정</th>
-							</tr>
-	  					</thead>
-	  					<tbody id="cardList"></tbody>
-	  				</table>
+					<!-- 카드 정보 목록 부분 - Ajax 처리 -->
 				</div>
 				<div id="bottomButtons">
 					<!-- pagination -->

@@ -23,5 +23,6 @@
 				</li>
 			</c:if>
 		</ul>
+		<span>총 : ${pagination.listCnt}개</span>
 	</body>
 </html>
