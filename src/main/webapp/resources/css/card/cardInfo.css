@@ -47,6 +47,11 @@ button {
 	margin-bottom: 20px;
 }
 
+#cardTypes #reset,
+#cardTypes #reset ~ label {
+	display: none;
+}
+
 #cardInfo, #cardInfo table {
 	width: 100%;
 }

@@ -1,6 +1,6 @@
-package com.agos.awg.common;
+package com.agos.awg.model;
 
-public class Pagination {
+public class PaginationVO {
 	private int listSize = 10;		// 한 패이지당 보여줄 리스트 수
 	private int rangeSize = 5;		// 한 페이지당 보여줄 페이지 범위 
 	private int page;				// 현재 페이지 번호

@@ -1,7 +1,14 @@
 package com.agos.awg.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -187,5 +194,44 @@ public class BusController {
 		return "top";
 	}
 	
+	/****** Excel 추출 - 2022-04-08 하영 추가 *******/
+	@RequestMapping("/excel/business")
+	public void downloadExcel(HttpServletResponse res) throws IOException {
+	
+		ArrayList<BusVO> list = busservice.buslist();
 		
+		Workbook workbook = new HSSFWorkbook();
+        Sheet sheet = workbook.createSheet("업체 목록");
+        int rowNo = 0;
+        
+        Row headerRow = sheet.createRow(rowNo++);
+        headerRow.createCell(0).setCellValue("업체 코드");
+        headerRow.createCell(1).setCellValue("상호");
+        headerRow.createCell(2).setCellValue("대표자");
+        headerRow.createCell(3).setCellValue("사업자 등록번호");
+        headerRow.createCell(4).setCellValue("전화 번호");
+        headerRow.createCell(5).setCellValue("팩스 번호");
+        headerRow.createCell(6).setCellValue("종목명");
+        headerRow.createCell(7).setCellValue("회사 메일");
+        headerRow.createCell(8).setCellValue("회사 주소");
+        
+        for (BusVO business : list) {
+            Row row = sheet.createRow(rowNo++);
+            row.createCell(0).setCellValue(business.getBus_code());
+            row.createCell(1).setCellValue(business.getBus_nm());
+            row.createCell(2).setCellValue(business.getBus_rep());
+            row.createCell(3).setCellValue(business.getBus_reg_no());
+            row.createCell(4).setCellValue(business.getBus_tel());
+            row.createCell(5).setCellValue(business.getBus_fax());
+            row.createCell(6).setCellValue(business.getBus_item());
+            row.createCell(7).setCellValue(business.getBus_email());
+            row.createCell(8).setCellValue(business.getBusAddress());
+        }
+        
+        res.setContentType("ms-vnd/excel");
+        res.setHeader("Content-Disposition", "attachment;filename=boardlist.xls");
+ 
+        workbook.write(res.getOutputStream());
+        workbook.close();
+	}
 }
