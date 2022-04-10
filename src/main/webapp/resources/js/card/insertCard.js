@@ -57,27 +57,32 @@ $(function(){
 		};
 	});
 	
-	// 카드 번호 중복 체크
+	// 카드 번호 중복, 유효성 체크 
 	$('#checkNoBtn').on('click', function(e){
 		e.preventDefault();
 		
 		// card_no
 		let card_no = '';
 		$('.card_no').each(function (index) {
-			if($(this).val() != '' & $(this).val().length == 4){
-				if(index < 3) card_no += $(this).val() + '-';
-				else card_no += $(this).val();
+			if(this.value.length < 4) {
+				$(this).addClass('hasError');
+				$(this).focus();
 			}else {
-				card_no = '';
+				if(index < 3) card_no += $(this).val() + '-';
+			    else card_no += $(this).val();
+				$(this).removeClass('hasError');
 			}
 		});
 		
-		// 유효 하지 않은 번호 이면 경고창
-		if(card_no == '') {
-			$('#card_no1').focus();
-			alert('유효한 카드 번호를 입력해주세요.');
-		}
-		else {
+		if($('.card_no').is('.hasError')) {
+			$('.card_no_error').css({
+				'display': 'block',
+				'color': 'red'
+			});
+			$('.card_no_error').text('유효하지 않은 카드번호입니다.');
+		}else {
+			$('.card_no_error').css('display', 'none');
+			
 			let condition = 'card_no';
 			let error = $('.card_no_error');
 			let data = {'key': 'card_no', 'value': card_no};
@@ -198,8 +203,6 @@ $(function(){
 						error.text('사용 가능한 아이디입니다.');
 						$('#checkId').val('true');
 					}
-					$('input[type=submit]').removeAttr('disabled');
-					$('input[type=submit]').removeClass('disabled');
 				}else {
 					focus.focus();
 					error.css({
@@ -213,6 +216,13 @@ $(function(){
 						error.text('이미 사용중인 아이디입니다.');
 						$('#checkId').val('false');
 					}
+				}
+				
+				// 중복 체크 후 추가 버튼 활성화
+				if($('#checkNo').val() == 'true' & $('#checkId').val() == 'true'){
+					$('input[type=submit]').removeAttr('disabled');
+					$('input[type=submit]').removeClass('disabled');
+				}else{
 					$('input[type=submit]').attr('disabled', 'disabled');
 					$('input[type=submit]').addClass('disabled');
 				}
@@ -221,31 +231,11 @@ $(function(){
 				console.log(e);
 			}
 		});
-	}
+	};
 	
 	/*** 유효성 검사 ***/
 	function checkValidate(){
 		let validation = true;
-
-		// 카드 번호
-		$('.card_no').each(function(){
-			if(this.value.length < 4) {
-				$(this).addClass('hasError');
-				$(this).focus();
-			}else $(this).removeClass('hasError');
-		});
-		
-		if($('.card_no').is('.hasError')) {
-			$('.card_no_error').css({
-				'display': 'block',
-				'color': 'red'
-			});
-			$('.card_no_error').text('유효하지 않은 카드번호입니다.');
-			validation = false;
-		}else {
-			$('.card_no_error').css('display', 'none');
-		}
-		
 		
 		// 카드 명의
 		let name_validation = true;
@@ -277,7 +267,6 @@ $(function(){
 				$('.card_pw_error').css('display', 'none');
 			};
 		};
-		
 		return validation;
 	};
 });
