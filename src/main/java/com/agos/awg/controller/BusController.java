@@ -5,10 +5,17 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -197,41 +204,124 @@ public class BusController {
 	/****** Excel 추출 - 2022-04-08 하영 추가 *******/
 	@RequestMapping("/excel/business")
 	public void downloadExcel(HttpServletResponse res) throws IOException {
-	
+		final String fileName = "businessList.xlsx";
+		
+		/* 엑셀 그리기 */
+		final String[] colNames = {
+			"업체 코드", "상호", "대표자", "사업자 등록번호", "전화 번호", "팩스 번호", "종목명", "회사 메일", "회사 주소"
+		};
+		
+		// 열 사이즈
+		final int[] colWidths = {
+			3000, 5000, 3000, 6000, 5000, 5000, 3000, 8000, 8000
+		};
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet sheet = null;
+		XSSFCell cell = null;
+		XSSFRow row = null;
+		
+		//Font
+		Font fontHeader = workbook.createFont();
+		fontHeader.setFontName("맑은 고딕");			//글씨체
+		fontHeader.setFontHeight((short)(9 * 20));	//사이즈
+		fontHeader.setBold(true);					//볼드(굵게)
+		
+		Font fontBody = workbook.createFont();
+		fontBody.setFontName("맑은 고딕");				//글씨체
+		fontBody.setFontHeight((short)(9 * 20));	//사이즈
+		
+		// 엑셀 헤더 셋팅
+		CellStyle headerStyle = workbook.createCellStyle();
+		headerStyle.setFont(fontHeader);
+		headerStyle.setAlignment(HorizontalAlignment.CENTER);
+		headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		headerStyle.setBorderTop(BorderStyle.THICK); // 셀 위 테두리 실선 적용
+		headerStyle.setBorderBottom(BorderStyle.THICK); // 셀 아래 테두리 실선 적용
+		headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+		headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		
+		// 엑셀 바디 셋팅
+		CellStyle bodyStyle = workbook.createCellStyle();
+		bodyStyle.setFont(fontBody);
+		bodyStyle.setAlignment(HorizontalAlignment.CENTER);
+		bodyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+		bodyStyle.setBorderTop(BorderStyle.THIN);
+		bodyStyle.setBorderBottom(BorderStyle.THIN);
+		
+		//rows
+		int rowCnt = 1;
+		int cellCnt = 1;
+		
 		ArrayList<BusVO> list = busservice.buslist();
 		
-		Workbook workbook = new HSSFWorkbook();
-        Sheet sheet = workbook.createSheet("업체 목록");
-        int rowNo = 0;
-        
-        Row headerRow = sheet.createRow(rowNo++);
-        headerRow.createCell(0).setCellValue("업체 코드");
-        headerRow.createCell(1).setCellValue("상호");
-        headerRow.createCell(2).setCellValue("대표자");
-        headerRow.createCell(3).setCellValue("사업자 등록번호");
-        headerRow.createCell(4).setCellValue("전화 번호");
-        headerRow.createCell(5).setCellValue("팩스 번호");
-        headerRow.createCell(6).setCellValue("종목명");
-        headerRow.createCell(7).setCellValue("회사 메일");
-        headerRow.createCell(8).setCellValue("회사 주소");
-        
-        for (BusVO business : list) {
-            Row row = sheet.createRow(rowNo++);
-            row.createCell(0).setCellValue(business.getBus_code());
-            row.createCell(1).setCellValue(business.getBus_nm());
-            row.createCell(2).setCellValue(business.getBus_rep());
-            row.createCell(3).setCellValue(business.getBus_reg_no());
-            row.createCell(4).setCellValue(business.getBus_tel());
-            row.createCell(5).setCellValue(business.getBus_fax());
-            row.createCell(6).setCellValue(business.getBus_item());
-            row.createCell(7).setCellValue(business.getBus_email());
-            row.createCell(8).setCellValue(business.getBusAddress());
-        }
-        
-        res.setContentType("ms-vnd/excel");
-        res.setHeader("Content-Disposition", "attachment;filename=boardlist.xls");
- 
-        workbook.write(res.getOutputStream());
-        workbook.close();
+		// 엑셀 시트명 설정
+		sheet = workbook.createSheet("업체 목록");
+		row = sheet.createRow(rowCnt++);
+		
+		//헤더 정보 구성
+		for (int i = 0; i < colNames.length; i++) {
+			cell = row.createCell(i+1);
+			cell.setCellStyle(headerStyle);
+			cell.setCellValue(colNames[i]);
+			sheet.setColumnWidth(i+1, colWidths[i]);	//column width 지정
+		}
+		
+		//데이터 부분 생성
+		for(BusVO vo : list) {
+			cellCnt = 1;
+			
+			row = sheet.createRow(rowCnt++);
+			
+			// 업체코드 
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_code());
+			
+			// 상호
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_nm());
+			
+			// 대표자
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_rep());
+			
+			// 사업자 등록번호
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_reg_no());
+			
+			// 전화 번호
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_tel());
+			
+			// 팩스 번호
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_fax());
+			
+			// 종목명
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_item());
+			
+			// 회사 메일
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBus_email());
+			
+			// 회사 주소
+			cell = row.createCell(cellCnt++);
+			cell.setCellStyle(bodyStyle);
+			cell.setCellValue(vo.getBusAddress());
+		}
+		res.setContentType("application/vnd.ms-excel");
+		// 엑셀 파일명 설정
+		res.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+		workbook.write(res.getOutputStream());
+		workbook.close();
 	}
 }

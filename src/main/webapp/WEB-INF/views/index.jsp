@@ -85,6 +85,7 @@
 						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="업체,대표자,사업자번호,전화번호,주소 키워드입력" onChange='input()'>
 						&nbsp;<input class="searchbtn" type="button" value="검색">
 					</div>
+					<button class="excel">엑셀 파일 생성</button>
 				</div>
 				<hr>
 				<div class="bus_list_wrap">
