@@ -236,7 +236,7 @@ public class BusController {
 		headerStyle.setFont(fontHeader);
 		headerStyle.setAlignment(HorizontalAlignment.CENTER);
 		headerStyle.setVerticalAlignment(VerticalAlignment.CENTER);
-		headerStyle.setBorderTop(BorderStyle.THICK); // 셀 위 테두리 실선 적용
+		headerStyle.setBorderTop(BorderStyle.THICK); 	// 셀 위 테두리 실선 적용
 		headerStyle.setBorderBottom(BorderStyle.THICK); // 셀 아래 테두리 실선 적용
 		headerStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
 		headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
