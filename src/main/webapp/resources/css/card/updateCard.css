@@ -48,6 +48,43 @@ input.num {
     width: 100px;
 }
 
+input[type=submit] {
+	width: 100px;
+	padding: 7px;
+	margin: auto;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+button.checkDuplicateBtn {
+	width: 100px;
+	padding: 6px;
+	margin-left: 10px;
+	font-size: 16px;
+	color: white;
+	background-color: black;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+input[type=submit].disabled,
+button.checkDuplicateBtn.disabled {
+	background-color: #F0F0F0;
+	cursor: default;
+}
+
+#cardNoArea #inputCardNo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+}
+
 #cardNoArea input.num {
 	width: 19%;
 }

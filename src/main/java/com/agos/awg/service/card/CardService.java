@@ -21,10 +21,10 @@ public class CardService implements ICardService {
 		return dao.getCardList(map);
 	}
 	
-	// 카드 계정 중복 체크
+	// 카드 중복 체크
 	@Override
-	public int checkCardID(String card_id) {
-		return dao.checkCardID(card_id);
+	public int checkDuplicate(HashMap<String, Object> map) {
+		return dao.checkDuplicate(map);
 	}
 
 	// 카드 계정 등록

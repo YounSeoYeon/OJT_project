@@ -58,7 +58,7 @@ $(function(){
 	$('.addBtn').on('click', function(e){
 		e.preventDefault();
 		const width = 500;
-		const height = 500;
+		const height = 600;
 		
 		let left = (document.body.offsetWidth / 2) - (width / 2);
 		let top = (document.body.offsetHeight / 2) - (height / 2);
@@ -78,7 +78,7 @@ $(function(){
 			//console.log(checkedIndex);
 			
 			const width = 500;
-			const height = 500;
+			const height = 600;
 			
 			let left = (document.body.offsetWidth / 2) - (width / 2);
 			let top = (document.body.offsetHeight / 2) - (height / 2);

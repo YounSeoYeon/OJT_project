@@ -3,7 +3,7 @@
 
 #wrapper {
 	display: flex;
-	//justify-content: center;
+	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 	min-height: 100vh;
@@ -64,7 +64,7 @@ input[type=submit] {
 	cursor: pointer;
 }
 
-button.checkCardIndexBtn {
+button.checkDuplicateBtn {
 	width: 100px;
 	padding: 6px;
 	margin-left: 10px;
@@ -77,9 +77,16 @@ button.checkCardIndexBtn {
 }
 
 input[type=submit].disabled,
-button.checkCardIndexBtn.disabled {
+button.checkDuplicateBtn.disabled {
 	background-color: #F0F0F0;
 	cursor: default;
+}
+
+#cardNoArea #inputCardNo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
 }
 
 #cardPWArea {
