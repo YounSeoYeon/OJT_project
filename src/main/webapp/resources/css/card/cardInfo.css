@@ -47,6 +47,11 @@ button {
 	margin-bottom: 20px;
 }
 
+#cardTypes #reset,
+#cardTypes #reset ~ label {
+	display: none;
+}
+
 #cardInfo, #cardInfo table {
 	width: 100%;
 }
@@ -76,6 +81,12 @@ button {
 }
 
 /* pagination */
+#paginationBox {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .pagination {
   display: flex;
   padding-left: 0;
@@ -118,6 +129,7 @@ button {
 .pageItem:last-child .pageLink {
   border-top-right-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
+  margin-right: 10px;
 }
 
 .pageItem.active .pageLink {

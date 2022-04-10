@@ -19,13 +19,13 @@
 		<choose>
 			<when test="card_type != -1">
 				WHERE card_type = #{card_type}
-				<if test="keyword != null">
-					AND ${keyword} LIKE CONCAT('%',#{word},'%')
+				<if test="filter != null">
+					AND ${filter} LIKE CONCAT('%',#{keyword},'%')
 				</if>	
 			</when>
 			<otherwise>
-				<if test="keyword != null">
-					WHERE ${keyword} LIKE CONCAT('%', #{word}, '%')
+				<if test="filter != null">
+					WHERE ${filter} LIKE CONCAT('%', #{keyword}, '%')
 				</if>	
 			</otherwise>
 		</choose>
@@ -37,13 +37,13 @@
 		<choose>
 			<when test="card_type != -1">
 				WHERE card_type = #{card_type}
-				<if test="keyword != null">
-					AND ${keyword} LIKE CONCAT('%',#{word},'%')
+				<if test="filter != null">
+					AND ${filter} LIKE CONCAT('%',#{keyword},'%')
 				</if>	
 			</when>
 			<otherwise>
-				<if test="keyword != null">
-					WHERE ${keyword} LIKE CONCAT('%', #{word}, '%')
+				<if test="filter != null">
+					WHERE ${filter} LIKE CONCAT('%', #{keyword}, '%')
 				</if>	
 			</otherwise>
 		</choose>

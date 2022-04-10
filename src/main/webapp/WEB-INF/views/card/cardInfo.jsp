@@ -15,7 +15,6 @@
 		<div id="wrapper">
 			<h1>코드 관리</h1>
 			<div id="contents">
-				<%-- <jsp:include page="../header.jsp" flush="false" /> --%>
 				<div id="tabButtons">
 					<button class="selected">카드 계정</button>
 					<button>업체</button>
@@ -30,33 +29,23 @@
 		  				<label for="company">법인</label>
 						<input type="radio" id="personal" name="card_type" value="1" />
 		  				<label for="personal">개인</label>
+	  					<input type="radio" id="reset" name="card_type" value="2" />
+		  				<label for="reset">초기화</label>
 					</div>
 					<div id="searchBar">
 						<!-- 검색 키워드 선택 -->
-						<select class="keyword">
-							<option value="" selected>키워드 선택</option>
-							<option value="card_name">카드 명의자</option>
+						<select class="filter">
+							<option value="card_name" selected>카드 명의자</option>
 							<option value="card_no">카드 번호</option>
 							<option value="card_ep">유효 기간</option>
 							<option value="card_id">카드 관리 계정</option>
 						</select>
-						<input type="text" id="searchInput" name="search" placeholder="검색어 입력" />
+						<input type="text" id="searchInput" name="search" placeholder="검색 키워드 입력" />
 						<input type="button" class="searchBtn" value="검색" />
 					</div>
 				</div>
 				<div id="cardInfo">
-	  				<table>
-	  					<thead>
-	  						<tr>
-								<th><input type="checkbox" id="checkAll"/></th>
-								<th>카드 명의자</th>
-								<th>카드 번호</th>
-								<th>유효 기간</th>
-								<th>카드 관리 계정</th>
-							</tr>
-	  					</thead>
-	  					<tbody id="cardList"></tbody>
-	  				</table>
+					<!-- 카드 정보 목록 부분 - Ajax 처리 -->
 				</div>
 				<div id="bottomButtons">
 					<!-- pagination -->

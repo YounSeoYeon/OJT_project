@@ -62,7 +62,13 @@ $(function(){
 			window.location.href='./busdelete/'+chkvalue;
 		}		
 		
-	});	
+	});
+	
+	/**** 엑셀로 추출하기 ****/
+	$('.excel').on('click', function(e){
+		e.preventDefault();
+		location.href='/excel/business';
+	})
 });
 
 

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.agos.awg.common.Pagination;
 import com.agos.awg.model.CardVO;
+import com.agos.awg.model.PaginationVO;
 import com.agos.awg.service.card.CardService;
 
 @Controller
@@ -30,19 +30,19 @@ public class CardController {
 	// 카드 목록 리스트(카드 유형별, 검색, 페이징)
 	@RequestMapping("/card/cardList")
 	public String cardList(
-			@RequestParam("card_type") int card_type,
-			@RequestParam(value="keyword", required = false) String keyword,
-			@RequestParam(value="word", required = false) String word,	
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(value="card_type", required = false, defaultValue = "-1") int card_type,
+			@RequestParam(value="filter", required = false) String filter,
+			@RequestParam(value="keyword", required = false) String keyword,	
+			@RequestParam(value="page", required = false, defaultValue = "1") int page,
+			@RequestParam(value="range", required = false, defaultValue = "1") int range,
 			Model model) {
 		
-		Pagination pagination = getPagination(card_type, keyword, word, page, range);
+		PaginationVO pagination = getPagination(card_type, filter, keyword, page, range);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("card_type", card_type);
+		map.put("filter", filter);
 		map.put("keyword", keyword);
-		map.put("word", word);
 		map.put("pagination", pagination);
 		// System.out.println(map);
 		
@@ -56,14 +56,14 @@ public class CardController {
 	// 페이지 범위
 	@RequestMapping("/card/page")
 	public String page(
-			@RequestParam("card_type") int card_type,
-			@RequestParam(value="keyword", required = false) String keyword,
-			@RequestParam(value="word", required = false) String word,	
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam(value="card_type", required = false, defaultValue = "-1") int card_type,
+			@RequestParam(value="filter", required = false) String filter,
+			@RequestParam(value="keyword", required = false) String keyword,	
+			@RequestParam(value="page", required = false, defaultValue = "1") int page,
+			@RequestParam(value="range", required = false, defaultValue = "1") int range,
 			Model model) {
 		
-		model.addAttribute("pagination", getPagination(card_type, keyword, word, page, range));
+		model.addAttribute("pagination", getPagination(card_type, filter, keyword, page, range));
 		
 		return "/card/page";
 	}
@@ -120,17 +120,17 @@ public class CardController {
 	}
 	
 	// pagination 생성 및 페이지 범위 설정
-	private Pagination getPagination(int card_type, String keyword, String word, int page, int range) {
+	private PaginationVO getPagination(int card_type, String filter, String keyword, int page, int range) {
 		// 목록 개수
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("card_type", card_type);
+		map.put("filter", filter);
 		map.put("keyword", keyword);
-		map.put("word", word);
 		
 		int listCnt = service.getCardListCnt(map);
 
 	    //Pagination 객체 생성 및 현재 페이지 정보 설정
-		Pagination pagination = new Pagination();
+		PaginationVO pagination = new PaginationVO();
 		pagination.pageInfo(page, range, listCnt);
 		
 		return pagination;

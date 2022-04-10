@@ -8,11 +8,10 @@ $(function(){
 	getPage({"card_type": -1, "page": 1, "range": 1});
 	
 	// 전역 변수
-	let card_type = $('input[name=card_type]:checked').val();
-	let keyword, word;
+	let card_type, filter, keyword, page, range;
 	
 	// 전체 체크/ 해제
-	$('#checkAll').on('click', function(){	
+	$(document).on('click', '#checkAll' ,function(){	
 		const checked = $('#checkAll').is(':checked');
 		
 		if(checked)
@@ -23,37 +22,37 @@ $(function(){
 	
 	// 카드 타입 선택
 	$('input:radio[name="card_type"]').on('change', function(){
-		let card_type = $('input[name=card_type]:checked').val();
-		let data = {"card_type": card_type};
+		card_type = $('input[name=card_type]:checked').val();
+			
+		// 초기화 버튼 클릭 - 검색값 초기화
+		if(card_type == 2) {
+			card_type = -1;
+			filter = undefined;
+			keyword = undefined;
+			
+			$('.filter').val('card_name');
+			$('#searchInput').val('');
+			
+			// 초기화 버튼 안 보이게
+			$('#reset').css("display","none");
+			$('#reset').next().css("display","none");
+			
+			// 전체 버튼 선택되게
+			$("input:radio[name='card_type']:radio[value='-1']").prop('checked', true);
+		}
+		
+		let data = {"card_type":card_type, "filter": filter, "keyword": keyword, "page": page, "range": range};
+		
 		getCardList(data);
 		getPage(data); // 페이지
 	});
 	
 	// 검색 버튼 클릭
-	$('.searchBtn').on('click', function(e){
-		e.preventDefault();
-		
-		let data = {"card_type": card_type};
-		
-		keyword = $('.keyword').val();
-		word = $('#searchInput').val();
-		
-		if(keyword != "" && word != ""){
-			data["keyword"] = keyword;
-			data["word"] = word;
-			getCardList(data); // 카드 목록
-			getPage(data); // 페이지
-			
-			// 검색 영역 초기화 하기
-			$('.keyword').val('');
-			$('#searchInput').val('');
-			
-		}else if(keyword == "") {
-			alert('키워드를 선택해주세요.');
-		}else {
-			alert('검색어를 입력해주세요.');
-		}
-	});
+	$('.searchBtn').on('click', function(e) {searchEvent(e)});
+	
+	// 검색창에서 enter 입력
+	$('#searchInput').on('keydown', function(e) {
+		if (e.keyCode == 13) searchEvent(e) });
 	
 	// 추가 버튼 클릭
 	$('.addBtn').on('click', function(e){
@@ -153,11 +152,34 @@ $(function(){
 		}
 		
 		// Ajax
-		let card_type = $('input[name=card_type]:checked').val();
-		let data = {"card_type":card_type, "keyword": keyword, "word": word, "page": page, "range": range};
+		let data = {"card_type":card_type, "filter": filter, "keyword": keyword, "page": page, "range": range};
 		getCardList(data); // 카드 목록
 		getPage(data); // 페이지
 	});
+	
+	// 검색 이벤트 함수
+	function searchEvent(e) {
+		e.preventDefault();
+		
+		let data = {"card_type": card_type};
+		
+		filter = $('.filter').val();
+		keyword = $('#searchInput').val();
+		
+		if(filter != "" && keyword != ""){
+			data["filter"] = filter;
+			data["keyword"] = keyword;
+			getCardList(data); // 카드 목록
+			getPage(data); // 페이지
+			
+			// 초기화 버튼 보이게
+			$('#reset').css("display","inline-block");
+			$('#reset').next().css("display","inline-block");
+			
+		}else {
+			alert('검색 키워드를 입력해주세요.');
+		}
+	}
 	
 	// 카드 목록 불러오기 함수
 	function getCardList(data){
@@ -167,8 +189,8 @@ $(function(){
 			url: '/card/cardList',
 			data: data,
 			success: function(result) {
-				$('#cardList').empty();
-				$('#cardList').html(result);
+				$('#cardInfo').empty();
+				$('#cardInfo').html(result);
 			},
 			error: function(error) {
 				console.log(error);
