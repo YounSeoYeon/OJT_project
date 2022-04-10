@@ -30,6 +30,65 @@ $(function(){
 		}
 	});
 	
+	// 카드 번호 중복, 유효성 체크 
+	$('#checkNoBtn').on('click', function(e){
+		e.preventDefault();
+		
+		// card_no
+		let card_no = '';
+		$('.card_no').each(function (index) {
+			if(this.value.length < 4) {
+				$(this).addClass('hasError');
+				$(this).focus();
+			}else {
+				if(index < 3) card_no += $(this).val() + '-';
+			    else card_no += $(this).val();
+				$(this).removeClass('hasError');
+			}
+		});
+		
+		if($('.card_no').is('.hasError')) {
+			$('.card_no_error').css({
+				'display': 'block',
+				'color': 'red'
+			});
+			$('.card_no_error').text('유효하지 않은 카드번호입니다.');
+		}else {
+			$('.card_no_error').css('display', 'none');
+			
+			let error = $('.card_no_error');
+			
+			$.ajax({
+				type: 'post',
+				url: '/card/checkDuplicate',
+				data: {'key': 'card_no', 'value': card_no},
+				success: function(result) {
+					if(result == 0) {
+						error.css({
+							'display': 'block',
+							'color': 'green'
+						});
+						error.text('등록 가능한 카드 번호입니다.');
+						$('input[type=submit]').removeAttr('disabled');
+						$('input[type=submit]').removeClass('disabled');
+					}else {
+						$('#card_no1').focus();
+						error.css({
+							'display': 'block',
+							'color': 'red'
+						});
+						error.text('이미 등록된 카드 번호입니다.');
+						$('input[type=submit]').attr('disabled', 'disabled');
+						$('input[type=submit]').addClass('disabled');
+					}
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+		};
+	});
+	
 	/****** 유효 기간 ******/
 	let now = new Date(); 
 	let year = now.getFullYear(); 

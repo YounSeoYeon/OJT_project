@@ -21,12 +21,15 @@
 					<input type="text" name="card_id" value="${card.card_id}" readonly />
 				</div>
 				
-				<div id="cardNoArea"> 
+				<div id="cardNoArea">
 					<label for="card_no">카드 번호</label>
-					<input type="text" class="card_no num" name="card_no1" maxlength='4' value="${(card.card_no).split('-')[0]}"/> -
-					<input type="text" class="card_no num" name="card_no2" maxlength='4' value="${(card.card_no).split('-')[1]}"/> -
-					<input type="text" class="card_no num" name="card_no3" maxlength='4' value="${(card.card_no).split('-')[2]}"/> -			
-					<input type="text" class="card_no num" name="card_no4" maxlength='4' value="${(card.card_no).split('-')[3]}"/>
+					<div id="inputCardNo"> 
+						<input type="text" class="card_no num" name="card_no1" maxlength='4' value="${(card.card_no).split('-')[0]}"/> -
+						<input type="text" class="card_no num" name="card_no2" maxlength='4' value="${(card.card_no).split('-')[1]}"/> -
+						<input type="text" class="card_no num" name="card_no3" maxlength='4' value="${(card.card_no).split('-')[2]}"/> -			
+						<input type="text" class="card_no num" name="card_no4" maxlength='4' value="${(card.card_no).split('-')[3]}"/>
+						<button id="checkNoBtn" class="checkDuplicateBtn">중복 검사</button>
+					</div>
 					<span class="card_no_error error"></span>
 				</div>
 				
@@ -53,7 +56,7 @@
 					</c:when>
 				</c:choose>
 								
-				<input type="submit" value="수정"/>			
+				<input type="submit" class="disabled" value="수정"/>			
 			</form>
 		</div>
 	</body>
