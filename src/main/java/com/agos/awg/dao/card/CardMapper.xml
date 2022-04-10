@@ -58,8 +58,8 @@
 	</select>
 
 	<!-- 카드  계정 중복 체크 -->
-	<select id="checkCardID" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM card_acc WHERE card_id = #{id}
+	<select id="checkDuplicate" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM card_acc WHERE ${key} = #{value}
 	</select>
 
 	<!-- 카드  계정 등록 -->

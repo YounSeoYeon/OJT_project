@@ -13,11 +13,11 @@ $(function(){
 		let card_type = $('#card_type').val();
 		// 카드 유형 미 선택시 중복 검사버튼 비 활성화
 		if(card_type === '') {
-			$('.checkCardIdBtn').attr('disabled', 'disabled');
-			$('.checkCardIdBtn').addClass('disabled');
+			$('#checkIDBtn').attr('disabled', 'disabled');
+			$('#checkIDBtn').addClass('disabled');
 		}else {
-			$('.checkCardIdBtn').removeAttr('disabled');
-			$('.checkCardIdBtn').removeClass('disabled');
+			$('#checkIDBtn').removeAttr('disabled');
+			$('#checkIDBtn').removeClass('disabled');
 		}
 		
 		// 카드가 법인 카드면 카드 비밀번호 입력란 생성
@@ -29,52 +29,63 @@ $(function(){
 	});
 	
 	// 카드 계정 중복 확인
-	$('.checkCardIdBtn').on('click', function(e){
+	$('#checkIDBtn').on('click', function(e){
 		e.preventDefault(); // submit 방지
 		
 		// input
 		let card_type = $('#card_type').val();
 		let id = $('#card_id').val();
 		
-		// card_id
-		if(card_type === '0') card_type = 'C';
-		else card_type = 'P';
-		
-		let card_id = card_type + id;
-		console.log(card_id);
-		
-		$.ajax({
-			type: 'post',
-			url: '/card/checkCardID',
-			data: {'card_id': card_id },
-			success: function(result) {
-				// console.log(result)
-				let $error = $('.card_id_error');
-				if(result == 0) {
-					$error.css({
-						'display': 'block',
-						'color': 'green'
-					});
-					$error.text('사용 가능한 아이디입니다.');
-					$('input[type=submit]').removeAttr('disabled');
-					$('input[type=submit]').removeClass('disabled');
-				}else {
-					$('#card_id').focus();
-					$error.css({
-						'display': 'block',
-						'color': 'red'
-					});
-					$error.text('이미 사용중인 아이디입니다.');
-					$('input[type=submit]').attr('disabled', 'disabled');
-					$('input[type=submit]').addClass('disabled');
-				}
-			},
-			error: function(e){
-				console.log(e);
-			}
-		});
+		// 입력 값이 없으면 경고 창
+		if(id == '') {
+			$('#card_id').focus();
+			alert('아이디를 입력해주세요.'); 
+		}
+		else {
+			// card_id
+			if(card_type === '0') card_type = 'C';
+			else card_type = 'P';
+			
+			let card_id = card_type + id;
+			
+			let condition = 'card_id';
+			let error = $('.card_id_error');
+			let data = {'key': 'card_id', 'value': card_id};
+			let focus = $('#card_id');
+			
+			checkDuplicate(condition, data, error, focus);
+		};
 	});
 	
+	// 카드 번호 중복 체크
+	$('#checkNoBtn').on('click', function(e){
+		e.preventDefault();
+		
+		// card_no
+		let card_no = '';
+		$('.card_no').each(function (index) {
+			if($(this).val() != '' & $(this).val().length == 4){
+				if(index < 3) card_no += $(this).val() + '-';
+				else card_no += $(this).val();
+			}else {
+				card_no = '';
+			}
+		});
+		
+		// 유효 하지 않은 번호 이면 경고창
+		if(card_no == '') {
+			$('#card_no1').focus();
+			alert('유효한 카드 번호를 입력해주세요.');
+		}
+		else {
+			let condition = 'card_no';
+			let error = $('.card_no_error');
+			let data = {'key': 'card_no', 'value': card_no};
+			let focus = $('#card_no1');
+			
+			checkDuplicate(condition, data, error, focus);
+		};
+	});
 	
 	// 카드 번호 4자리 입력 시 다음 칸 이동
 	$('.card_no').each(function(index){
@@ -83,8 +94,6 @@ $(function(){
 				$(this).next().focus();
 		});
 	});
-	
-	
 	
 	/****** 유효 기간 ******/
 	let now = new Date(); 
@@ -169,6 +178,50 @@ $(function(){
 		};
 	});
 	
+	/*** 중복 체크 ***/
+	function checkDuplicate(condition, data, error, focus){
+		$.ajax({
+			type: 'post',
+			url: '/card/checkDuplicate',
+			data: data,
+			success: function(result) {
+				// console.log(result)
+				if(result == 0) {
+					error.css({
+						'display': 'block',
+						'color': 'green'
+					});
+					if(condition == 'card_no'){
+						error.text('등록 가능한 카드 번호입니다.');
+						$('#checkNo').val('true');
+					}else{
+						error.text('사용 가능한 아이디입니다.');
+						$('#checkId').val('true');
+					}
+					$('input[type=submit]').removeAttr('disabled');
+					$('input[type=submit]').removeClass('disabled');
+				}else {
+					focus.focus();
+					error.css({
+						'display': 'block',
+						'color': 'red'
+					});
+					if(condition == 'card_no') {
+						error.text('이미 등록된 카드 번호입니다.');
+						$('#checkNo').val('false');
+					}else{
+						error.text('이미 사용중인 아이디입니다.');
+						$('#checkId').val('false');
+					}
+					$('input[type=submit]').attr('disabled', 'disabled');
+					$('input[type=submit]').addClass('disabled');
+				}
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
+	}
 	
 	/*** 유효성 검사 ***/
 	function checkValidate(){

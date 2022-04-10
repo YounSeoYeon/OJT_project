@@ -16,7 +16,7 @@
 			<h1>카드 계정 등록</h1>
 			<form id="addCardForm">
 				<div>
-					<label for="card_id">카드 계정</label>
+					<label for="card_type">카드 계정</label>
 					<!-- 카드 유형 선택 -->
 					<select id="card_type">
 						<option value="" selected>카드 유형 선택</option>
@@ -24,16 +24,21 @@
 						<option value="1">개인 카드</option>
 					</select>
 					<input type="text" id="card_id" class="num" name="card_id" placeholder="아이디" maxlength='4'/> 
-					<button class="checkCardIdBtn disabled">중복 검사</button>
+					<button id="checkIDBtn" class="checkDuplicateBtn disabled">중복 검사</button>
+					<input type="hidden" id="checkId" />
 					<span class="card_id_error error"></span>
 				</div>
 				
 				<div id="cardNoArea"> 
-					<label for="card_no">카드 번호</label>
-					<input type="text" class="card_no num" name="card_no1" maxlength='4'/> -
-					<input type="text" class="card_no num" name="card_no2" maxlength='4'/> -
-					<input type="text" class="card_no num" name="card_no3" maxlength='4'/> -			
-					<input type="text" class="card_no num" name="card_no4" maxlength='4'/>
+					<label for="card_no1">카드 번호</label>
+					<div id="inputCardNo">
+						<input type="text" id ="card_no1" class="card_no num" maxlength='4'/> -
+						<input type="text" class="card_no num" maxlength='4'/> -
+						<input type="text" class="card_no num" maxlength='4'/> -			
+						<input type="text" class="card_no num" maxlength='4'/>
+						<button id="checkNoBtn" class="checkDuplicateBtn">중복 검사</button>
+						<input type="hidden" id="checkNo" />
+					</div>
 					<span class="card_no_error error"></span>
 				</div>
 				
@@ -44,7 +49,7 @@
 				</div>
 				
 				<div>
-					<label for="card_ep">유효 기간</label>
+					<label for="card_ep_year">유효 기간</label>
 					<select class="card_ep" id="card_ep_year"></select>년  -
 					<select class="card_ep" id="card_ep_month"></select>월
 				</div>

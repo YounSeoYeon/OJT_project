@@ -74,11 +74,17 @@ public class CardController {
 		return "/card/insertCard";
 	}
 	
-	// 카드 계정 중복 체크
+	// 중복 체크
 	@ResponseBody
-	@RequestMapping("/card/checkCardID")
-	public int checkCardIndex(@RequestParam("card_id") String card_id) {
-		int result = service.checkCardID(card_id);		
+	@RequestMapping("/card/checkDuplicate")
+	public int checkCardIndex(
+			@RequestParam("key") String key,
+			@RequestParam("value") String value) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("key", key);
+		map.put("value", value);
+		
+		int result = service.checkDuplicate(map);		
 		return result;
 	}
 	
