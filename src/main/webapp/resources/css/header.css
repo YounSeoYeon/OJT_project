@@ -1,0 +1,29 @@
+@charset "UTF-8";
+/* header.css */
+
+#codemenu{
+    width:50%;
+    margin-top: 15px;
+    margin-bottom:15px;
+}
+
+#codemenu li{
+    width:25%;
+    border: 1px solid coral;
+    border-radius: 15px;
+    text-align: center;
+    margin: 1%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: coral;
+    cursor: pointer;
+}
+
+#codemenu li a {
+	text-decoration: none;
+	color: black;
+}

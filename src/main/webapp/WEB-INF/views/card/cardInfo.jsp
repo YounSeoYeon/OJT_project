@@ -16,11 +16,11 @@
 			<h1>코드 관리</h1>
 			<div id="contents">
 				<div id="tabButtons">
-					<button class="selected">카드 계정</button>
-					<button>업체</button>
-					<button>프로젝트</button>
-					<button>지출</button>
-				</div>
+					<button class="selected" onclick="location.href= '/card'">카드 계정</button>
+					<button onclick="location.href= '/'">업체</button>
+					<button onclick="location.href= '/projindex'">프로젝트</button>
+					<button onclick="location.href= '#'">지출</button>
+				</div> 
 				<div id="options">
 					<div id="cardTypes">
 						<input type="radio" id="all" name="card_type" value="-1" checked />

@@ -26,6 +26,11 @@ button {
 	margin: 0 10px;
 }
 
+button:hover {
+	color: white;
+	background-color: gray;
+}
+
 #tabButtons button:first-child,
 #submitButtons button:first-child {
 	margin: 0 10px 0 0;

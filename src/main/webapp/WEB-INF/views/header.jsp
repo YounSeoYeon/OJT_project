@@ -5,16 +5,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-	<script src="<c:url value='/resources/js/header.js'/>"></script>
+	<link rel="stylesheet" href="<c:url value='/resources/css/header.css'/>">
 </head>
 <body>
 	<header>
 		<h1>코드관리</h1>
 		<ul id="codemenu">
-			<li class="topButton"><input type="hidden" value="card"/>카드계정</li>
-			<li class="topButton"><input type="hidden" value="business"/>업체</li>
-			<li class="topButton"><input type="hidden" value="project"/>프로젝트</li>
-			<li class="topButton"><input type="hidden" value="expenditure"/>지출</li>
+			<li><a href="/card">카드계정</a></li>
+			<li><a href="/">업체</a></li>
+			<li><a href="/projindex">프로젝트</a></li>
+			<li><a href="#">지출</a></li>
 		</ul>
 	</header>
 </body>
