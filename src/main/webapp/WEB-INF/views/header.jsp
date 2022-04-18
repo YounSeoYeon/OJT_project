@@ -12,7 +12,7 @@
 		<h1>코드관리</h1>
 		<ul id="codemenu">
 			<li><a href="/card">카드계정</a></li>
-			<li><a href="/">업체</a></li>
+			<li><a href="/index">업체</a></li>
 			<li><a href="/projindex">프로젝트</a></li>
 			<li><a href="#">지출</a></li>
 		</ul>

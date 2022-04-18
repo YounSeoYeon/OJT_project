@@ -1,6 +1,7 @@
 package com.agos.awg.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.agos.awg.model.BusVO;
 
@@ -11,6 +12,6 @@ public interface IBusService {
 	BusVO busupdateform(int bus_idx);
 	void busdbupdate(BusVO vo);
 	void busdbdelete(int bus_idx);
-	ArrayList<BusVO> filter(String value);
-	ArrayList<BusVO> filter2(String search);
+	ArrayList<String> indexcheck();
+	ArrayList<BusVO> filter(HashMap<String, String> map);
 }

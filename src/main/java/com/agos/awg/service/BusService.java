@@ -1,6 +1,7 @@
 package com.agos.awg.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,12 +41,12 @@ public class BusService implements IBusService {
 		dao.busdbdelete(bus_idx);
 	}
 
-	public ArrayList<BusVO> filter(String value) {
-		return dao.filter(value);
+	public ArrayList<String> indexcheck() {
+		return dao.indexcheck();
 	}
 
-	public ArrayList<BusVO> filter2(String search) {
-		return dao.filter2(search);
+	public ArrayList<BusVO> filter(HashMap<String, String> map) {
+		return dao.filter(map);
 	}
 
 
