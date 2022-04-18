@@ -22,7 +22,7 @@ public class CardController {
 	CardService service;
 	
 	// 카드 목록 페이지 이동
-	@RequestMapping("/card")
+	@RequestMapping("/")
 	public String cardInfo() {
 		return "/card/cardInfo";
 	}
@@ -53,7 +53,7 @@ public class CardController {
 		return "/card/cardList";
 	}
 	
-	// 페이지 범위
+	// 페이지 범위 - 페이징 처리
 	@RequestMapping("/card/page")
 	public String page(
 			@RequestParam(value="card_type", required = false, defaultValue = "-1") int card_type,
@@ -133,6 +133,7 @@ public class CardController {
 		map.put("filter", filter);
 		map.put("keyword", keyword);
 		
+		// 전체 리스트 수 구하기
 		int listCnt = service.getCardListCnt(map);
 
 	    //Pagination 객체 생성 및 현재 페이지 정보 설정

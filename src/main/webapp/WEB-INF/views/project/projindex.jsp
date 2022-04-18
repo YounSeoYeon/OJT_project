@@ -6,9 +6,9 @@
 <html>
 <head>
 <title>프로젝트 index</title>
-<link href="<c:url value='/resources/css/projindex.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/project/projindex.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
-<script src="<c:url value='/resources/js/projindex.js'/>"></script>
+<script src="<c:url value='/resources/js/project/projindex.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
 		var chkObj = document.getElementsByName("bustype"); // 개별체크박스들 배열로
@@ -72,7 +72,7 @@
 <body>
 	<section id="mainWrap">
 		<div id="codeMiddle">
-			<jsp:include page='header.jsp' />
+			<jsp:include page='../header.jsp' />
 			<form id="codemenuBus"> 
 				<div class="codesearch">
 					<div class="bustype">
@@ -99,7 +99,7 @@
 						</div>
 					<hr>
 						<div class="topcard">
-							<jsp:include page="/WEB-INF/views/projtop.jsp" flush='true' />
+							<jsp:include page="/WEB-INF/views/project/projtop.jsp" flush='true' />
 						</div>
 					</div>				
 				</div>				

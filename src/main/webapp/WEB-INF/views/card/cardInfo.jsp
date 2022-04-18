@@ -17,9 +17,9 @@
 			<div id="contents">
 				<div id="tabButtons">
 					<button class="selected" onclick="location.href= '/card'">카드 계정</button>
-					<button onclick="location.href= '/'">업체</button>
-					<button onclick="location.href= '/projindex'">프로젝트</button>
-					<button onclick="location.href= '#'">지출</button>
+					<button onclick="location.href='/index'">업체</button>
+					<button onclick="location.href='/projindex'">프로젝트</button>
+					<button onclick="location.href='#'">지출</button>
 				</div> 
 				<div id="options">
 					<div id="cardTypes">
@@ -58,8 +58,5 @@
 				</div>
 			</div>
 		</div>
-		<script>
-			
-		</script>
 	</body>
 </html>

@@ -3,14 +3,14 @@
  */
 
 $(function(){
-	// 첫 페이지 로딩 시 전체 목록 & 페이지 정보 가져오기
+	/*** 첫 페이지 로딩 시 전체 목록 & 페이지 정보 가져오기 ***/
 	getCardList({"card_type": -1});
 	getPage({"card_type": -1, "page": 1, "range": 1});
 	
-	// 전역 변수
+	/*** 전역 변수 ***/
 	let card_type, filter, keyword, page, range;
 	
-	// 전체 체크/ 해제
+	/*** 전체 체크/ 해제 ***/
 	$(document).on('click', '#checkAll' ,function(){	
 		const checked = $('#checkAll').is(':checked');
 		
@@ -20,7 +20,7 @@ $(function(){
 			$('input:checkbox').prop('checked',false);
 	});
 	
-	// 카드 타입 선택
+	/***  카드 타입 선택 ***/
 	$('input:radio[name="card_type"]').on('change', function(){
 		card_type = $('input[name=card_type]:checked').val();
 			
@@ -47,14 +47,13 @@ $(function(){
 		getPage(data); // 페이지
 	});
 	
-	// 검색 버튼 클릭
+	/*** 검색 버튼 클릭 또는 enter ***/
 	$('.searchBtn').on('click', function(e) {searchEvent(e)});
-	
 	// 검색창에서 enter 입력
 	$('#searchInput').on('keydown', function(e) {
 		if (e.keyCode == 13) searchEvent(e) });
 	
-	// 추가 버튼 클릭
+	/*** 추가 버튼 클릭 ***/
 	$('.addBtn').on('click', function(e){
 		e.preventDefault();
 		const width = 500;
@@ -66,7 +65,7 @@ $(function(){
 		window.open('/card/insertCardView', '카드 등록 창' , `width=${width},height=${height},top=${top},left=${left}`)
 	});
 	
-	// 수정 버튼 클릭
+	/*** 수정 버튼 클릭 ***/
 	$('.updateBtn').on('click', function(e){
 		e.preventDefault();
 		let checked = $('input:checkbox[name=card]:checked').length;
@@ -87,7 +86,7 @@ $(function(){
 		}
 	});
 	
-	// 삭제 버튼 클릭
+	/*** 삭제 버튼 클릭 ***/
 	$('.deleteBtn').on('click', function(e){
 		e.preventDefault();
 		let checked = $('input:checkbox[name=card]:checked').length;
@@ -123,7 +122,7 @@ $(function(){
 		};
 	});
 	
-	// 페이지 버튼 클릭
+	/*** 페이지 버튼 클릭 ***/
 	$(document).on('click', '.pageLink' ,function(){
 		// pagination 정보
 		let page = $('#pagination').attr('data-page');
@@ -157,7 +156,7 @@ $(function(){
 		getPage(data); // 페이지
 	});
 	
-	// 검색 이벤트 함수
+	/*** 검색 이벤트 함수 ***/
 	function searchEvent(e) {
 		e.preventDefault();
 		
@@ -181,7 +180,7 @@ $(function(){
 		}
 	}
 	
-	// 카드 목록 불러오기 함수
+	/*** 카드 목록 불러오기 함수 ***/
 	function getCardList(data){
 		// console.log(data);
 		$.ajax({
@@ -198,7 +197,7 @@ $(function(){
 		});
 	};
 	
-	// 페이지 범위 불러오기 함수
+	/*** 페이지 범위 불러오기 함수 ***/
 	function getPage(data) {
 		$.ajax({
 			type: 'POST',

@@ -6,10 +6,10 @@
 <html>
 <head>
 <title>index</title>
-<link href="<c:url value='/resources/css/index.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/business/index.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
-<script src="<c:url value='/resources/js/index.js'/>"></script>
-<script src="<c:url value='/resources/js/busdelete.js'/>"></script>
+<script src="<c:url value='/resources/js/business/index.js'/>"></script>
+<script src="<c:url value='/resources/js/business/busdelete.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
 		var chkObj = document.getElementsByName("bustype"); // 개별체크박스들 배열로
@@ -73,7 +73,7 @@
 <body>
 	<section id="mainWrap">
 		<div id="codeMiddle">
-			<jsp:include page='header.jsp' />
+			<jsp:include page='../header.jsp' />
 			<form id="codemenuBus"> 
 				<div class="codesearch">
 					<div class="bustype">
@@ -100,7 +100,7 @@
 						</div>
 					<hr>
 						<div class="topcard">
-							<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
+							<jsp:include page="/WEB-INF/views/business/top.jsp" flush='true' />
 						</div>
 					</div>				
 				</div>				
