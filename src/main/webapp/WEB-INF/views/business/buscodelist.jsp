@@ -6,7 +6,7 @@
 <html>
 <head>
 <title>index</title>
-<link href="<c:url value='/resources/css/index.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/business/index.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
 </head>
 <body>
@@ -43,7 +43,7 @@
 								<div class="etc">전화번호</div>
 						</div>
 					<hr>
-						<jsp:include page="/WEB-INF/views/top.jsp" flush='true' />
+						<jsp:include page="/WEB-INF/views/business/top.jsp" flush='true' />
 					</div>				
 				</div>				
 				<div class="inoutBtn">

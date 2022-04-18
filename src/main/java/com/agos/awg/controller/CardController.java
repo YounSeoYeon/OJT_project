@@ -22,7 +22,7 @@ public class CardController {
 	CardService service;
 	
 	// 카드 목록 페이지 이동
-	@RequestMapping("/card")
+	@RequestMapping("/")
 	public String cardInfo() {
 		return "/card/cardInfo";
 	}

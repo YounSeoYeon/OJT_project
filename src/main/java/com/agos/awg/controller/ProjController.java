@@ -51,13 +51,13 @@ public class ProjController {
 		
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
-		return "projindex";
+		return "project/projindex";
 	}
 	
 	//프로젝트 추가화면 이동
 	@RequestMapping("/projinsert")
 	public String projinsert() {
-		return "projinsert";
+		return "project/projinsert";
 	}
 	
 	//프로젝트코드 중복검사
@@ -93,7 +93,7 @@ public class ProjController {
 		ArrayList<ProjVO> vo = proj.projfilter(value);
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
-		return "projtop";
+		return "project/projtop";
 	}
 	
 	
@@ -102,7 +102,7 @@ public class ProjController {
 		ArrayList<ProjVO> vo = proj.projsearchfilter(search);
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
-		return "projtop";
+		return "project/projtop";
 	}
 	
 	// 카드 계정 수정 페이지 
@@ -111,7 +111,7 @@ public class ProjController {
 		ProjVO project = proj.getProjectInfo(poject_idx);
 		
 		model.addAttribute("project", project);
-		return "/updateProject";
+		return "project/updateProject";
 	}
 	
 	// 프로젝트 정보 수정

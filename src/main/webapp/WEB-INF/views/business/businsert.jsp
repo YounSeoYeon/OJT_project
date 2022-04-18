@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>업체코드등록</title>
-<link href="<c:url value='/resources/css/businsert.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/business/businsert.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
-<script src="<c:url value='/resources/js/buscheck.js'/>"></script>
-<script src="<c:url value='/resources/js/index.js'/>"></script>
+<script src="<c:url value='/resources/js/business/buscheck.js'/>"></script>
+<script src="<c:url value='/resources/js/business/index.js'/>"></script>
 </head>
 <body>
 	<section id="mainWrap">

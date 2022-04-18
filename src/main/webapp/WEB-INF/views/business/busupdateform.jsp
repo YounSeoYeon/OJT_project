@@ -10,10 +10,10 @@
 <meta charset="UTF-8">
 <title>업체코드수정폼</title>
 <!-- resources 경로 servlet-context에 지정해놓음 -->
-<link href="<c:url value='/resources/css/businsert.css'/>" rel="stylesheet" type="text/css">
+<link href="<c:url value='/resources/css/business/businsert.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
-<script src="<c:url value='/resources/js/busupdatecheck.js'/>"></script>
-<script src="<c:url value='/resources/js/index.js'/>"></script>
+<script src="<c:url value='/resources/js/business/busupdatecheck.js'/>"></script>
+<script src="<c:url value='/resources/js/business/index.js'/>"></script>
 </head>
 <body>
 	<section id="mainWrap">

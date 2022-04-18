@@ -101,14 +101,14 @@ public class BusController {
 		
 		model.addAttribute("vo",vo);
 		System.out.println(vo);
-		return "index";
+		return "/business/index";
 	}
 	
 	
 	//업체 추가화면 이동
 	@RequestMapping("/businsert")
 	public String businsert() {
-		return "businsert";
+		return "/business/businsert";
 	}
 	
 	//업체코드 중복검사
@@ -161,7 +161,7 @@ public class BusController {
 	public String busupdateform(@PathVariable int bus_idx,Model model) {
 		BusVO vo = busservice.busupdateform(bus_idx);
 		model.addAttribute("vo",vo);
-		return "/busupdateform"; // agw/busupdateform/이경로임
+		return "business/busupdateform"; // agw/busupdateform/이경로임
 	}
 	
 	//업체수정후 db등록
@@ -183,7 +183,7 @@ public class BusController {
 		for(int i=0; i<idxlist.size(); i++) {
 			busservice.busdbdelete(idxlist.get(i));			
 		}
-		return "redirect:/index";
+		return "redirect:/business/index";
 	}
 	
 
@@ -256,7 +256,7 @@ public class BusController {
 		}		
 		
 		model.addAttribute("vo",vo);
-		return "top";
+		return "business/top";
 	}
 	
 	
