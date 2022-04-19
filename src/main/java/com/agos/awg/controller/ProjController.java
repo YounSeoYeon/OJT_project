@@ -105,12 +105,27 @@ public class ProjController {
 		return "project/projtop";
 	}
 	
-	// 카드 계정 수정 페이지 
+	// 프로젝트 수정 페이지 이동 
 	@RequestMapping("/project/updateProjectView/{idx}")
 	public String updateCardView(@PathVariable("idx") String poject_idx, Model model) {
 		ProjVO project = proj.getProjectInfo(poject_idx);
 		
+		/* Date 형식 변경 : date-local 형식 */
+		String FormattedStartDate = project.getProj_start_date().replace(' ', 'T');
+		String FormattedEndDate = project.getProj_end_date().replace(' ', 'T');
+		
+		project.setProj_start_date(FormattedStartDate);
+		project.setProj_end_date(FormattedEndDate);
+		
+		/* Amount 천 단위 콤마  */
+		String amount = Integer.toString(project.getProj_amount());
+		String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+		
+		// System.out.println("금액 : " + FormattedAmount);
+		
 		model.addAttribute("project", project);
+		model.addAttribute("amount", FormattedAmount);
+		
 		return "project/updateProject";
 	}
 	

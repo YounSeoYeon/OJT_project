@@ -44,10 +44,10 @@
 	display: none;
 }
 
-input.num {
+/* input.num {
     width: 100px;
-}
-
+}*/
+ 
 input:read-only {
 	background-color: #F5F5F5;
 }  
