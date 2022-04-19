@@ -300,7 +300,7 @@ public class BusController {
 	
 	
 	/****** Excel 추출 - 2022-04-08 하영 추가 *******/
-	@RequestMapping("/excel")
+	@RequestMapping("/excel/business")
 	public void downloadExcel(HttpServletResponse res) throws IOException {
 		final String fileName = "businessList.xlsx";
 		
