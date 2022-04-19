@@ -48,16 +48,25 @@ input.num {
     width: 100px;
 }
 
-input[type=submit] {
+.submitBtns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.submitBtns input {
 	width: 100px;
 	padding: 7px;
-	margin: auto;
 	font-size: 16px;
 	color: white;
 	background-color: black;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+.submitBtns input:first-child {
+	margin-right: 20px;
 }
 
 button.checkDuplicateBtn {
@@ -72,7 +81,7 @@ button.checkDuplicateBtn {
 	cursor: pointer;
 }
 
-input[type=submit].disabled,
+input.disabled,
 button.checkDuplicateBtn.disabled {
 	background-color: #F0F0F0;
 	cursor: default;
@@ -89,18 +98,6 @@ button.checkDuplicateBtn.disabled {
 	width: 19%;
 }
 
-input:read-only {
+input[type=text]:read-only {
 	background-color: #F5F5F5;
 }  
-
-input[type=submit] {
-	width: 100px;
-	padding: 7px;
-	margin: auto;
-	font-size: 16px;
-	color: white;
-	background-color: black;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-}

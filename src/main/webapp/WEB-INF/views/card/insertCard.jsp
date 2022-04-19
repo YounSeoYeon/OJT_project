@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>카드 계정 등록</title>
-		<link rel="stylesheet" href="<c:url value='/resources/css/card/insertCard.css' />" />
+		<link rel="styleㄴsheet" href="<c:url value='/resources/css/card/insertCard.css' />" />
 		<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/resources/js/card/insertCard.js' />"></script>
 	</head>
@@ -22,7 +22,7 @@
 						<option value="" selected>카드 유형 선택</option>
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>
-					</select>
+					</select>ㅈ
 					<input type="text" id="card_id" class="num" name="card_id" placeholder="아이디" maxlength='4'/> 
 					<button id="checkIDBtn" class="checkDuplicateBtn disabled">중복 검사</button>
 					<input type="hidden" id="checkId" />
@@ -54,13 +54,16 @@
 					<select class="card_ep" id="card_ep_month"></select>월
 				</div>
 				
-				<div id="cardPWArea">
+				<!-- <div id="cardPWArea">
 					<label for="card_pw">카드 비밀번호</label>
 					<input type="password" id="card_pw" class="num" name="card_pw" maxlength='4'/>
 					<span class="card_pw_error error"></span>
-				</div>
+				</div> -->
 								
-				<input type="submit" class="disabled" value="추가"/>			
+				<div class="submitBtns">
+					<input type="submit" class="disabled" value="추가"/>
+					<input type="button" class="cancleBtn" value="취소"/>
+				</div>				
 			</form>
 		</div>
 	</body>

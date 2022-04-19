@@ -46,7 +46,7 @@
 					<select class="card_ep" id="card_ep_month"></select>월
 				</div>
 				
-				<c:choose>
+				<%-- <c:choose>
 					<c:when test="${card.card_type eq 0}">
 						<div id="cardPWArea">
 							<label for="card_pw">카드 비밀번호</label>
@@ -54,9 +54,12 @@
 							<span class="card_pw_error error"></span>
 						</div>
 					</c:when>
-				</c:choose>
+				</c:choose> --%>
 								
-				<input type="submit" class="disabled" value="수정"/>			
+				<div class="submitBtns">
+					<input type="submit" class="disabled" value="수정"/>
+					<input type="button" class="cancleBtn" value="취소"/>
+				</div>				
 			</form>
 		</div>
 	</body>

@@ -19,7 +19,7 @@
 	padding: 1.5rem 2rem;
 }
 
-#updateProjectForm div {
+#updateProjectForm div:not(:last-child) {
 	margin-bottom: 20px;
 	width: 100%;
 }
@@ -44,22 +44,31 @@
 	display: none;
 }
 
-input.num {
+/* input.num {
     width: 100px;
-}
-
-input:read-only {
+}*/
+ 
+input[type=text]:read-only {
 	background-color: #F5F5F5;
 }  
 
-input[type=submit] {
+.submitBtns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.submitBtns input {
 	width: 100px;
 	padding: 7px;
-	margin: auto;
 	font-size: 16px;
 	color: white;
 	background-color: black;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+.submitBtns input:first-child {
+	margin-right: 20px;
 }

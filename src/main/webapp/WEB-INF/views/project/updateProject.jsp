@@ -28,8 +28,8 @@
 				
 				<div>
 					<label for="proj_start_date">계약 기간</label>
-					<input type="datetime-local" id="proj_start_date" name="proj_start_date" value="${(project.proj_start_date).replace(' ', 'T')}"/> ~
-					<input type="datetime-local" id="proj_end_date" name="proj_end_date" value="${(project.proj_end_date).replace(' ', 'T')}"/> 					
+					<input type="datetime-local" id="proj_start_date" name="proj_start_date" value="${project.proj_start_date}"/> ~
+					<input type="datetime-local" id="proj_end_date" name="proj_end_date" value="${project.proj_end_date}"/> 					
 					<span class="proj_date_error error"></span>
 				</div>
 				
@@ -41,11 +41,14 @@
 				
 				<div>
 					<label for="proj_amount">계약 금액</label>
-					<input type="text" id="proj_amount" class="num" name="proj_amount" value="${project.proj_amount}"/> 원
+					<input type="text" id="proj_amount" class="num" name="proj_amount" value="${amount}"/> 원
 					<span class="proj_amount_error error"></span>
 				</div>
 								
-				<input type="submit" value="수정"/>			
+				<div class="submitBtns">
+					<input type="submit" class="disabled" value="수정"/>
+					<input type="button" class="cancleBtn" value="취소"/>
+				</div>					
 			</form>
 		</div>
 	</body>

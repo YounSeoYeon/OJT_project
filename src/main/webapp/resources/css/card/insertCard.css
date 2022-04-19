@@ -52,16 +52,25 @@ input.num {
 	width: 19%;
 }
 
-input[type=submit] {
+.submitBtns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.submitBtns input {
 	width: 100px;
 	padding: 7px;
-	margin: auto;
 	font-size: 16px;
 	color: white;
 	background-color: black;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
+}
+
+.submitBtns input:first-child {
+	margin-right: 20px;
 }
 
 button.checkDuplicateBtn {
@@ -76,7 +85,7 @@ button.checkDuplicateBtn {
 	cursor: pointer;
 }
 
-input[type=submit].disabled,
+input.disabled,
 button.checkDuplicateBtn.disabled {
 	background-color: #F0F0F0;
 	cursor: default;
