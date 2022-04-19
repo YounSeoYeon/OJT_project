@@ -43,12 +43,12 @@
 			<form id="codemenuBus"> 
 				<div class="codesearch">
 					<div class="bustype">
-						<input type="radio" id="all" name="bustype" value="all" onClick="move()" checked="checked"><label>전체</label>
-						<input type="radio" id="public" name="bustype" value="public" onClick="move()"><label>공공</label> 
-						<input type="radio" id="corp" name="bustype" value="corp" onClick="move()"><label>민간</label>
+						<input type="radio" id="all" name="bustype" value="a" onClick="move()" checked="checked"><label>전체</label>
+						<input type="radio" id="public" name="bustype" value="p" onClick="move()"><label>공공</label> 
+						<input type="radio" id="corp" name="bustype" value="c" onClick="move()"><label>민간</label>
 					</div>
 					<div class="search">
-						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="업체,대표자,사업자번호,전화번호,주소 키워드입력" onChange='input()'>
+						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="업체,대표자,사업자번호,전화번호,주소 키워드입력" onChange='move()'>
 						&nbsp;<input class="searchbtn" type="button" value="검색">
 					</div>
 					<button class="excel">엑셀 파일 생성</button>

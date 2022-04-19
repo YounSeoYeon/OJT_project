@@ -46,6 +46,7 @@ public class BusService implements IBusService {
 	}
 
 	public ArrayList<BusVO> filter(HashMap<String, String> map) {
+		System.out.println(map);
 		return dao.filter(map);
 	}
 

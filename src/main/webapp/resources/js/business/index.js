@@ -73,17 +73,17 @@ window.addEventListener('load',function(){
 	// search 부분 클릭시 검색키워드 값 db전달 -> 위 radio버튼의 값과 + 검색키워드 값에 맞는 리스트 보여줌(기존 전체있는 top 부분)
 	// 둘다 값 가져오기
 
-	function input(){
+	function move(){
 		let bustype = $("input:radio[name='bustype']:checked").val();		//radio 클릭한 값
 	 	let search = $("input:text[name='search']").val();	//검색한 값
 		console.log(bustype+"//"+search);
 		
 		$.ajax({
-				url:"filter/"+bustype+"9"+search,
+				url:"filter/",
 				type:"post",
 				data:
 				{"bustype":bustype,
-				"search":search,},
+				"search":search},
 				dataType:'text',
 				success:function(result){	 /* 전체,공공,민간 값 받아오기 */
 					console.log(result);
