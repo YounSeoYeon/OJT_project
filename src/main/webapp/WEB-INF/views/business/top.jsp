@@ -13,7 +13,8 @@
 <c:forEach items="${vo}" var="vo" begin="0">
 	<div class="top">
 		<div class="check">
-			<input type="checkbox" id="bustype" name="bustype" value="${vo.bus_idx}">
+			<%-- <input type="checkbox" id="bustype" name="bustypes" value="${vo.bus_idx}"> --%>
+			<input type="checkbox" id="check" name="bustypes" value="${vo.bus_idx}">
 		</div>
 		<div class="buscode">${vo.bus_code}</div>
 		<div class="name">${vo.bus_nm}</div>
