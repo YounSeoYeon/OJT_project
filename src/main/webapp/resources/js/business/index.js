@@ -19,7 +19,7 @@ window.addEventListener('load',function(){
 	/* 수정버튼 눌렀을때 체크박스 하나일때만 수정 / 2개이상이면 하나만 선택하라고 알람*/
 	$(moditybtn).on('click', function(){
 		console.log("업체수정창");
-		const chkbustype = $('#bustype:checked'); // 체크된 업체들
+		const chkbustype = $('#check:checked'); // 체크된 업체들
 		for(var i=0; i<chkbustype.length; i++){
 			console.log(chkbustype[i].value);
 		}
@@ -42,8 +42,6 @@ window.addEventListener('load',function(){
 		const chkvalue = new Array();
 		for(var i=0; i<chkbustype.length; i++){
 			chkvalue[i]=chkbustype[i].value;	
-		}
-		for(var i=0; i<chkbustype.length; i++){
 			console.log(chkbustype[i].value);
 		}
 		console.log(chkbustype.length); // 체크된 업체들의 수

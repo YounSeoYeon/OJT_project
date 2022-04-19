@@ -175,15 +175,15 @@ public class BusController {
 	}
 	
 	// 삭제 여러개 -> 삭제할 업체들 배열로 가져옴
-	@RequestMapping("/busdelete/{idxlist}")
-	public String busdelete(@PathVariable ArrayList<Integer> idxlist) {
-		System.out.println(idxlist);
-		int a = idxlist.get(0);
-		System.out.println(a+"//"+idxlist.size());
-		for(int i=0; i<idxlist.size(); i++) {
-			busservice.busdbdelete(idxlist.get(i));			
+	@RequestMapping("/busdelete/{chkvalue}")
+	public String busdelete(@PathVariable ArrayList<Integer> chkvalue) {
+		System.out.println(chkvalue);
+		int a = chkvalue.get(0);
+		System.out.println(a+"//"+chkvalue.size());
+		for(int i=0; i<chkvalue.size(); i++) {
+			busservice.busdbdelete(chkvalue.get(i));			
 		}
-		return "redirect:/business/index";
+		return "redirect:/index";
 	}
 	
 
