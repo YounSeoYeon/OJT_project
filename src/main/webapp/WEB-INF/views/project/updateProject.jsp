@@ -45,7 +45,10 @@
 					<span class="proj_amount_error error"></span>
 				</div>
 								
-				<input type="submit" value="수정"/>			
+				<div class="submitBtns">
+					<input type="submit" class="disabled" value="수정"/>
+					<input type="button" class="cancleBtn" value="취소"/>
+				</div>					
 			</form>
 		</div>
 	</body>
