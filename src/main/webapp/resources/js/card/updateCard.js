@@ -118,7 +118,14 @@ $(function(){
 		if (e.keyCode == 13) e.preventDefault();
 	});
 	
-	// submit
+	/**** 취소 버튼 클릭 ****/
+	$('.cancleBtn').on('click', function(e){
+		e.preventDefault();
+		let answer = confirm('작성을 취소하시겠습니까?');
+		if(answer) window.close();
+	});
+	
+	/**** 수정 버튼 클릭 ****/
 	$('#updateCardForm').on('submit',  function(e) {
 		e.preventDefault();
 		

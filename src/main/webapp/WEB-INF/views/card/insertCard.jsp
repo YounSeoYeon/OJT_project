@@ -54,13 +54,16 @@
 					<select class="card_ep" id="card_ep_month"></select>월
 				</div>
 				
-				<div id="cardPWArea">
+				<!-- <div id="cardPWArea">
 					<label for="card_pw">카드 비밀번호</label>
 					<input type="password" id="card_pw" class="num" name="card_pw" maxlength='4'/>
 					<span class="card_pw_error error"></span>
-				</div>
+				</div> -->
 								
-				<input type="submit" class="disabled" value="추가"/>			
+				<div class="submitBtns">
+					<input type="submit" class="disabled" value="추가"/>
+					<input type="button" class="cancleBtn" value="취소"/>
+				</div>				
 			</form>
 		</div>
 	</body>
