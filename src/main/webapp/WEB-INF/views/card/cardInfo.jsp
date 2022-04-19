@@ -16,7 +16,7 @@
 			<h1>코드 관리</h1>
 			<div id="contents">
 				<div id="tabButtons">
-					<button class="selected" onclick="location.href= '/card'">카드 계정</button>
+					<button class="selected" onclick="location.href= '/'">카드 계정</button>
 					<button onclick="location.href='/index'">업체</button>
 					<button onclick="location.href='/projindex'">프로젝트</button>
 					<button onclick="location.href='#'">지출</button>

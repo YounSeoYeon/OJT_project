@@ -7,7 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>카드 계정 등록</title>
-		<link rel="stylesheet" href="<c:url value='/resources/css/card/insertCard.css' />" />
+		<link rel="styleㄴsheet" href="<c:url value='/resources/css/card/insertCard.css' />" />
 		<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
 		<script type="text/javascript" src="<c:url value='/resources/js/card/insertCard.js' />"></script>
 	</head>
@@ -22,7 +22,7 @@
 						<option value="" selected>카드 유형 선택</option>
 						<option value="0">법인 카드</option>
 						<option value="1">개인 카드</option>
-					</select>
+					</select>ㅈ
 					<input type="text" id="card_id" class="num" name="card_id" placeholder="아이디" maxlength='4'/> 
 					<button id="checkIDBtn" class="checkDuplicateBtn disabled">중복 검사</button>
 					<input type="hidden" id="checkId" />
