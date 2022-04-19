@@ -57,7 +57,7 @@
 
 	<!-- 업체 필터(기본 전체/민간/공공) 및 검색 -->	
 	
-	<select id="filter" resultMap="busResult" parameterType="String">
+	<select id="filter" resultMap="busResult" parameterType="HashMap">
 		SELECT * FROM bus_code 
 		<choose>
 		<when test = 'bustype != "a"'>

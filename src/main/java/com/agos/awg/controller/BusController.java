@@ -6,17 +6,13 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -191,7 +187,7 @@ public class BusController {
 	
 	// 업체 타입+검색조건 해당 업체들만 나오도록(filter)
 	
-	@RequestMapping("/filter/{bustype}9{search}")
+	@RequestMapping("/filter")
 	public String filter3(@RequestParam (required = false) String bustype, 
 					@RequestParam(required = false) String search, Model model) {
 		System.out.println("받음");
@@ -201,7 +197,7 @@ public class BusController {
 		map.put("search", search);
 		System.out.println(map.get("bustype")+"/"+map.get("search"));
 		ArrayList<BusVO> vo = busservice.filter(map);
-		System.out.println(vo.get(0).getBus_code());
+		System.out.println(vo);
 		
 		String[] tel = new String[3];
 		String[] fax = new String[3];
@@ -262,49 +258,49 @@ public class BusController {
 	
 	
 	// 엑셀다운로드 만들기
-	@RequestMapping("/excel")
-	public void downexcel(HttpServletResponse response) throws IOException {
-		Workbook workbook = new HSSFWorkbook();
-        Sheet sheet = workbook.createSheet();
-        int rowNo = 0;
- 
-        Row headerRow = sheet.createRow(rowNo++);
-        headerRow.createCell(0).setCellValue("인덱스번호");
-        headerRow.createCell(1).setCellValue("업체코드");
-        headerRow.createCell(2).setCellValue("업체명");
-        headerRow.createCell(3).setCellValue("사업자번호");
-        headerRow.createCell(4).setCellValue("대표자");
-        headerRow.createCell(5).setCellValue("전화번호");
-        headerRow.createCell(6).setCellValue("팩스번호");
-        headerRow.createCell(7).setCellValue("주소");
-        headerRow.createCell(9).setCellValue("종목");
- 
-        ArrayList<BusVO> vo = busservice.buslist();
-        for (BusVO board : vo) {
-            Row row = sheet.createRow(rowNo++);
-            row.createCell(0).setCellValue(board.getBus_idx());
-            row.createCell(1).setCellValue(board.getBus_code());
-            row.createCell(2).setCellValue(board.getBus_nm());
-            row.createCell(3).setCellValue(board.getBus_reg_no());
-            row.createCell(4).setCellValue(board.getBus_rep());
-            row.createCell(5).setCellValue(board.getBus_tel());
-            row.createCell(6).setCellValue(board.getBus_fax());
-            row.createCell(7).setCellValue(board.getBusAddress());
-            row.createCell(8).setCellValue(board.getBus_item());
-        }
- 
-        response.setContentType("ms-vnd/excel");
-        response.setHeader("Content-Disposition", "attachment;filename=boardlist.xls");
- 
-        workbook.write(response.getOutputStream());
-        workbook.close();
-	}
-	
+//	@RequestMapping("/excel")
+//	public void downexcel(HttpServletResponse response) throws IOException {
+//		Workbook workbook = new HSSFWorkbook();
+//        Sheet sheet = workbook.createSheet();
+//        int rowNo = 0;
+// 
+//        Row headerRow = sheet.createRow(rowNo++);
+//        headerRow.createCell(0).setCellValue("인덱스번호");
+//        headerRow.createCell(1).setCellValue("업체코드");
+//        headerRow.createCell(2).setCellValue("업체명");
+//        headerRow.createCell(3).setCellValue("사업자번호");
+//        headerRow.createCell(4).setCellValue("대표자");
+//        headerRow.createCell(5).setCellValue("전화번호");
+//        headerRow.createCell(6).setCellValue("팩스번호");
+//        headerRow.createCell(7).setCellValue("주소");
+//        headerRow.createCell(9).setCellValue("종목");
+// 
+//        ArrayList<BusVO> vo = busservice.buslist();
+//        for (BusVO board : vo) {
+//            Row row = sheet.createRow(rowNo++);
+//            row.createCell(0).setCellValue(board.getBus_idx());
+//            row.createCell(1).setCellValue(board.getBus_code());
+//            row.createCell(2).setCellValue(board.getBus_nm());
+//            row.createCell(3).setCellValue(board.getBus_reg_no());
+//            row.createCell(4).setCellValue(board.getBus_rep());
+//            row.createCell(5).setCellValue(board.getBus_tel());
+//            row.createCell(6).setCellValue(board.getBus_fax());
+//            row.createCell(7).setCellValue(board.getBusAddress());
+//            row.createCell(8).setCellValue(board.getBus_item());
+//        }
+// 
+//        response.setContentType("ms-vnd/excel");
+//        response.setHeader("Content-Disposition", "attachment;filename=boardlist.xls");
+// 
+//        workbook.write(response.getOutputStream());
+//        workbook.close();
+//	}
+//	
 	
 	
 	
 	/****** Excel 추출 - 2022-04-08 하영 추가 *******/
-	@RequestMapping("/excel/business")
+	@RequestMapping("/excel")
 	public void downloadExcel(HttpServletResponse res) throws IOException {
 		final String fileName = "businessList.xlsx";
 		
