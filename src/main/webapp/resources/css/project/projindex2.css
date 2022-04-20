@@ -1,0 +1,113 @@
+#wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+#contents {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 1px solid black;
+	width: 80%;
+	height: 80%;
+	padding: 1.5rem 2rem;
+}
+
+button {
+	width: 100px;
+	height:45.6px;
+	padding: 10px;
+	font-size: 16px;
+	background-color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
+button:hover {
+	color: white;
+	background-color: gray;
+}
+
+#tabButtons button:first-child,
+#submitButtons button:first-child {
+	margin: 0 10px 0 0;
+}
+
+#tabButtons {
+	margin-bottom: 30px;
+}
+
+#options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+	margin-bottom: 20px;
+}
+
+.bus_list_wrap, .bus_list, .first, .topcard, .topcard .top{
+	width: 100%;
+}
+
+.bus_list_wrap {
+	margin-bottom: 20px;
+}
+
+.first{
+	padding-top:5px;
+	padding-bottom:5px;
+	height: 40px;
+    background-color: lightgray;
+}
+.topcard{
+	padding-top: 6px;
+}
+
+.first, .topcard{
+	border: 1px solid black;
+}
+
+/****** Bottom Buttons ******/
+#bottomButtons {
+	display: flex;
+    justify-content: flex-end;
+}
+
+
+
+/* --------top부분(데이터내용들어있는곳)---------- */
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.first{
+	font-weight: bolder;
+	font-size: large;
+}
+
+.bus_list .top .check{
+    width:5%;
+}
+.nm,.amount,.code,.buyer,.date{
+    width:19%;
+}
+
+/* ----------업체찾기 분류-------- */
+.search{
+	display: inline-block;
+}
+#searchinput{
+    height: 34px !important;
+    width: 320px;
+}
+.searchbtn{
+	width:50px;
+	height: 30px;
+	border-radius: 10px;
+}

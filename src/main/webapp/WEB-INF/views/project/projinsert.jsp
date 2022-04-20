@@ -21,7 +21,7 @@
 				<ul>
 					 <li id="codeli">
 	                	<label>프로젝트코드</label><br>
-	                	<input type="number" id="proj_code" name="proj_code" placeholder="종류,년도,번호입력,예)p2201">
+	                	<input type="text" id="proj_code" name="proj_code" placeholder="년도,번호입력,예)2201" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 	                	<button class="projcodecheck" id="projcodecheck">중복확인</button>
 	                	<span id="checkresult"></span>
 	                </li>
@@ -35,7 +35,7 @@
 	                </li>
 	                <li>
 	                	<label>계약금액</label><br>
-	                	<input type="number" id="proj_amount" name="proj_amount" placeholder="숫자만 입력">
+	                	<input type="text" id="proj_amount" name="proj_amount" placeholder="숫자만 입력" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 	                </li>
 	               <li>
 	                	<label>시작날짜</label><br>
