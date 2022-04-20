@@ -10,13 +10,13 @@
 <title>프로젝트 리스트</title>
 </head>
 <body>
-<c:forEach items="${vo}" var="vo" begin="0">
+<c:forEach items="${vo}" var="vo" begin="0" varStatus="status">
 	<div class="top">
 		<div class="check">
 			<input type="checkbox" id="bustype" name="project" value="${vo.proj_idx}">
 		</div>
 		<div class="nm">${vo.proj_nm}</div>
-		<div class="amount">${vo.proj_amount}</div>
+		<div class="amount">${amountList[status.index]} 원</div>
 		<div class="code">${vo.proj_code }</div>
 		<div class="buyer">${vo.proj_buyer}</div>
 		<div class="date">시작 : ${vo.proj_start_date}<br>마감 : ${vo.proj_end_date}
