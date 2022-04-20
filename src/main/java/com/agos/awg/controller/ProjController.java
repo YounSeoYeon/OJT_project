@@ -97,23 +97,23 @@ public class ProjController {
 	}	
 	
 //	radio°ª ¹Ù²¼À»¶§
-	@RequestMapping("/projfilter/{value}")
-	public String projfilter(@PathVariable String value, Model model) {
-		ArrayList<ProjVO> vo = proj.projfilter(value);
-		ArrayList<String> amountList = new ArrayList<String>();
-		
-		for(int i=0; i<vo.size(); i++) {
-			/* Amount Ãµ ´ÜÀ§ ÄÞ¸¶  */
-			String amount = Integer.toString(vo.get(i).getProj_amount());
-			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
-			amountList.add(FormattedAmount);
-		}
-		
-		model.addAttribute("vo",vo);
-		model.addAttribute("amountList", amountList);
-//		System.out.println(amountList);
-		return "project/projtop";
-	}
+//	@RequestMapping("/projfilter/{value}")
+//	public String projfilter(@PathVariable String value, Model model) {
+//		ArrayList<ProjVO> vo = proj.projfilter(value);
+//		ArrayList<String> amountList = new ArrayList<String>();
+//		
+//		for(int i=0; i<vo.size(); i++) {
+//			/* Amount Ãµ ´ÜÀ§ ÄÞ¸¶  */
+//			String amount = Integer.toString(vo.get(i).getProj_amount());
+//			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+//			amountList.add(FormattedAmount);
+//		}
+//		
+//		model.addAttribute("vo",vo);
+//		model.addAttribute("amountList", amountList);
+////		System.out.println(amountList);
+//		return "project/projtop";
+//	}
 	
 	
 	@RequestMapping("/projsearchfilter/{search}")
