@@ -125,7 +125,7 @@ $(function(){
 	
 	// search 부분 클릭시 검색키워드 값 db전달 
 	// 둘다 값 가져오기
-	function input(){		
+	function move(){		
 	 	//const search = document.getElementById('searchinput').value;	//검색한 값
 	 	const search = $("input:text[name='search']").val();	//검색한 값
 		console.log(search);
