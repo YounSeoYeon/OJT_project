@@ -6,7 +6,8 @@
 <html>
 <head>
 <title>프로젝트 index</title>
-<link href="<c:url value='/resources/css/project/projindex.css'/>" rel="stylesheet" type="text/css">
+<%-- <link href="<c:url value='/resources/css/project/projindex.css'/>" rel="stylesheet" type="text/css"> --%>
+<link href="<c:url value='/resources/css/project/projindex2.css'/>" rel="stylesheet" type="text/css">
 <script src="<c:url value='/resources/js/jquery-3.6.0.min.js'/>"></script>
 <script src="<c:url value='/resources/js/project/projindex.js'/>"></script>
 <script type="text/javascript">
@@ -70,23 +71,22 @@
 </script>
 </head>
 <body>
-	<section id="mainWrap">
-		<div id="codeMiddle">
-			<jsp:include page='../header.jsp' />
-			<form id="codemenuBus"> 
-				<div class="codesearch">
-					<div class="bustype">
-						<input type="radio" id="all" name="bustype" value="all" onClick="move()" checked="checked"><label>전체</label>
-						<input type="radio" id="public" name="bustype" value="public" onClick="move()"><label>공공</label> 
-						<input type="radio" id="corp" name="bustype" value="corp" onClick="move()"><label>민간</label>
-					</div>
+	<div id="wrapper">
+			<h1>코드 관리</h1>
+			<div id="contents">
+				<div id="tabButtons">
+					<button class="selected" onclick="location.href= '/'">카드 계정</button>
+					<button onclick="location.href='/index'">업체</button>
+					<button onclick="location.href='/projindex'">프로젝트</button>
+					<button onclick="location.href='#'">지출</button>
+				</div> 
+				<div id="options">
 					<div class="search">
-						<label>업체검색</label>&nbsp;&nbsp;<input type="text" id="searchinput" name="search" placeholder="프로젝트코드,프로젝트명,업체,계약금액 키워드입력" onChange='input()'>
-						&nbsp;<input class="searchbtn" type="button" value="검색">
+						<label>검색</label>&nbsp;&nbsp;
+						<input type="text" id="searchinput" name="search" placeholder="프로젝트명,코드,업체,금액 키워드입력" onChange='move()'>&nbsp;
+						<input class="searchbtn" type="button" value="검색">
 					</div>
-					<button class="excel">엑셀 파일 생성</button>
 				</div>
-				<hr>
 				<div class="bus_list_wrap">
 					<div class="bus_list">
 						<div class="top first">
@@ -97,19 +97,18 @@
 								<div class="buyer">업체</div>
 								<div class="date">기간</div>
 						</div>
-					<hr>
 						<div class="topcard">
 							<jsp:include page="/WEB-INF/views/project/projtop.jsp" flush='true' />
 						</div>
 					</div>				
-				</div>				
-				<div class="inoutBtn">
-					<span class="in">추가</span>
-					<span class="modify">수정</span>
-					<span class="out">삭제</span>
+				</div>	
+				<div id="bottomButtons">
+		  				<button class="in">추가</button>
+						<button class="modify">수정</button>
+						<button class="out">삭제</button>						
+						<button class="excel">엑셀파일</button>
 				</div>
-			</form>
+			</div>
 		</div>
-	</section>
 </body>
 </html>

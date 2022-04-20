@@ -45,18 +45,18 @@
   	
   		<!-- 프로젝트 필터(기본 전체/민간/공공) 및 검색 -->	
 	<!-- 1.업체 필터 전체all(A),민간corp(C), 공공public(P)로 시작 // search값 비어있을때 --> 
-	<select id="projfilter" resultMap="projResult">
+<!-- 	<select id="projfilter" resultMap="projResult">
 		SELECT * FROM proj_code
-		<if test="bustype=='all'">		<!-- option이 전체이면 -->
+		<if test="bustype=='all'">		option이 전체이면
 			ORDER BY proj_code
 		</if>
 		<if test="bustype=='public' and bustype!=''">
-			WHERE proj_nm LIKE "p%" ORDER BY proj_idx desc		<!-- 옵션이 공공이면 --> <!-- 가장 최근 프로젝트가 맨 위로 오도록 -->
+			WHERE proj_nm LIKE "p%" ORDER BY proj_idx desc		옵션이 공공이면 가장 최근 프로젝트가 맨 위로 오도록
 		</if>
 		<if test="bustype=='corp' and bustype!=''">
-			WHERE proj_nm LIKE "c%" ORDER BY proj_idx desc		<!-- 옵션이 민간이면 -->
+			WHERE proj_nm LIKE "c%" ORDER BY proj_idx desc		옵션이 민간이면
 		</if>		
-	</select>
+	</select> -->
 	
 	<!-- 2. search값 있을때 -> search쪽 버튼 누르고--> 
 	<select id="projsearchfilter" resultMap="projResult" parameterType="String">

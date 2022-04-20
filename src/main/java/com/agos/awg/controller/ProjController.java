@@ -101,31 +101,39 @@ public class ProjController {
 	};
 	
 //	radio값 바꼈을때
-	@RequestMapping("/projfilter/{value}")
-	public String projfilter(@PathVariable String value, Model model) {
-		ArrayList<ProjVO> vo = proj.projfilter(value);
-		ArrayList<String> amountList = new ArrayList<String>();
-		
-		for(int i=0; i<vo.size(); i++) {
-			/* Amount 천 단위 콤마  */
-			String amount = Integer.toString(vo.get(i).getProj_amount());
-			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
-			amountList.add(FormattedAmount);
-		}
-		
-		model.addAttribute("vo",vo);
-		model.addAttribute("amountList", amountList);
-//		System.out.println(amountList);
-		return "project/projtop";
-	}
+//	@RequestMapping("/projfilter/{value}")
+//	public String projfilter(@PathVariable String value, Model model) {
+//		ArrayList<ProjVO> vo = proj.projfilter(value);
+//		ArrayList<String> amountList = new ArrayList<String>();
+//		
+//		for(int i=0; i<vo.size(); i++) {
+//			/* Amount 천 단위 콤마  */
+//			String amount = Integer.toString(vo.get(i).getProj_amount());
+//			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+//			amountList.add(FormattedAmount);
+//		}
+//		
+//		model.addAttribute("vo",vo);
+//		model.addAttribute("amountList", amountList);
+////		System.out.println(amountList);
+//		return "project/projtop";
+//	}
 	
 	
 	@RequestMapping("/projsearchfilter/{search}")
 	public String projsearchfilter(@PathVariable String search, Model model) {
 		ArrayList<ProjVO> vo = proj.projsearchfilter(search);
 		ArrayList<String> amountList = new ArrayList<String>();
+		String startdate = "";
+		String enddate = "";
 		
 		for(int i=0; i<vo.size(); i++) {
+			/* 날짜 연월일까지만 출력되도록*/
+			startdate=vo.get(i).getProj_start_date().substring(2,10);
+			enddate=vo.get(i).getProj_end_date().substring(2,10);			
+			vo.get(i).setProj_start_date(startdate);
+			vo.get(i).setProj_end_date(enddate);
+			
 			/* Amount 천 단위 콤마  */
 			String amount = Integer.toString(vo.get(i).getProj_amount());
 			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
