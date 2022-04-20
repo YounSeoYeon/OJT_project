@@ -5,17 +5,45 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-	<link rel="stylesheet" href="<c:url value='/resources/css/header.css'/>">
+<style type="text/css">
+button {
+	width: 100px;
+	padding: 10px;
+	font-size: 16px;
+	background-color: white;
+	border-radius: 10px;
+	cursor: pointer;
+	margin: 0 10px;
+}
+
+button:hover {
+	color: white;
+	background-color: gray;
+}
+
+#tabButtons button:first-child,
+#submitButtons button:first-child {
+	margin: 0 10px 0 0;
+}
+
+#tabButtons {
+	margin-bottom: 30px;
+}
+
+#tabButtons button.selected {
+	color: white;
+	background-color: black;
+}
+</style>
 </head>
 <body>
 	<header>
-		<h1>코드관리</h1>
-		<ul id="codemenu">
-			<li><a href="/">카드계정</a></li>
-			<li><a href="/index">업체</a></li>
-			<li><a href="/projindex">프로젝트</a></li>
-			<li><a href="#">지출</a></li>
-		</ul>
+		<div id="tabButtons">
+			<button onclick="location.href= '/'">카드 계정</button>
+			<button onclick="location.href='/index'">업체</button>
+			<button onclick="location.href='/projindex'">프로젝트</button>
+			<button onclick="location.href='#'">지출</button>
+		</div> 
 	</header>
 </body>
 </html>
