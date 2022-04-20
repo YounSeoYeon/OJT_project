@@ -259,21 +259,22 @@ $(function(){
 		};
 		
 		// 카드 비밀번호
-		let pw_validation = true;
-		if($('#card_type').val() === '0') {
-			if($('#card_pw').val().length < 4) {
-				$('.card_pw_error').css({
-					'display': 'block',
-					'color': 'red'
-				});
-				let errorMsg = $('#card_pw').val() == '' ? '비밀번호를 입력하세요.' : '유효하지 않은 비밀번호입니다.';
-				$('.card_pw_error').text(errorMsg);
-				$(this).focus();
-				validation = false;
-			}else {
-				$('.card_pw_error').css('display', 'none');
-			};
-		};
+//		let pw_validation = true;
+//		if($('#card_type').val() === '0') {
+//			if($('#card_pw').val().length < 4) {
+//				$('.card_pw_error').css({
+//					'display': 'block',
+//					'color': 'red'
+//				});
+//				let errorMsg = $('#card_pw').val() == '' ? '비밀번호를 입력하세요.' : '유효하지 않은 비밀번호입니다.';
+//				$('.card_pw_error').text(errorMsg);
+//				$(this).focus();
+//				validation = false;
+//			}else {
+//				$('.card_pw_error').css('display', 'none');
+//			};
+//		};
+		
 		return validation;
 	};
 });
