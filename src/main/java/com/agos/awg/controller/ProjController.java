@@ -40,17 +40,26 @@ public class ProjController {
 		ArrayList<ProjVO> vo = proj.projlist();
 		String startdate = "";
 		String enddate = "";
-		System.out.println(vo.get(0).getProj_start_date().substring(2,10));
+//		System.out.println(vo.get(0).getProj_start_date().substring(2,10));
+		
+		ArrayList<String> amountList = new ArrayList<String>();
 		
 		for(int i=0; i<vo.size(); i++) {
 			startdate=vo.get(i).getProj_start_date().substring(2,10);
 			enddate=vo.get(i).getProj_end_date().substring(2,10);			
 			vo.get(i).setProj_start_date(startdate);
-			vo.get(i).setProj_end_date(enddate);			
+			vo.get(i).setProj_end_date(enddate);
+			
+			/* Amount Ãµ ´ÜÀ§ ÄÞ¸¶  */
+			String amount = Integer.toString(vo.get(i).getProj_amount());
+			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+			amountList.add(FormattedAmount);
 		}
 		
 		model.addAttribute("vo",vo);
-		System.out.println(vo);
+		model.addAttribute("amountList", amountList);
+//		System.out.println(vo);
+//		System.out.println(amountList);
 		return "project/projindex";
 	}
 	
@@ -91,8 +100,18 @@ public class ProjController {
 	@RequestMapping("/projfilter/{value}")
 	public String projfilter(@PathVariable String value, Model model) {
 		ArrayList<ProjVO> vo = proj.projfilter(value);
+		ArrayList<String> amountList = new ArrayList<String>();
+		
+		for(int i=0; i<vo.size(); i++) {
+			/* Amount Ãµ ´ÜÀ§ ÄÞ¸¶  */
+			String amount = Integer.toString(vo.get(i).getProj_amount());
+			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+			amountList.add(FormattedAmount);
+		}
+		
 		model.addAttribute("vo",vo);
-		System.out.println(vo);
+		model.addAttribute("amountList", amountList);
+//		System.out.println(amountList);
 		return "project/projtop";
 	}
 	
@@ -100,8 +119,18 @@ public class ProjController {
 	@RequestMapping("/projsearchfilter/{search}")
 	public String projsearchfilter(@PathVariable String search, Model model) {
 		ArrayList<ProjVO> vo = proj.projsearchfilter(search);
+		ArrayList<String> amountList = new ArrayList<String>();
+		
+		for(int i=0; i<vo.size(); i++) {
+			/* Amount Ãµ ´ÜÀ§ ÄÞ¸¶  */
+			String amount = Integer.toString(vo.get(i).getProj_amount());
+			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+			amountList.add(FormattedAmount);
+		}
+		
 		model.addAttribute("vo",vo);
-		System.out.println(vo);
+		model.addAttribute("amountList", amountList);
+//		System.out.println(amountList);
 		return "project/projtop";
 	}
 	
@@ -133,6 +162,8 @@ public class ProjController {
 	@ResponseBody
 	@RequestMapping("/project/updateProject")
 	public int updateProject(ProjVO projVO) {
+		System.out.println(projVO);
+		
 		int result = proj.updateProject(projVO);
 		
 		return result;
