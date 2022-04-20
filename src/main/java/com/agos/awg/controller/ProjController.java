@@ -54,8 +54,6 @@ public class ProjController {
 				vo.get(i).setProj_end_date(enddate);
 			}
 			
-			System.out.println(i+ ": " +vo.get(i).getProj_start_date());
-			
 			/* Amount 천 단위 콤마  */
 			String amount = Integer.toString(vo.get(i).getProj_amount());
 			String FormattedAmount = amount.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
@@ -100,12 +98,6 @@ public class ProjController {
 	public String projdbinsert(ProjVO vo) {
 		proj.projdbinsert(vo);
 		return "/popup";
-	};
-	
-	// 팝업 창으로 이동
-	@RequestMapping("/popup")
-	public String popup() {
-		return "popup";
 	};
 	
 //	radio값 바꼈을때

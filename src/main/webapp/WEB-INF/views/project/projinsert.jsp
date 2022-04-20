@@ -35,7 +35,7 @@
 	                </li>
 	                <li>
 	                	<label>계약금액</label><br>
-	                	<input type="number" id="proj_amount" name="proj_amount" placeholder="숫자만 입력">
+	                	<input type="text" id="proj_amount" name="proj_amount" placeholder="숫자만 입력">
 	                </li>
 	               <li>
 	                	<label>시작날짜</label><br>

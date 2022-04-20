@@ -3,10 +3,51 @@
  */
 
 $(function(){
+	/***** 금액 입력 EVENT *****/
+	// 금액 천단위 콤마 생성
+	function withComma(num) {
+		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	}
+	// 금액 콤마 해제
+	function withoutComma(num) {
+		return num.toString().replace(/,/g, '');
+	}
+	
+	// 금액 입력란 숫자만 입력, 천단위 콤마 생성
+	$('#proj_amount').on('propertychange change keyup paste input', function(){
+		$(this).val($(this).val().replace(/[^0-9]/g, ''));
+		
+		let amount = $(this).val() || '0';
+		let amountWithComma = withComma(parseInt(amount));
+		$(this).val(amountWithComma);
+	});
+	
 	// submit
 	$('#codeInsertForm').on('submit', function(e){
 		e.preventDefault();
 		let formData = $(this).serializeArray();
+		
+		// formData  amount 콤마 해제 -> int 형으로 변경
+		let amount = parseInt(withoutComma($('#proj_amount').val()));
+		
+		formData = changeSerialize(formData, 'proj_amount', amount);
+		
+		// changeSerialize 함수
+		function changeSerialize(values, k, v) {
+		    let found = false;
+
+		    for (let i = 0; i < values.length && !found; i++) {
+		        if ( values[i].name == k ) { 
+		            values[i].value = v;
+		            found = true;
+		        }
+		    }
+
+		    if (!found) values.push({name: k, value: v});
+		    
+		    return values;
+		}
+		
 		console.log(formData)
 		
 		if(validate($(this))) {
@@ -15,7 +56,7 @@ $(function(){
 				url: '/projdbinsert',
 				data : formData,
 				success:  function(result){
-					location.href = result;
+					$('body').html(result);
 				},
 				error: function(e){
 					console.log(e)

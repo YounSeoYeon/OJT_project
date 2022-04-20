@@ -53,8 +53,7 @@ $(function(){
 		        }
 		    }
 
-		    if (!found) 
-		        values.push({name: k, value: v});
+		    if (!found) values.push({name: k, value: v});
 		    
 		    return values;
 		}
