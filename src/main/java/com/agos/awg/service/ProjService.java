@@ -1,6 +1,7 @@
 package com.agos.awg.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,4 @@ public class ProjService implements IProjService {
 	public ProjVO getProjectInfo(String project_idx) {
 		return dao. getProjectInfo(project_idx);
 	}
-
 }
