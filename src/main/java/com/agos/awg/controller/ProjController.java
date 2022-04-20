@@ -45,10 +45,12 @@ public class ProjController {
 		ArrayList<String> amountList = new ArrayList<String>();
 		
 		for(int i=0; i<vo.size(); i++) {
-			startdate=vo.get(i).getProj_start_date().substring(2,10);
-			enddate=vo.get(i).getProj_end_date().substring(2,10);			
-			vo.get(i).setProj_start_date(startdate);
-			vo.get(i).setProj_end_date(enddate);
+			if(vo.get(i).getProj_start_date() != null && vo.get(i).getProj_end_date() != null) {
+				startdate=vo.get(i).getProj_start_date().substring(2,10);
+				enddate=vo.get(i).getProj_end_date().substring(2,10);			
+				vo.get(i).setProj_start_date(startdate);
+				vo.get(i).setProj_end_date(enddate);
+			}
 			
 			/* Amount 천 단위 콤마  */
 			String amount = Integer.toString(vo.get(i).getProj_amount());
@@ -93,8 +95,8 @@ public class ProjController {
 	@RequestMapping("/projdbinsert")
 	public String projdbinsert(ProjVO vo) {
 		proj.projdbinsert(vo);
-		return "popup";	// 등록후 팝업안내창으로 이동
-	}	
+		return "/popup";
+	};
 	
 //	radio값 바꼈을때
 //	@RequestMapping("/projfilter/{value}")
@@ -147,12 +149,14 @@ public class ProjController {
 	public String updateCardView(@PathVariable("idx") String poject_idx, Model model) {
 		ProjVO project = proj.getProjectInfo(poject_idx);
 		
-		/* Date 형식 변경 : date-local 형식 */
-		String FormattedStartDate = project.getProj_start_date().replace(' ', 'T');
-		String FormattedEndDate = project.getProj_end_date().replace(' ', 'T');
-		
-		project.setProj_start_date(FormattedStartDate);
-		project.setProj_end_date(FormattedEndDate);
+		if(project.getProj_start_date() != null) {
+			/* Date 형식 변경 : date-local 형식 */
+			String FormattedStartDate = project.getProj_start_date().replace(' ', 'T');
+			String FormattedEndDate = project.getProj_end_date().replace(' ', 'T');
+			
+			project.setProj_start_date(FormattedStartDate);
+			project.setProj_end_date(FormattedEndDate);
+		}
 		
 		/* Amount 천 단위 콤마  */
 		String amount = Integer.toString(project.getProj_amount());

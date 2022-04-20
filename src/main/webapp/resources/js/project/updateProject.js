@@ -53,8 +53,7 @@ $(function(){
 		        }
 		    }
 
-		    if (!found) 
-		        values.push({name: k, value: v});
+		    if (!found) values.push({name: k, value: v});
 		    
 		    return values;
 		}
@@ -97,31 +96,31 @@ $(function(){
 			$('.proj_nm_error').css('display', 'none');
 		} 
 		
-		// 프로젝트 시작 날짜
-		if($('#proj_start_date').val() == "") {
-			$('.proj_date_error').css({
-				'display': 'block',
-				'color': 'red'
-			});
-			$('proj_date_error').text('프로젝트 시작 날짜를 입력해주세요.');
-			$(this).focus();
-			validation = false;
-		}else {
-			$('.proj_date_error').css('display', 'none');
-		} 
-		
-		// 프로젝트 만료 날짜
-		if($('#proj_end_date').val() == "") {
-			$('.proj_date_error').css({
-				'display': 'block',
-				'color': 'red'
-			});
-			$('.proj_date_error').text('프로젝트 만료 날짜를 입력해주세요.');
-			$(this).focus();
-			validation = false;
-		}else {
-			$('.proj_date_error').css('display', 'none');
-		} 
+//		// 프로젝트 시작 날짜
+//		if($('#proj_start_date').val() == "") {
+//			$('.proj_date_error').css({
+//				'display': 'block',
+//				'color': 'red'
+//			});
+//			$('proj_date_error').text('프로젝트 시작 날짜를 입력해주세요.');
+//			$(this).focus();
+//			validation = false;
+//		}else {
+//			$('.proj_date_error').css('display', 'none');
+//		} 
+//		
+//		// 프로젝트 만료 날짜
+//		if($('#proj_end_date').val() == "") {
+//			$('.proj_date_error').css({
+//				'display': 'block',
+//				'color': 'red'
+//			});
+//			$('.proj_date_error').text('프로젝트 만료 날짜를 입력해주세요.');
+//			$(this).focus();
+//			validation = false;
+//		}else {
+//			$('.proj_date_error').css('display', 'none');
+//		} 
 		
 		// 발주처
 		if($('#proj_buyer').val() == "") {

@@ -28,9 +28,18 @@
 	<insert id="projdbinsert"
 		parameterType="com.agos.awg.model.ProjVO">
 		INSERT INTO
-		proj_code (proj_code,proj_nm,proj_amount,proj_buyer,proj_start_date,proj_end_date)
-		VALUES
-		(#{proj_code},#{proj_nm},#{proj_amount},#{proj_buyer},#{proj_start_date},#{proj_end_date})
+		<choose>
+			<when test="proj_start_date != '' and proj_end_date != ''">
+				proj_code (proj_code,proj_nm,proj_amount,proj_buyer,proj_start_date,proj_end_date)
+				VALUES
+				(#{proj_code},#{proj_nm},#{proj_amount},#{proj_buyer},#{proj_start_date},#{proj_end_date})
+			</when>
+			<otherwise>
+				proj_code (proj_code,proj_nm,proj_amount,proj_buyer)
+				VALUES
+				(#{proj_code},#{proj_nm},#{proj_amount},#{proj_buyer})
+			</otherwise>
+		</choose>
 	</insert>
   	
   	
@@ -70,7 +79,14 @@
 	<!-- 프로젝트 정보 수정 -->
 	<update id="updateProject" parameterType="com.agos.awg.model.ProjVO">
 		UPDATE proj_code
-		SET proj_nm=#{proj_nm}, proj_amount=#{proj_amount}, proj_buyer=#{proj_buyer}, proj_start_date=#{proj_start_date}, proj_end_date=#{proj_end_date} 
+		<choose>
+			<when test="proj_start_date != '' and proj_end_date != ''">
+				SET proj_nm=#{proj_nm}, proj_amount=#{proj_amount}, proj_buyer=#{proj_buyer}, proj_start_date=#{proj_start_date}, proj_end_date=#{proj_end_date}
+			</when>
+			<otherwise>
+				SET proj_nm=#{proj_nm}, proj_amount=#{proj_amount}, proj_buyer=#{proj_buyer}
+			</otherwise>
+		</choose>
 		WHERE proj_code=#{proj_code}
 	</update>
 	
