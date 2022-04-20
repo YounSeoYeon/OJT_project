@@ -12,20 +12,20 @@
 <script src="<c:url value='/resources/js/project/projindex.js'/>"></script>
 <script type="text/javascript">
 	$(function(){
-		var chkObj = document.getElementsByName("bustype"); // 개별체크박스들 배열로
+		var chkObj = document.getElementsByName("project"); // 개별체크박스들 배열로
 		var allchk = chkObj.length; // 체크된거 배열 갯수
 		
 		// 전체체크박스 누르면 전체 다 체크됨
 		$("input[name='allcheck']").click(function(){
-			var chkList = $("input[name='bustype']");
+			var chkList = $("input[name='project']");
 			for(var i=0; i<chkList.length; i++){
 				chkList[i].checked = this.checked;
 			}
 		});
 		
 		// 개별체크박스 체크
-		$("input[name='bustype']").click(function(){
-			if($("input[name='bustype']:checked").length==allchk){
+		$("input[name='project']").click(function(){
+			if($("input[name='project']:checked").length==allchk){
 				$("input[name='allcheck']")[0].checked = true;
 			}
 			else{

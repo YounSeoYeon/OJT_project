@@ -56,5 +56,4 @@ public class ProjService implements IProjService {
 	public ProjVO getProjectInfo(String project_idx) {
 		return dao. getProjectInfo(project_idx);
 	}
-
 }

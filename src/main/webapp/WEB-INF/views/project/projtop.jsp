@@ -19,7 +19,8 @@
 		<div class="amount">${amountList[status.index]} 원</div>
 		<div class="code">${vo.proj_code }</div>
 		<div class="buyer">${vo.proj_buyer}</div>
-		<div class="date">시작 : ${vo.proj_start_date}<br>마감 : ${vo.proj_end_date}
+		<div class="date">
+			시작 : ${vo.proj_start_date}<br>마감 : ${vo.proj_end_date}
 		</div>
 	</div>
 	<hr>
