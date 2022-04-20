@@ -170,6 +170,7 @@ $(function(){
 		
 		filter = $('.filter').val();
 		keyword = $('#searchInput').val();
+		console.log(keyword)
 		
 		if(filter != "" && keyword != ""){
 			data["filter"] = filter;

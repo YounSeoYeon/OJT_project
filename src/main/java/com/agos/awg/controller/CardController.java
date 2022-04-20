@@ -44,7 +44,6 @@ public class CardController {
 		map.put("filter", filter);
 		map.put("keyword", keyword);
 		map.put("pagination", pagination);
-		// System.out.println(map);
 		
 		// 카드 목록 가져오기
 		ArrayList<CardVO> cardList = service.getCardList(map);
