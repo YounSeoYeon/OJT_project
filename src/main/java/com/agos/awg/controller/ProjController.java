@@ -2,12 +2,10 @@ package com.agos.awg.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.compress.archivers.zip.PKWareExtraHeader.HashAlgorithm;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;

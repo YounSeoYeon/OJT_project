@@ -20,6 +20,12 @@ $(function(){
 			$('input:checkbox').prop('checked',false);
 	});
 	
+	/*** 전체 체크 상태에서 개별 체크 박스 클릭시 전체 체크 해제 ***/
+	$(document).on('click', 'input[name="card"]', function(){
+		const checked = $('#checkAll').is(':checked');
+		if(checked) $('#checkAll').prop('checked',false);
+	});
+	
 	/***  카드 타입 선택 ***/
 	$('input:radio[name="card_type"]').on('change', function(){
 		card_type = $('input[name=card_type]:checked').val();
