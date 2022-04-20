@@ -158,7 +158,7 @@ $(function(){
 		let card_name = $('#card_name').val();
 		
 		// card_ep
-		let card_ep = $('#card_ep_year').val() + '-' + $('#card_ep_month').val() + '-00'; 
+		let card_ep = $('#card_ep_year').val() + '-' + $('#card_ep_month').val() + '-01'; 
 		
 		// card_pw
 		let card_pw = $('#card_pw').val() || null;
