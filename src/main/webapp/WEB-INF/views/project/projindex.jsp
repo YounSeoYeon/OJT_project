@@ -17,7 +17,7 @@
 		
 		// 전체체크박스 누르면 전체 다 체크됨
 		$("input[name='allcheck']").click(function(){
-			var chkList = $("input[name='bustype']");
+			var chkList = $("input[name='project']");
 			for(var i=0; i<chkList.length; i++){
 				chkList[i].checked = this.checked;
 			}
