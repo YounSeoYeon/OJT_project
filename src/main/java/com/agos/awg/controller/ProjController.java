@@ -38,17 +38,25 @@ public class ProjController {
 	@RequestMapping("/projindex")
 	public String projindex(Model model) {
 		ArrayList<ProjVO> vo = proj.projlist();
+		ArrayList<String> amountList = new ArrayList<String>();
 		String startdate = "";
 		String enddate = "";
-//		System.out.println(vo.get(0).getProj_start_date().substring(2,10));
 		
-		ArrayList<String> amountList = new ArrayList<String>();
-		
-		for(int i=0; i<vo.size(); i++) {
-			startdate=vo.get(i).getProj_start_date().substring(2,10);
-			enddate=vo.get(i).getProj_end_date().substring(2,10);			
-			vo.get(i).setProj_start_date(startdate);
-			vo.get(i).setProj_end_date(enddate);
+		for(int i=0; i<vo.size(); i++) {			
+			if(vo.get(i).getProj_start_date() != null && vo.get(i).getProj_end_date() != null) {
+				startdate=vo.get(i).getProj_start_date().substring(2,10);
+				enddate=vo.get(i).getProj_end_date().substring(2,10);
+				vo.get(i).setProj_start_date(startdate);
+				vo.get(i).setProj_end_date(enddate);				
+			}
+			else if(vo.get(i).getProj_start_date() == null && vo.get(i).getProj_end_date() != null) {
+				enddate=vo.get(i).getProj_end_date().substring(2,10);
+				vo.get(i).setProj_end_date(enddate);
+			}
+			else if(vo.get(i).getProj_start_date() != null && vo.get(i).getProj_end_date() == null) {
+				startdate=vo.get(i).getProj_start_date().substring(2,10);
+				vo.get(i).setProj_start_date(startdate);
+			}
 			
 			/* Amount 천 단위 콤마  */
 			String amount = Integer.toString(vo.get(i).getProj_amount());
@@ -124,11 +132,23 @@ public class ProjController {
 		String enddate = "";
 		
 		for(int i=0; i<vo.size(); i++) {
+			
 			/* 날짜 연월일까지만 출력되도록*/
-			startdate=vo.get(i).getProj_start_date().substring(2,10);
-			enddate=vo.get(i).getProj_end_date().substring(2,10);			
-			vo.get(i).setProj_start_date(startdate);
-			vo.get(i).setProj_end_date(enddate);
+			/* 둘다 null인 경우와 둘중하나가 null인 경우가 있을수 있음 -> 넘어오는 변수 없어서 그런경우는 제외해야함. */
+			if(vo.get(i).getProj_start_date() != null && vo.get(i).getProj_end_date() != null) {
+				startdate=vo.get(i).getProj_start_date().substring(2,10);
+				enddate=vo.get(i).getProj_end_date().substring(2,10);
+				vo.get(i).setProj_start_date(startdate);
+				vo.get(i).setProj_end_date(enddate);				
+			}
+			else if(vo.get(i).getProj_start_date() == null && vo.get(i).getProj_end_date() != null) {
+				enddate=vo.get(i).getProj_end_date().substring(2,10);
+				vo.get(i).setProj_end_date(enddate);
+			}
+			else if(vo.get(i).getProj_start_date() != null && vo.get(i).getProj_end_date() == null) {
+				startdate=vo.get(i).getProj_start_date().substring(2,10);
+				vo.get(i).setProj_start_date(startdate);
+			}
 			
 			/* Amount 천 단위 콤마  */
 			String amount = Integer.toString(vo.get(i).getProj_amount());

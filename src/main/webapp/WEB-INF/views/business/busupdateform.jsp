@@ -62,9 +62,6 @@
 	                	<label>대표이메일</label><br>
 	                	<input type="text" id="bus_email1" name="bus_email" value="${vo.bus_email}" />
 	                </li>
-	                <!-- <li class="insertBtn">
-		                <span id="checkAll">등록</span>
-	                </li> -->
 				</ul>
 				<input type="submit" value="수정">
 				<input type="reset" value="취소">
